@@ -1,0 +1,547 @@
+﻿@import '../../base-styles/typography';
+@import '../../base-styles/icons';
+@import "../base/dropdown";
+@import "../../mixins/_responsiveness.mixin.scss";
+
+#system-message {
+	select::-ms-expand {
+		display: none;
+	}
+
+	padding: 20px;
+	background: #e9eef1;
+	height: 100%;
+
+	.system-message-body {
+		background-color: white;
+
+		.system-message-heading {
+			margin: 12px 0 12px 5px;
+		}
+
+		.system-message-help-text {
+			opacity: 0.7;
+			margin: 0 0 6px 5px;
+		}
+
+		.add-message {
+			margin: 12px 12px 0 0;
+
+			.icon {
+				padding-right: 8px;
+			}
+
+			.add-msg-text {
+				top: -3px;
+				position: relative;
+			}
+		}
+
+		.item-count-label {
+			padding-left: 5px;
+		}
+
+		.fxp-dropdown-menu {
+			display: inline-block;
+		}
+
+		#item-count {
+			width: 80px;
+			padding: 3px;
+		}
+
+		.item-drop-down {
+			padding: 6px 0 6px 8px;
+		}
+
+		.toggle-sort {
+			border: none;
+			color: $BLACK;
+			background: none;
+		}
+
+		.system-message-pagination {
+			padding: 6px 0;
+			margin: 0 12px;
+
+			.page-number {
+				opacity: 0.7;
+				width: 30px;
+				height: 36px;
+				text-align: center;
+				margin: 0 6px;
+			}
+
+			.fxp-btn--action__text {
+				padding: 0;
+			}
+
+			.page-text {
+				margin: 0 6px;
+			}
+
+			.fxp-btn {
+				margin: 0 6px;
+				padding: 0;
+			}
+
+			.icon-chevron-left, .icon-chevron-right {
+				font-size: 12px;
+				margin: 0 6px;
+			}
+		}
+
+		table {
+			min-width: 100%;
+
+			.dates {
+				font-family: 'Segoe UI';
+				font-size: 13px;
+				color: #000000;
+			}
+
+			.open {
+				background-color: rgba(0,0,0,0.05);
+			}
+
+			tr {
+				border-bottom: 1px solid rgba(0,0,0,0.1);
+				vertical-align: top;
+
+				.start-date {
+					opacity: 1;
+				}
+
+				.icon-down-arrow {
+					font-size: 10px;
+				}
+
+				th {
+					font-family: 'Segoe UI';
+					font-size: 11px;
+					font-weight: normal;
+					padding: 6px 10px 12px 0;
+					color: rgba(0,0,0,0.6);
+
+					&.chevron-header {
+						width: 44px;
+					}
+
+					&.message-desc-header {
+						width: 27%;
+						padding-left: 6px;
+					}
+				}
+
+				td {
+					padding: 12px 6px;
+
+					&.chevron {
+						padding: 0;
+					}
+
+					.icon-edit-row, .icon-delete-row {
+						padding: 0 9px;
+						font-size: 13px;
+						color: #0063B1;
+						cursor: pointer;
+					}
+
+					.icon {
+						border: none;
+						background-color: rgba(0,0,0,0);
+					}
+
+					.icon-row-up, .icon-row-down {
+						padding-right: 10px;
+						height: 44px;
+						width: 44px;
+					}
+
+					.text-container {
+						margin-top: 13px;
+						margin-bottom: 10px;
+					}
+				}
+			}
+		}
+	}
+
+	a {
+		color: #0063B1;
+	}
+
+	.message-desc {
+		max-width: 1px;
+
+		&.ellipses {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+	}
+
+	.system-message-popupbg {
+		top: 48px;
+		width: calc(100vw);
+		height: calc(100vh - 84px);
+		z-index: 1001;
+		background-color: rgba(0,0,0,0.3);
+		text-align: center;
+		position: fixed;
+		left: 0px;
+
+		.settingsButtons {
+			margin-top: 10px;
+		}
+	}
+
+	.popup-close {
+		font-size: 12px;
+		color: #000 !important;
+		cursor: pointer;
+		background: none;
+		border: none;
+	}
+
+	#popup {
+		width: 536px;
+		height: auto;
+		padding: 0;
+		background-color: white;
+
+		.add-message-popup {
+			text-align: justify;
+			margin: 24px;
+
+			.popup-heading {
+				display: inline-block;
+			}
+
+			label {
+				padding: 20px 0 12px 0;
+			}
+
+			label[for="user-msg"] {
+				width: 472px;
+			}
+
+			#type {
+				margin-bottom: 10px;
+			}
+
+			.popup-dropdown {
+				height: 36px;
+				width: 228px;
+			}
+
+			textarea {
+				height: 96px;
+				width: 472px;
+				max-width: 472px;
+				overflow-y: visible;
+				padding-left: 10px;
+				border: 1px solid $BLACK;
+				resize: none;
+			}
+
+			input[type=text] {
+				height: 36px;
+				width: 192px;
+			}
+
+			.icon-calender {
+				font-size: 16px;
+				border: 1px solid rgba(0,0,0,0.6);
+				text-align: center;
+				height: 36px;
+				width: 36px;
+				padding: 9px;
+				color: #0063B1;
+			}
+
+			.moment-picker-container {
+				border-radius: 0 !important;
+				border: 1px solid $BLUE_SECONDARY;
+
+				td, th {
+					border-radius: 0 !important;
+
+					&.highlighted {
+						border: 1px dashed $color-brand;
+						background: none;
+					}
+
+					&.selected {
+						border: 1px solid $color-brand;
+						color: white;
+						background: $color-brand;
+					}
+
+					&:hover {
+						border: 1px dashed $BLUE_SECONDARY;
+						color: white;
+						background: $BLUE_SECONDARY;
+					}
+				}
+			}
+
+			.settingsButtons {
+				margin-top: 20px;
+			}
+		}
+	}
+
+	#delete-popup {
+		width: 480px;
+		height: 180px;
+		padding: 0;
+		background-color: white;
+		border: 1px solid #000;
+		position: relative;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%,-50%);
+
+		.delete-message-popup {
+			text-align: justify;
+			margin: 24px;
+
+			.popup-heading {
+				display: inline-block;
+			}
+
+			label {
+				padding: 20px 0 12px 0;
+			}
+
+			.settingsButtons {
+				margin-top: 20px;
+
+				button {
+					margin: 0;
+				}
+			}
+		}
+	}
+}
+
+.inline-error-message {
+	.inline-error-border, .inline-error-border:hover, .inline-error-border:active {
+		border: 1px solid $RED !important;
+
+		&:focus {
+			outline: $RED 1px !important;
+		}
+	}
+
+	.show-error-message {
+		visibility: visible;
+	}
+
+	.hide-error-message {
+		visibility: hidden;
+	}
+
+	.inline-error-text {
+		color: $RED;
+		font-size: 11px;
+	}
+
+	.no-error-border {
+		border: 1px solid $BLACK;
+	}
+
+	.error-message-spacing {
+		padding-top: 4px;
+	}
+}
+
+.margin0 {
+	margin: 0;
+}
+
+@import "../../vars";
+
+$message-background: $GREY_2A;
+
+$warning-background: $YELLOW_F9;
+$warning-foreground: $BLACK;
+
+fxpsystemupdatemsg {
+	.modal {
+		position: static !important;
+	}
+
+	.modal-show {
+		display: block;
+	}
+
+	.modal-hide {
+		display: none;
+	}
+
+	.message {
+		color: $message-background;
+		padding: 0 !important;
+		margin: 0 0 10px 0;
+		border: 0px !important;
+		background-image: none !important;
+		height: auto;
+		width: 100%;
+		display: inline-flex;
+		font-size: 13px;
+		line-height: 16px;
+		font-weight: 400;
+
+		.icon-container {
+			padding: 7px 10px;
+			cursor: default;
+			font-size: 24px;
+			width: 48px;
+			height: 48px;
+			top: 0px;
+			padding: 12px;
+		}
+
+		.message-container {
+			display: inline-flex;
+			width: 100%;
+
+			.message-content {
+				width: 85%;
+				padding: 15px 5px 10px 5px;
+			}
+
+			.icon-container {
+				padding: 0;
+				margin: 0;
+				background: transparent !important;
+				color: $message-background !important;
+				font: inherit;
+			}
+		}
+
+		&.message-warning {
+			color: $warning-foreground;
+			background-color: $warning-background;
+
+			.icon-container {
+				background-color: $warning-background;
+			}
+		}
+	}
+}
+
+@media screen and (-ms-high-contrast:active) {
+	.fxp-dropdown-menu select {
+		background: url(/assets/logo/icon/select_icon.png) 95% 50% no-repeat;
+	}
+}
+
+// system down page
+#system-down {
+	height: 100%;
+	background: #F2F2F2;
+
+	.outer {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
+		background-image: url('~/../assets/pictures/person_talking.png');
+		background-position-x: 168px;
+		background-position-y: 100%;
+		background-repeat: no-repeat;
+
+		@include respond-to (tablet) {
+			background-position-x: 50%;
+			background-size: calc(50vh - 150px);
+		}
+
+		@include respond-to (mobile) {
+			background-position-x: 12px;
+			background-size: calc(50vh - 150px);
+			height: calc(100vh - 48px);
+		}
+
+		.inner {
+			max-width: 600px;
+			min-width: 200px;
+			position: relative;
+			border-radius: 60px/50%;
+			padding: 36px 60px 16px;
+			background: $WHITE;
+			color: $BLACK;
+			filter: drop-shadow(8px 8px 0 $GREY_D9);
+			text-align: center;
+			transform: translate3d(0,-40px,0);
+
+			@include respond-to (mobile) {
+				border-radius: 30px;
+				margin: 12px;
+				padding: 30px;
+
+				&:after {
+					transform: translate3d(50px,0,0);
+				}
+			}
+
+			&:after {
+				content: "";
+				position: absolute;
+				bottom: -30px;
+				border-width: 50px 50px 0 0;
+				border-style: solid;
+				border-color: $WHITE transparent;
+				display: block;
+				width: 0;
+			}
+
+			.title {
+				margin: 0px;
+				word-break: break-word;
+				font-family: Segoe UI Light;
+				font-size: 60px;
+				line-height: 60px;
+				opacity: 0.8;
+				font-weight: 300;
+
+				@include respond-to(mobile) {
+					font-size: 30px;
+				}
+			}
+
+			.msg {
+				margin: 8px 0 16px 0;
+				word-break: break-word;
+				word-wrap: normal;
+				font-family: Segoe UI;
+				font-size: 16px;
+				opacity: 0.8;
+			}
+
+			.anchor__link {
+				font-family: Segoe UI;
+				font-size: 16px;
+			}
+
+			.time {
+				margin: 0;
+				word-break: break-word;
+				font-family: Segoe UI;
+				font-size: 11px;
+				opacity: 0.8;
+			}
+		}
+	}
+}
+
+#system-down-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 10000;
+}

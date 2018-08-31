@@ -1,0 +1,156 @@
+﻿<div>
+	<div class="roles-rolegroup-notification">
+		<div class="noticationsAdminUI" role="application" ng-init="noneSelected=false">
+			<div class="setting">
+				<div class="column-md-1">
+					<div class="role-rolegroup-notification-admin-form ">
+						<form id="role-group-master-navigation-list" action="#">
+							<div class="bladeHeader">{{::fxpUIConstants.UIStrings.AuthorNotificationStrings.RoleGroupandRoles}}</div>
+							<div id="roles-rolegroup-list-container" class="rolesRolegroupData checkboxListNavigation" tabindex="-1">
+								<div class="roles-rolegroup-Manager">
+									<div class="admin-ui-category" ng-repeat="roleGroupItem in anCtrl.roleGroupDetails">
+										<div class="rolegroup_category control-group" ng-click
+											 ng-init="isAccordianExpanded=false"
+											 enable-add-or-remove="anCtrl.selectedRolesRoleGroupItems(roleGroupItem, null)"
+											 render-nav-elements-for-keydown
+											 global-nav-item="roleGroupItem"
+											 fxp-set-focus="{{isFocused=roleGroupItem.isFocused}}"
+											 is-hide-button-visible="isAccordianExpanded"
+											 fxp-nav-element=".checkboxListNavigation"
+											 ng-class="{'fxpTabbableElem' : true,'expanded' : isAccordianExpanded}"
+											 id="role-group-gChk{{roleGroupItem.RoleGroupId}}-panel"
+											 left-nav-personalization-scroll-to-active="#roles-rolegroup-list-container"
+											 aria-expanded="{{isAccordianExpanded}}"
+											 aria-label="{{$index == 0 ? ' '+fxpUIConstants.UIStrings.AuthorNotificationStrings.RoleGroupandRoles +' '+'use arrow keys to move through or expand collapse. '+' '+ roleGroupItem.RoleGroupName  : roleGroupItem.RoleGroupName }}"
+											 role="checkbox"
+											 aria-checked="{{roleGroupItem.isParentSelected}}"
+											 change-tab-index-by-class="{className:'.mCustomScrollBox',tabindex:'-1'}"
+											 tabindex='0'
+											 aria-disabled="false">
+											<button ng-show="true" type="button" tabindex="-1" left-nav-personalization-scroll-to-active="#roles-rolegroup-list-container"
+													class="left accordionIcon" aria-expanded="{{isAccordianExpanded}}" ng-click="isAccordianExpanded=!isAccordianExpanded">
+												<span class="icon" ng-class="{'icon-accordion-expand': isAccordianExpanded , 'icon-accordion-collapse': !isAccordianExpanded}"> </span>
+											</button>
+											<button ng-if="false" type="button" tabindex="-1" class="left accordionIcon"></button>
+
+											<label class="rolegroup_list CaptionAlt control control--checkbox" ng-class="{'checkbox_disabled':anCtrl.isRolesInReciepientList(roleGroupItem)}">
+												{{roleGroupItem.RoleGroupName}}
+												<input type="checkbox" tabindex="-1" left-nav-prsonalization-adjust-scroll name="{{roleGroupItem.RoleGroupName+roleGroupItem.RoleGroupId}}"
+													   ng-click="anCtrl.selectedRolesRoleGroupItems(roleGroupItem, null)" ng-disabled="anCtrl.isRolesInReciepientList(roleGroupItem)" ng-model="roleGroupItem.isParentSelected"
+													   id="role-group-gChk{{roleGroupItem.RoleGroupId}}" />
+												<span tabindex="-1" class="control__indicator"></span>
+												{{anCtrl.pullFocusToElement("role-group-gChk"+roleGroupItem.RoleGroupId+"-panel",roleGroupItem,"roleGroupList")}}
+											</label>
+										</div>
+										<ul ng-show="isAccordianExpanded">
+											<li ng-repeat="roleItem in roleGroupItem.BusinessRoles" aria-checked="false" tabindex="0"
+												enable-add-or-remove="anCtrl.selectedRolesRoleGroupItems(roleGroupItem, roleItem)"
+												children-nav-item="roleItem"
+												class="fxpTabbableElem" fxp-nav-element=".checkboxListNavigation"
+												render-nav-elements-for-keydown aria-label="{{roleItem.BusinessRoleName}}">
+												<label class="control control--checkbox roles_list" ng-class="{'checkbox_disabled':roleItem.isRecipientsItem}">
+													{{roleItem.BusinessRoleName}}
+													<input tabindex="-1" id="role-group-gChkChild1001" ng-model="roleItem.isChildSelected"
+														   left-nav-prsonalization-adjust-scroll type="checkbox"
+														   name="role-group-gChkChild{{roleItem.BusinessRoleId}}" value="{{roleItem.BusinessRoleName}}"
+														   ng-click="anCtrl.selectedRolesRoleGroupItems(roleGroupItem, roleItem)"
+														   ng-disabled="roleItem.isRecipientsItem" />
+													<span class="control__indicator" tabindex="-1"></span>
+												</label>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="column-md-2">
+					<div class="arrowBox">
+						<button aria-label="Add selected items from {{::fxpUIConstants.UIStrings.AuthorNotificationStrings.RoleGroupandRoles}} to {{fxpUIConstants.UIStrings.AuthorNotificationStrings.NotificationRecipients}}" ng-click="anCtrl.addRolesRoleGroupNotification()" ng-class="anCtrl.isAddButtonEnabled ? 'enableAddRemove':'disableAddRemove'" ng-disabled="!anCtrl.isAddButtonEnabled" change-tab-index-by-class="{className:'.mCustomScrollBox',tabindex:'-1'}"><i class="icon-layout icon-arrow-right addarrow icon-arrowbox"></i></button>
+						<div class="noclass addReorder addbtntext" ng-class="anCtrl.isAddButtonEnabled ? 'enableAddRemoveTxt':'disableAddRemoveTxt'"> {{::fxpUIConstants.UIStrings.ButtonStrings.Add}} </div>
+						<button aria-label="Remove selected items from {{::fxpUIConstants.UIStrings.AuthorNotificationStrings.NotificationRecipients}}" ng-click="anCtrl.removeRolesRoleGroupNotification()" ng-class="(anCtrl.isRemoveButtonEnabled) ?'enableAddRemove':'disableAddRemove'" change-tab-index-by-class="{className:'.mCustomScrollBox',tabindex:'-1'}" ng-disabled="!anCtrl.isRemoveButtonEnabled">
+							<i class="icon-layout icon icon-recyclebin addarrow icon-arrowbox"></i>
+						</button>
+						<div class="noclass addReorder" ng-class="anCtrl.isRemoveButtonEnabled ? 'enableAddRemoveTxt':'disableAddRemoveTxt'"> {{::fxpUIConstants.UIStrings.ButtonStrings.Remove}} </div>
+					</div>
+				</div>
+				<div class="column-md-3">
+					<div class="role-rolegroup-notification-admin-form">
+						<form id="selected-rolesrolegroup-list-form" action="#">
+							<div class="bladeHeader" ng-bind="::fxpUIConstants.UIStrings.AuthorNotificationStrings.NotificationRecipients"></div>
+							<div id="recipients-notification-container"
+								 class="rolesRolegroupData manage-personalization checkboxListNavigation">
+								<div class="roles-rolegroup-Manager">
+									<div class="noneSelected"
+										 ng-if="!anCtrl.ifSelectedRolesRoleGroup()"
+										 tabindex="0"
+										 aria-label="{{::fxpUIConstants.UIStrings.AuthorNotificationStrings.NotificationRecipients}}{{::fxpUIConstants.UIStrings.AuthorNotificationStrings.NoneSelectedAriaLabel}}"
+										 ng-bind-html="::fxpUIConstants.UIStrings.AuthorNotificationStrings.NoneSelected">
+									</div>
+									<div class="admin-ui-category" ng-if="anCtrl.ifSelectedRolesRoleGroup()" ng-repeat="roleGroupNavItem in (filteredList = (anCtrl.roleGroupDetails|filter:{isRecipientsItem: true }))">
+										<div class="rolegroup_category control-group "
+											 ng-init="isAccordianExpanded=(roleGroupNavItem.isAccordianExpanded!=null)?roleGroupNavItem.isAccordianExpanded:false"
+											 render-nav-elements-for-keydown
+											 is-hide-button-visible="isAccordianExpanded"
+											 enable-add-or-remove="anCtrl.selectedRoleGroupRecepientsItems(roleGroupNavItem, null)"
+											 user-nav-item="roleGroupNavItem"
+											 fxp-nav-element=".checkboxListNavigation"
+											 ng-class="{'fxpTabbableElem' : true,'expanded' : isAccordianExpanded}"
+											 id="role-group-chk{{roleGroupNavItem.RoleGroupId}}-panel"
+											 left-nav-personalization-scroll-to-active="#recipients-notification-container"
+											 aria-expanded="{{isAccordianExpanded}}"
+											 aria-label="{{$index == 0 ? ' Manage Notification for selected roles '+ roleGroupNavItem.RoleGroupName  : roleGroupNavItem.RoleGroupName }}"
+											 role="checkbox"
+											 aria-checked="{{roleGroupNavItem.isRecepientsParentSelected}}"
+											 change-tab-index-by-class="{className:'.mCustomScrollBox',tabindex:'-1'}"
+											 tabindex='0'
+											 aria-disabled="false">
+											<button ng-show="true" id="role-group-btn{{roleGroupNavItem.RoleGroupId}}" type="button" tabindex="-1"
+													left-nav-personalization-scroll-to-active="#default-navigation-list-form .rolesRolegroupData"
+													aria-label="{{roleGroupNavItem.RoleGroupName}}" class="left accordionIcon" aria-expanded="{{isAccordianExpanded}}" ng-click="isAccordianExpanded=!isAccordianExpanded">
+												<span class="icon" ng-class="{'icon-accordion-expand': isAccordianExpanded , 'icon-accordion-collapse': !isAccordianExpanded}"> </span>
+											</button>
+											<button ng-if="false" id="role-group-btn1001" type="button" tabindex="-1"
+													class="left accordionIcon"></button>
+
+											<label class="rolegroup_list CaptionAlt control control--checkbox">
+												{{roleGroupNavItem.RoleGroupName}}
+												<input type="checkbox" tabindex="-1" left-nav-prsonalization-adjust-scroll
+													   ng-model="roleGroupNavItem.isRecepientsParentSelected"
+													   ng-click="anCtrl.selectedRoleGroupRecepientsItems(roleGroupNavItem, null)"
+													   name="{{roleGroupNavItem.RoleGroupName}}"
+													   id="role-group-gChk{{roleGroupNavItem.RoleGroupId}}" />
+												{{anCtrl.pullFocusToElement("role-group-chk"+roleGroupNavItem.RoleGroupId+"-panel",roleGroupNavItem,"recipients")}}
+												<span tabindex="-1" class="control__indicator"></span>
+											</label>
+										</div>
+										<ul ng-show="isAccordianExpanded">
+											<li ng-repeat="childrenRoleGroupNavItem in (childFilter =  (roleGroupNavItem.BusinessRoles|filter:{isRecipientsItem: true }))"
+												aria-checked="false" class="fxpTabbableElem" fxp-nav-element=".checkboxListNavigation"
+												render-nav-elements-for-keydown tabindex="0"
+												enable-add-or-remove="anCtrl.selectedRoleGroupRecepientsItems(roleGroupNavItem, childrenRoleGroupNavItem)"
+												children-user-nav-item="childrenRoleGroupNavItem"
+												aria-label="{{childrenRoleGroupNavItem.BusinessRoleName}}">
+												<label class="control control--checkbox roles_list" ng-class="">
+													{{childrenRoleGroupNavItem.BusinessRoleName}}
+													<input tabindex="-1" id="role-group-gChkChild{{childrenRoleGroupNavItem.BusinessRoleId}}"
+														   ng-click="anCtrl.selectedRoleGroupRecepientsItems(roleGroupNavItem, childrenRoleGroupNavItem)"
+														   ng-model="childrenRoleGroupNavItem.isRecepientsChildSelected"
+														   left-nav-prsonalization-adjust-scroll type="checkbox" name="role-group-gChkChild{{childrenRoleGroupNavItem.BusinessRoleId}}"
+														   value="{{childrenRoleGroupNavItem.BusinessRoleName}}" />
+													<span class="control__indicator" tabindex="-1"></span>
+												</label>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+

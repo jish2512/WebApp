@@ -1,0 +1,121 @@
+﻿@font-face {
+    font-family: 'SegoeUI MDL2 Assets';
+    src: url('/fonts/segmdl2/SEGMDL2.woff') format('woff'), url('/fonts/segmdl2/SEGMDL2.ttf') format('truetype'), url('/fonts/segmdl2/SEGMDL2.svg') format('svg');
+}
+
+@font-face {
+    font-family: 'Segoe UI Negreta';
+    src:  url('/fonts/black/segoeui.woff') format('woff'), url('/fonts/black/segoeui.ttf') format('truetype'), url('/fonts/black/segoeui.svgz#SegoeUINegreta') format('svg'), url('/fonts/black/segoeui.svg#SegoeUINegreta') format('svg');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Segoe UI Light';
+    src:  url('/fonts/light/segoeui.woff') format('woff'), url('/fonts/light/segoeui.ttf') format('truetype'), url('/fonts/light/segoeui.svgz#SegoeUILight') format('svg'), url('/fonts/light/segoeui.svg#SegoeUILight') format('svg');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Segoe UI';
+    src:  url('/fonts/regular/segoeui.woff') format('woff'), url('/fonts/regular/segoeui.ttf') format('truetype'), url('/fonts/regular/segoeui.svgz#SegoeUINormal') format('svg'), url('/fonts/regular/segoeui.svg#SegoeUINormal') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Segoe UI Semibold';
+    src:  url('/fonts/semibold/segoeui.woff') format('woff'), url('/fonts/semibold/segoeui.ttf') format('truetype'), url('/fonts/semibold/segoeui.svgz#SegoeUISemibold') format('svg'), url('/fonts/semibold/segoeui.svg#SegoeUISemibold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Segoe MVR MDL2 Assets';
+    src: url('/fonts/segoemvrmdl2/SegMVR2.1.35.woff') format('woff'), url('/fonts/segoemvrmdl2/SegMVR2.1.35.ttf') format('truetype'), url('/fonts/segoemvrmdl2/SegMVR2.1.35.svg') format('svg');
+}
+@font-face {
+    font-family: 'Segoe UI Semilight';
+    src: url('/fonts/semilight/segoeuisl.woff') format('woff'), url('/fonts/semilight/segoeuisl.ttf') format('truetype'), url('/fonts/semilight/segoeuisl.svg') format('svg'), url('/fonts/semilight/segoeuisl.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Full MDL2 Assets';
+    src: url('/fonts/fullmdl2/FullMDL2.2.451.woff') format('woff'), url('/fonts/fullmdl2/FullMDL2.2.451.ttf') format('truetype'), url('/fonts/fullmdl2/FullMDL2.2.451.svg') format('svg');
+}
+@font-face {
+    font-family: 'Graphic-Icons';
+    src: url('/fonts/graphic-icons/graphic-icons.woff') format('woff'), url('/fonts/graphic-icons/graphic-icons.ttf') format('truetype'), url('/fonts/graphic-icons/graphic-icons.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+.font-header {
+    font-family: 'Segoe UI';
+    font-weight: 300;
+    font-size: 46px !important;
+    line-height: 56px !important;
+}
+
+.font-subheader {
+    font-family: 'Segoe UI';
+    font-weight: 300;
+    font-size: 34px !important;
+    line-height: 40px !important;
+}
+
+.font-title {
+    font-family: 'Segoe UI';
+    font-weight: 200;
+    font-size: 24px !important;
+    line-height: 28px !important;
+}
+
+.font-subtitle {
+    font-family: 'Segoe UI';
+    font-weight: normal;
+    font-size: 20px !important;
+    line-height: 24px !important;
+}
+
+.font-subtitle-alt {
+    font-family: 'Segoe UI';
+    font-weight: normal;
+    font-size: 18px !important;
+    line-height: 22px !important;
+}
+
+.font-base {
+    font-family: 'Segoe UI';
+    font-weight: 600;
+    font-size: 15px !important;
+    line-height: 20px !important;
+}
+
+.font-base-alt {
+    font-family: 'Segoe UI';
+    font-weight: bold;
+    font-size: 15px !important;
+    line-height: 20px !important;
+}
+
+.font-body {
+    font-family: 'Segoe UI';
+    font-weight: normal;
+    font-size: 15px !important;
+    line-height: 20px !important;
+}
+
+.font-caption-alt {
+    font-family: 'Segoe UI';
+    font-weight: normal;
+    font-size: 13px !important;
+    line-height: 16px !important;
+}
+
+.font-caption {
+    font-family: 'Segoe UI';
+    font-weight: normal;
+    font-size: 12px !important;
+    line-height: 14px !important;
+}

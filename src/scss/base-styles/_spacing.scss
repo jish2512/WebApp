@@ -1,0 +1,72 @@
+﻿/* 
+    Margin and Padding
+    [margin or padding]-[direction]-[size]
+
+    For Margin or Padding: use:
+    “m” for margin
+    “p” for padding
+
+    For direction, you can use:
+    “a” for all
+    “t” for top
+    “r” for right
+    “l” for left
+    “x” for left and right
+    “y” for top and bottom
+    
+    eg :
+    <button class="p-x-10">Sample Button</button>
+    <sction class="m-a-auto"></section>
+*/
+
+$spacer: 5px !default;
+$spacer-x: $spacer !default;
+$spacer-y: $spacer !default;
+$spacers: ( 
+0: ( x: 0, y: 0 ),
+auto: ( x: auto, y: auto ), 
+5: ( x: $spacer-x, y: $spacer-y ), 
+10: ( x: ($spacer-x * 2), y: ($spacer-y * 2) ), 
+15: ( x: ($spacer-x * 3), y: ($spacer-y * 3) ), 
+20: ( x: ($spacer-x * 4), y: ($spacer-y * 4) ), 
+30: ( x: ($spacer-x * 6), y: ($spacer-y * 6)) 
+) !default;
+
+
+@each $prop, $abbrev in (margin: m, padding: p) {
+    @each $size, $lengths in $spacers {
+        $length-x: map-get($lengths, x);
+        $length-y: map-get($lengths, y);
+
+        .#{$abbrev}-a-#{$size} {
+            #{$prop}: $length-y $length-x !important;
+        }
+
+        .#{$abbrev}-t-#{$size} {
+            #{$prop}-top: $length-y !important;
+        }
+
+        .#{$abbrev}-r-#{$size} {
+            #{$prop}-right: $length-x !important;
+        }
+
+        .#{$abbrev}-b-#{$size} {
+            #{$prop}-bottom: $length-y !important;
+        }
+
+        .#{$abbrev}-l-#{$size} {
+            #{$prop}-left: $length-x !important;
+        }
+
+        // Axes
+        .#{$abbrev}-x-#{$size} {
+            #{$prop}-right: $length-x !important;
+            #{$prop}-left: $length-x !important;
+        }
+
+        .#{$abbrev}-y-#{$size} {
+            #{$prop}-top: $length-y !important;
+            #{$prop}-bottom: $length-y !important;
+        }
+    }
+}

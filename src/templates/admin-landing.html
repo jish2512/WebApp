@@ -1,0 +1,30 @@
+﻿<section id="admin-landing" admin-landing>
+	<div class="admin-landing-header row margin0">
+		<div class="header-content">
+			<h3 class="font-caption-alt margin0">Welcome to ESXP</h3>
+			<h1 class="font-subtitle margin0">Administration</h1>
+		</div>
+	</div>
+	<div class="admin-landing-content row margin0">
+		<uib-tabset>
+			<uib-tab ng-repeat="tabItem in adminTileGroup">
+				<uib-tab-heading>
+					<i class="icon icon-peopleLegacy"></i>
+					{{tabItem.tileGroupName}}
+				</uib-tab-heading>
+				<section>
+					<div ng-repeat="adminTile in tabItem.adminTiles">
+						<a href class="admin-tile"
+						   fxp-leftnav-link="{{adminTile}}">
+							<i class="{{adminTile.iconCss}}"></i>
+							<div class="tile-header">{{adminTile.displayName}}</div>
+							<p class="tile-description font-caption-alt">
+								{{adminTile.description}}
+							</p>
+						</a>
+					</div>
+				</section>
+			</uib-tab>
+		</uib-tabset>
+	</div>
+</section>

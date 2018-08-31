@@ -1,0 +1,35 @@
+<div class="search-control contextual-help">
+	<input type="text"
+		   id="HelpSearch_FormControl"
+		   class="input__search"
+		   placeholder="Search Help"
+		   aria-label="Search Help"
+		   autocomplete="off"
+		   ng-model="searchValue"
+           ng-keydown="onSearchKeyDown($event, searchValue)"
+		   uib-typeahead="item for item in searchSuggestions($viewValue) | limitTo:8"
+		   typeahead-template-url="searchResultTemplate.html"
+		   typeahead-min-length="3"
+		   typeahead-wait-ms="100"
+		   typeahead-on-select="onSearchSuggestionSelect($item)"
+		   typeahead-auto-highlight="false"
+		   typeahead-focus-first="false"/>
+	<button class="fxp-btn fxp-btn--secondary icon-container clear-btn contextual-help"
+			ng-if="searchValue.length"
+			ng-click="$parent.searchValue=''"
+			aria-label="Clear search box">
+		<i class="icon icon-close"></i>
+	</button>
+	<button class="fxp-btn fxp-btn--secondary icon-container pull-right"
+			ng-click="searchHelpArticles(searchValue)"
+			aria-label="Search">
+		<i class="icon icon-search"></i>
+	</button>
+</div>
+
+<!--TypeAhead temaplate-->
+<script type="text/ng-template" id="searchResultTemplate.html">
+	<div id="{{match.model}}" class="result-item">
+		<span aria-label="Search Result {{$index}} is {{match.model}}">{{match.model}}</span>
+	</div>
+</script>

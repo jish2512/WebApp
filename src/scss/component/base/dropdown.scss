@@ -1,0 +1,78 @@
+﻿
+@import "../../base-styles/colors";
+
+$fxp-dropdown-menu-hover-border: transparentize($BLACK, 0.2);
+$fxp-dropdown-menu-focus-border: transparentize($BLUE_SECONDARY, 0.8);
+$fxp-dropdown-menu-active-border: transparentize($color-brand, 0.6);
+$fxp-dropdown-menu-disabled-border: transparentize($BLACK, 0.3);
+$fxp-dropdown-menu-disabled-bgcolor: transparentize($BLACK, 0.9);
+$fxp-dropdown-menu-focus-outline: 1px dotted $BLACK;
+
+@mixin dropdown-menu-style($fg-color, $outline: inherit) {
+    border-color: $fg-color !important;
+    outline: $outline;
+}
+
+@mixin dropdown-style-on-focus($color) {
+    .fxp-dropdown-menu {
+        select:focus::-ms-value {
+            color: $color !important;
+        }
+    }
+}
+
+.fxp-dropdown-menu {
+    select::-ms-expand {
+        display: none;
+    }
+
+    select {
+        border: 1px solid $BLACK;
+        background: url("/assets/logo/icon/select_icon.png") no-repeat 95% 50%;
+        background-color: $WHITE;
+        color: rgba(0,0,0,0.6);
+        padding-left: 10px;
+        height: 36px;
+        width: 276px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+
+        option {
+            height: 36px;
+        }
+
+        @extend .font-body;
+        font-size: 16px !important;
+
+        &:hover {
+            @include dropdown-menu-style($fxp-dropdown-menu-hover-border);
+        }
+
+        &:focus {
+            @include dropdown-menu-style($fxp-dropdown-menu-focus-border,$fxp-dropdown-menu-focus-outline);
+
+            &::-ms-value {
+                background: transparent;
+                color: inherit;
+            }
+        }
+
+        &:active {
+            @include dropdown-menu-style($fxp-dropdown-menu-active-border);
+        }
+
+        &:disabled {
+            @include dropdown-menu-style( $fxp-dropdown-menu-disabled-border);
+            background-color: $fxp-dropdown-menu-disabled-bgcolor;
+        }
+    }
+}
+
+@media screen and (-ms-high-contrast: white-on-black) {
+    @include dropdown-style-on-focus($WHITE);
+}
+
+@media screen and (-ms-high-contrast: black-on-white) {
+    @include dropdown-style-on-focus($BLACK);
+}

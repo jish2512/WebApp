@@ -1,0 +1,235 @@
+﻿<section id="notification-list">
+    <div class="notification-list-body">
+        <div class="row margin0">
+            <button class="fxp-btn fxp-btn--action create-notification pull-right">
+                <span class="icon icon-plus"></span>
+                <span class="add-msg-text font-caption-alt" ng-bind="::fxpUIConstants.UIStrings.AuthorNotificationStrings.Title"></span>
+            </button>
+            <h3 class="notification-list-heading font-caption-alt" ng-bind="::fxpUIConstants.UIStrings.AuthorNotificationStrings.NotificationTitle"></h3>
+            <p class="notification-list-help-text font-caption-alt" ng-bind="::fxpUIConstants.UIStrings.AuthorNotificationStrings.NotificationPageText"></p>
+        </div>
+        <section>
+            <div class="row margin0">
+                <label for="item-count" class="item-count-label font-caption-alt" ng-bind="::fxpUIConstants.UIStrings.AuthorNotificationStrings.ITEMS_TO_DISPLAY"></label>
+                <div class="fxp-dropdown-menu item-drop-down">
+                    <select id="item-count" class="font-caption-alt">
+                        <option>10</option>
+                        <option>20</option>
+                        <option>30</option>
+                    </select>
+                </div>
+                <div class="notification-list-pagination pull-right"
+                     fxp-include-static-template="templates/author_notification/pagination.html">
+                </div>
+            </div>
+            <table class="pull-left">
+                <caption class="sr-only" aria-label="{{::fxpUIConstants.UIStrings.AuthorNotificationStrings.NotificationList}}"></caption>
+                <thead>
+                    <tr class="row">
+                        <th class="chevron-header"></th>
+                        <th class="notification-desc-header" ng-bind="::fxpUIConstants.UIStrings.AuthorNotificationStrings.MessageLabel"></th>
+                        <th class="notification-audience" ng-bind="::fxpUIConstants.UIStrings.AuthorNotificationStrings.AudienceLabel"></th>
+
+                        <th class="start-date">
+                            <button class="toggle-sort"
+                                    aria-label="Toggle sort order"
+                                    title="Toggle sort order">
+                                {{fxpUIConstants.UIStrings.AuthorNotificationStrings.DateSent}}
+                                <i class="icon" ng-class="{'icon-down-arrow' : 'DESC'}"></i>
+                            </button>
+                        </th>
+                        <th ng-bind="::fxpUIConstants.UIStrings.AuthorNotificationStrings.Status"></th>
+
+                    </tr>
+                </thead>
+                <tbody class="font-caption-alt">
+                    <tr class="row"
+                        ng-init="showFullMessage=false" fxp-author-notification-row>
+                        <td class="chevron">
+                            <button aria-label="{{(showFullMessage ? 'expanded ' : 'collapsed ')}}"
+                                    class="icon icon-row-up pull-left"
+                                    ng-class="showFullMessage? 'icon-row-up' : 'icon-row-down'"
+                                    ng-click="showFullMessage = !showFullMessage"></button>
+                        </td>
+                        <td class="notification-desc"
+                            tabindex="0"
+                            title="This is a much much longer notification which also has no re  This is a much much longer notification which also has no re"
+                            aria-label="This is a much much longer notification which also has no re  This is a much much longer notification which also has no re"
+                            ng-class="{ellipses : !showFullMessage}" ellipses-element>
+                            This is a much much longer notification which also has no re  This is a much much longer notification which also has no re
+                        </td>
+                        <td class="notification-desc"
+                            tabindex="0"
+                            title="Thomas Jack, Ram Kanagala, Karthikeyan Ramakrishnan, Jumesh Sankar, Jan Smith, Fred Thomas"
+                            aria-label="Thomas Jack, Ram Kanagala, Karthikeyan Ramakrishnan, Jumesh Sankar, Jan Smith, Fred Thomas"
+                            ng-class="{ellipses : !showFullMessage}" ellipses-element>
+                            Thomas Jack, Ram Kanagala, Karthikeyan Ramakrishnan, Jumesh Sankar, Jan Smith, Fred Thomas
+                        </td>
+                        <td class="dates">06/16/17 9:00am PST</td>
+                        <td>Active</td>
+                    </tr>
+
+                    <tr class="row"
+                        ng-init="showFullMessage1=false" fxp-author-notification-row>
+                        <td class="chevron">
+                            <button aria-label="{{(showFullMessage1 ? 'expanded ' : 'collapsed ')}}"
+                                    class="icon icon-row-up pull-left"
+                                    ng-class="showFullMessage1? 'icon-row-up' : 'icon-row-down'"
+                                    ng-click="showFullMessage1 = !showFullMessage1"></button>
+                        </td>
+                        <td class="notification-desc"
+                            tabindex="0"
+                            title="This is the body of  the notification message"
+                            aria-label="This is the body of  the notification message"
+                            ng-class="{ellipses : !showFullMessage1}" ellipses-element>
+                            This is the body of  the notification message
+                        </td>
+                        <td class="notification-desc"
+                            tabindex="0"
+                            title="All Role Groups"
+                            aria-label="All Role Groups"
+                            ng-class="{ellipses : !showFullMessage1}" ellipses-element>
+                            All Role Groups
+                        </td>
+                        <td class="dates">06/15/17 9:00am PST</td>
+                        <td>Active</td>
+                    </tr>
+
+                    <tr class="row"
+                        ng-init="showFullMessage2=false" fxp-author-notification-row>
+                        <td class="chevron">
+                            <button aria-label="{{(showFullMessage2 ? 'expanded ' : 'collapsed ')}}"
+                                    class="icon icon-row-up pull-left"
+                                    ng-class="showFullMessage2? 'icon-row-up' : 'icon-row-down'"
+                                    ng-click="showFullMessage2 = !showFullMessage2"></button>
+                        </td>
+                        <td class="notification-desc"
+                            tabindex="0"
+                            title=" lorem ipsum dolor sit amet consectetur adipiscing elit sed do  lorem ipsum dolor sit amet consectetur adipiscing elit sed do"
+                            aria-label=" lorem ipsum dolor sit amet consectetur adipiscing elit sed do  lorem ipsum dolor sit amet consectetur adipiscing elit sed do"
+                            ng-class="{ellipses : !showFullMessage2}" ellipses-element>
+                            lorem ipsum dolor sit amet consectetur adipiscing elit sed do  lorem ipsum dolor sit amet consectetur adipiscing elit sed do
+                        </td>
+                        <td class="notification-desc"
+                            tabindex="0"
+                            title="Relationship Manager (TAM, EM), Resources (Consultant, Delivery Manager,) Relationship Manager (TAM, EM), Resources (Consultant, Delivery Manager,)"
+                            aria-label="Relationship Manager (TAM, EM), Resources (Consultant, Delivery Manager,) Relationship Manager (TAM, EM), Resources (Consultant, Delivery Manager,)"
+                            ng-class="{ellipses : !showFullMessage2}" ellipses-element>
+                            Relationship Manager (TAM, EM), Resources (Consultant, Delivery Manager,) Relationship Manager (TAM, EM), Resources (Consultant, Delivery Manager,)
+                        </td>
+                        <td class="dates">06/13/17 9:00am PST</td>
+                        <td>Active</td>
+                    </tr>
+                    <tr class="row"
+                        ng-init="showFullMessage3=false" fxp-author-notification-row>
+                        <td class="chevron">
+                            <button aria-label="{{(showFullMessage3 ? 'expanded ' : 'collapsed ')}}"
+                                    class="icon icon-row-up pull-left"
+                                    ng-class="showFullMessage3? 'icon-row-up' : 'icon-row-down'"
+                                    ng-click="showFullMessage3 = !showFullMessage3"></button>
+                        </td>
+                        <td class="notification-desc"
+                            tabindex="0"
+                            title="This is the body of  the notification message"
+                            aria-label="This is the body of  the notification message"
+                            ng-class="{ellipses : !showFullMessage3}" ellipses-element>
+                            This is the body of  the notification message
+                        </td>
+                        <td class="notification-desc"
+                            tabindex="0"
+                            title="Relationship Manager (TAM, EM), Resources (Consultant, Delivery Manager,) Relationship Manager (TAM, EM), Resources (Consultant, Delivery Manager,)"
+                            aria-label="Relationship Manager (TAM, EM), Resources (Consultant, Delivery Manager,) Relationship Manager (TAM, EM), Resources (Consultant, Delivery Manager,)"
+                            ng-class="{ellipses : !showFullMessage3}" ellipses-element>
+                            Relationship Manager (TAM, EM), Resources (Consultant, Delivery Manager,) Relationship Manager (TAM, EM), Resources (Consultant, Delivery Manager,)
+                        </td>
+                        <td class="dates">06/12/17 9:00am PST</td>
+                        <td>Expired</td>
+                    </tr>
+                    <tr class="row"
+                        ng-init="showFullMessage4=false" fxp-author-notification-row>
+                        <td class="chevron">
+                            <button aria-label="{{(showFullMessage4 ? 'expanded ' : 'collapsed ')}}"
+                                    class="icon icon-row-up pull-left"
+                                    ng-class="showFullMessage4? 'icon-row-up' : 'icon-row-down'"
+                                    ng-click="showFullMessage4 = !showFullMessage4"></button>
+                        </td>
+                        <td class="notification-desc"
+                            tabindex="0"
+                            title="lorem ipsum dolor sit amet consectetur adipiscing elit sed do  lorem ipsum dolor sit amet consectetur adipiscing elit sed do"
+                            aria-label="lorem ipsum dolor sit amet consectetur adipiscing elit sed do  lorem ipsum dolor sit amet consectetur adipiscing elit sed do"
+                            ng-class="{ellipses : !showFullMessage4}" ellipses-element>
+                            lorem ipsum dolor sit amet consectetur adipiscing elit sed do  lorem ipsum dolor sit amet consectetur adipiscing elit sed do
+                        </td>
+                        <td class="notification-desc"
+                            tabindex="0"
+                            title="Thomas Jack, Ram Kanagala, Karthikeyan Ramakrishnan, Jumesh Sankar, Jan Smith, Fred Thomas"
+                            aria-label="Thomas Jack, Ram Kanagala, Karthikeyan Ramakrishnan, Jumesh Sankar, Jan Smith, Fred Thomas"
+                            ng-class="{ellipses : !showFullMessage4}" ellipses-element>
+                            Thomas Jack, Ram Kanagala, Karthikeyan Ramakrishnan, Jumesh Sankar, Jan Smith, Fred Thomas
+                        </td>
+                        <td class="dates">06/11/17 9:00am PST</td>
+                        <td>Expired</td>
+                    </tr>
+                    <tr class="row"
+                        ng-init="showFullMessage5=false" fxp-author-notification-row>
+                        <td class="chevron">
+                            <button aria-label="{{(showFullMessage5 ? 'expanded ' : 'collapsed ')}}"
+                                    class="icon icon-row-up pull-left"
+                                    ng-class="showFullMessage5? 'icon-row-up' : 'icon-row-down'"
+                                    ng-click="showFullMessage5 = !showFullMessage5"></button>
+                        </td>
+                        <td class="notification-desc"
+                            tabindex="0"
+                            title="lorem ipsum dolor sit amet consectetur adipiscing elit sed do  lorem ipsum dolor sit amet consectetur adipiscing elit sed do"
+                            aria-label="lorem ipsum dolor sit amet consectetur adipiscing elit sed do  lorem ipsum dolor sit amet consectetur adipiscing elit sed do"
+                            ng-class="{ellipses : !showFullMessage5}" ellipses-element>
+                            lorem ipsum dolor sit amet consectetur adipiscing elit sed do  lorem ipsum dolor sit amet consectetur adipiscing elit sed do
+                        </td>
+                        <td class="notification-desc"
+                            tabindex="0"
+                            title="Thomas Jack, Ram Kanagala, Karthikeyan Ramakrishnan, Jumesh Sankar, Jan Smith, Fred Thomas"
+                            aria-label="Thomas Jack, Ram Kanagala, Karthikeyan Ramakrishnan, Jumesh Sankar, Jan Smith, Fred Thomas"
+                            ng-class="{ellipses : !showFullMessage5}" ellipses-element>
+                            Thomas Jack, Ram Kanagala, Karthikeyan Ramakrishnan, Jumesh Sankar, Jan Smith, Fred Thomas
+                        </td>
+                        <td class="dates">06/10/17 9:00am PST</td>
+                        <td>Expired</td>
+                    </tr>
+                    <tr class="row"
+                        ng-init="showFullMessage6=false" fxp-author-notification-row>
+                        <td class="chevron">
+                            <button aria-label="{{(showFullMessage6 ? 'expanded ' : 'collapsed ')}}"
+                                    class="icon icon-row-up pull-left"
+                                    ng-class="showFullMessage6? 'icon-row-up' : 'icon-row-down'"
+                                    ng-click="showFullMessage6 = !showFullMessage6"></button>
+                        </td>
+                        <td class="notification-desc"
+                            tabindex="0"
+                            title="lorem ipsum dolor sit amet"
+                            aria-label="lorem ipsum dolor sit amet"
+                            ng-class="{ellipses : !showFullMessage6}" ellipses-element>
+                            lorem ipsum dolor sit amet
+                        </td>
+                        <td class="notification-desc"
+                            tabindex="0"
+                            title=" All Role Groups"
+                            aria-label=" All Role Groups"
+                            ng-class="{ellipses : !showFullMessage6}" ellipses-element>
+                            All Role Groups
+                        </td>
+                        <td class="dates">06/09/17 9:00am PST</td>
+                        <td>Expired</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+            <div class="notification-list-pagination pull-right"
+                 fxp-include-static-template="templates/author_notification/pagination.html">
+            </div>
+            <div class="clearfix"></div>
+        </section>
+    </div>
+</section>
+
+

@@ -1,0 +1,13 @@
+﻿
+<div ng-repeat="(key, value) in footerdata" ng-class="{'left': $index == 0 , 'right': $index == 1}">
+    <ul>
+        <li role="listitem" class="{{item.cssClass}}" ng-repeat="item in footerdata[key]" ng-switch="item.ElementType">
+            <a ng-switch-when="a" id="control_{{$index}}" tabindex="0" href="{{item.href}}" ng-click="logFooterUsageTelemetryInfo(item)" target="_blank" title="Click to Open {{item.DisplayText}}">{{item.DisplayText}}</a>
+            <img ng-switch-when="img" id="control_img_{{$index}}" ng-src="{{item.ImagePath}}" alt="{{item.DisplayText}}" />
+            <span ng-switch-when="span" id="control_span_{{$index}}">{{item.DisplayText}}</span>
+            <span ng-switch-when="expression" id="control_span_{{$index}}">{{item.DisplayText}}{{$eval(item.ExpressionName)}}</span>
+        </li>
+        
+    </ul>
+</div>
+

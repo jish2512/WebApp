@@ -1,0 +1,102 @@
+﻿@import "../../../vars";
+
+$input-text-focus-outline: 1px dotted $BLACK;
+
+%default-checkbox {
+    width: 16px;
+    height: 16px;
+    position: relative;
+    display: inline-block;
+}
+
+.input {
+    &__checkbox-indeterminate {
+        @extend %default-checkbox;
+        border: 1px solid $BLUE_PRIMARY;
+
+        &:focus {
+            outline: 1px dotted $BLACK !important;
+        }
+
+        label {
+            width: 15px;
+            height: 14px;
+            cursor: pointer;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: white;
+            margin-bottom: 0 !important;
+
+            &:after {
+                content: '';
+                width: 8px;
+                height: 8px;
+                position: absolute;
+                top: 0;
+                left: 0;
+                background: $BLACK;
+                opacity: 0;
+                margin: 3px;
+            }
+        }
+
+        &--focus {
+            width: 14px;
+            height: 14px;
+            margin-top: 0 !important;
+
+            &:focus {
+                outline: 1px dotted $BLACK !important;
+                outline-offset: 1px !important;
+            }
+
+            &:not(:checked):disabled + label {
+                Background-color: $WHITE;
+                Border: 1px solid $BLACK;
+                Opacity: 0.2;
+            }
+
+            &:checked + label:after {
+                opacity: 1;
+            }
+        }
+    }
+
+    &__checkbox-indeterminate {
+        &--disabled {
+            @extend %default-checkbox;
+            background: white;
+            border: 1px solid $BLACK;
+            overflow: hidden;
+            opacity: 0.2;
+
+            label {
+                width: 15px;
+                height: 15px;
+                cursor: pointer;
+                position: absolute;
+                top: 0;
+                left: 0;
+
+                &:after {
+                    content: '';
+                    width: 8px;
+                    height: 8px;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    background: $BLACK;
+                    opacity: 0;
+                    margin: 3px;
+                }
+            }
+
+            &--focus {
+                &:checked + label:after {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}

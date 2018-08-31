@@ -1,0 +1,12 @@
+﻿<div class="popnew" id="newpop">
+    <li id="OBOHeader_ActOnBehalfOfTxt" class="actobo">{{oboUIStrings.ActingOnBehalfOf}}</li>
+    <li id="OBOHeader_UserName" class="obousername">
+        <a href="{{OBOUser.href}}" title="{{OBOUser.name}}" aria-label="{{OBOUser.name}}" tabindex="1" ng-init="pullFocusToElement('OBOHeader_UserName a')"
+            ng-if="showViewFullProfileLink">{{OBOUser.name}}</a>
+        <span aria-label="{{OBOUser.name}}" ng-if="!showViewFullProfileLink">{{OBOUser.name}}</span>
+    </li>
+    <button id="OBOHeader_CloseBtn" class="icon-container pull-right" ng-click="closeActOnBehalofUserClick()" tabindex="1" aria-label="Close"
+        title="Close">
+        <i class="icon icon-close"></i>
+    </button>
+</div>

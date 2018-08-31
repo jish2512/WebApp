@@ -1,0 +1,786 @@
+﻿@import "../../vars";
+
+$color_leftnavAdmin_Error: $RED;
+$bgcolor_disabled_btn: $color-brand;
+$bordercolor_disabled_btn: $BLUE_AC6;
+
+.leftNavPersonalizationAdminsearch {
+    overflow-x: auto !important;
+    height: 100%;
+}
+
+
+
+.personalizationAdmin {
+    padding-left: 56px;
+    padding-top: 20px;
+
+
+    h3 {
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 22px;
+        color: $BLACK;
+        opacity: 0.8;
+        margin: 0px !important;
+    }
+
+    .form-leftnavAdmin {
+        label.leftnavAdminLabel {
+            font-weight: normal;
+            font-size: 15px;
+            line-height: 20px;
+            color: $BLACK;
+            opacity: 0.8;
+            margin-top: 10px !important;
+        }
+
+        .leftnavAdminformControl {
+            margin-top: 23px;
+            margin-bottom: 10px;
+            background-color: #f9f9f9;
+            height: 36px;
+            width: 276px !important;
+            max-width: 100%;
+            padding-right: 44px;
+            padding-left: 8px;
+
+            &.fxpsearchfield {
+                Color: $BLACK;
+                Opacity: 0.6;
+                font-size: 15px;
+                line-height: 20px;
+                border: 1px solid $BLACK;
+            }
+
+            &.search_error_msg {
+                border: 1px solid $color_leftnavAdmin_Error !important;
+
+                &:focus {
+                    border: 1px solid $color_leftnavAdmin_Error !important;
+                }
+            }
+
+            &:focus {
+                border: 1px solid #0063B1 !important;
+                outline: dotted #000000;
+                outline-width: 1px;
+                opacity: 1;
+            }
+
+            &:active {
+                outline: none !important;
+            }
+
+            &.fxpsearchfield_txt {
+                Opacity: 0.6 !important;
+                outline: none !important;
+
+                &:hover {
+                    Opacity: 0.8 !important;
+                }
+
+                &.active {
+                    border: 1px solid #0078D7 !important;
+                    font-size: 16px !important;
+                    Opacity: 0.6 !important;
+                }
+
+                &::selection {
+                    color: $WHITE;
+                    background-color: #0078D7;
+                    Opacity: 0.6;
+                }
+            }
+        }
+
+        .resetActiveState {
+            border: 1px solid #0063B1 !important;
+        }
+
+        .dropdown-menu {
+            top: 174px;
+            left: 56px;
+            width: 277px;
+            min-width: 250px;
+        }
+
+        button.resetClose {
+            height: 33px !important;
+            width: 34px !important;
+            position: relative;
+            right: 41px;
+            background-color: transparent;
+            opacity: 0.6;
+            border: none;
+            outline: none;
+            margin: 0px !important;
+            color: $BLACK;
+            font-size: 16px !important;
+
+            &:hover {
+                color: #0078D7;
+            }
+
+            &:active {
+                background-color: #0078D7 !important;
+                color: $WHITE !important;
+                right: 39px !important;
+                padding-bottom: 1px;
+                height: 34px !important;
+            }
+        }
+
+
+        .leftNavAdmin_CaptionALT {
+            font-weight: normal;
+            font-size: 13px !important;
+            line-height: 16px !important;
+        }
+
+        #PLA_leftnavAdmin {
+            margin-left: 155px;
+            width: 120px;
+            font-size: 15px;
+            font-weight: normal;
+            line-height: 20px;
+        }
+
+        .formGroup button[disabled] {
+            background-color: $bgcolor_disabled_btn !important;
+            Color: $BLACK !important;
+            Opacity: 0.2;
+            border-color: $bordercolor_disabled_btn !important;
+        }
+
+        .element-error {
+            color: $color_leftnavAdmin_Error;
+        }
+
+        #LeftnavAdmin_ErrorMsg {
+            margin-right: 10px;
+        }
+
+        .leftnavAdminformControl::-ms-clear {
+            display: none;
+
+            .leftnavAdminformControl:not(:valid) ~ .resetClose {
+                display: none;
+            }
+        }
+    }
+}
+
+
+.leftNavPersonalizationAdmin {
+    overflow-x: auto;
+
+    .personalizationAdminUI {
+        padding-left: 56px;
+        padding-top: 20px;
+        height: auto;
+        overflow: auto !important;
+        padding-right: 0px;
+        min-width: 982px;
+
+        .personasubtitle {
+            font-weight: normal;
+            font-size: 18px;
+            line-height: 22px;
+            color: $BLACK;
+            opacity: 0.8;
+        }
+
+        .SubtitleAlt {
+            font-weight: normal;
+            font-size: 18px;
+            line-height: 22px;
+
+            @include respond-to (tablet) {
+                font-weight: normal;
+                font-size: 15px;
+                line-height: 20px;
+            }
+        }
+
+        .leftnavHeader {
+            color: $BLACK;
+        }
+
+        h3.leftnavHeading {
+            padding-right: 5px;
+            width: auto;
+            float: left;
+            font-size: 18px;
+            line-height: 22px;
+            font-weight: normal;
+            opacity: 0.8;
+            margin-top: 0;
+
+            @include respond-to (tablet) {
+                font-size: 15px;
+                line-height: 20px;
+                margin-bottom: 8px;
+            }
+        }
+
+        .ConDashtiles {
+            opacity: 0.6;
+        }
+
+        .screen-text {
+            font-size: 15px;
+            font-weight: normal;
+            line-height: 20px;
+            color: $BLACK;
+            opacity: 0.8;
+            padding: 10px 0px 12px 0px;
+
+            @include respond-to (tablet) {
+                font-size: 12px;
+                line-height: 14px;
+            }
+        }
+
+        .colom-md-1 {
+            float: left;
+            margin-right: 48px;
+        }
+
+        .colom-md-2 {
+            position: relative;
+            float: left;
+            margin-top: 15%;
+        }
+
+        .colom-md-3 {
+            float: left;
+            margin-left: 48px;
+            margin-right: 28px;
+        }
+
+        .colom-md-5 {
+            position: relative;
+            float: left;
+            margin-top: 13%;
+        }
+    }
+}
+
+.PersonalAdminForm {
+    width: 365px;
+
+    .userNavigationData {
+        height: 433px;
+        overflow-x: auto;
+        background-color: $WHITE;
+        width: 100%;
+    }
+
+    .bladeHeader {
+        background-color: #707070;
+        border: 0;
+        width: 100%;
+        height: 40px;
+        padding-left: 10px;
+        color: $WHITE;
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 14px;
+        padding-top: 11px;
+    }
+
+    .CaptionAlt {
+        font-weight: normal;
+        font-size: 13px;
+        line-height: 16px;
+    }
+
+    .mCSB_scrollTools, .mCSB_dragger_bar, .mCSB_dragger {
+        cursor: default !important;
+    }
+
+    .PersonalAdminDashboardDataManager {
+        padding-left: 10px;
+        padding-right: 16px;
+
+        .AdminUICategory {
+            border-bottom: 1px solid #666666;
+
+            &:last-child {
+                border-bottom: none !important;
+            }
+
+            .right {
+                float: right;
+            }
+
+            .accordionIcon {
+                font-size: 12px;
+                color: $BLACK;
+                cursor: pointer;
+                background: none;
+                border: none;
+                padding-top: 2px;
+                width: 30px;
+                text-align: right;
+
+                &.focus {
+                    outline: dotted 1px $BLACK;
+                }
+            }
+
+            .l0_category {
+                padding-bottom: 12px;
+                padding-top: 12px;
+                margin-bottom: 12px;
+                margin-top: 12px;
+
+                &:focus {
+                    outline: 1px dotted $BLACK;
+                }
+            }
+
+            ul {
+                margin: 0px !important;
+
+                li {
+                    padding: 14px 10px;
+
+                    &:focus {
+                        outline: 1px dotted $BLACK;
+                    }
+                }
+
+                li:last-child {
+                    padding-bottom: 12px !important;
+                    margin-bottom: 13px !important;
+                }
+
+                li:first-child {
+                    padding-top: 3px !important;
+                }
+            }
+
+            .l0_list {
+                color: rgba(0,0,0,0.6);
+            }
+
+            .l1_list {
+                font-family: 'Segoe UI';
+                Font-size: 10px;
+                color: rgba(0,0,0,0.6);
+                font-weight: normal;
+                padding-top: 2px;
+            }
+        }
+    }
+}
+
+.buttontext {
+    margin-bottom: 8px;
+}
+
+.removearrowbtn {
+    margin-top: 40px;
+}
+
+
+.arrowBox {
+    width: 44px;
+    top: 0;
+    left: 0;
+
+    > .enableAddRemoveTxt {
+        opacity: 0.6 !important;
+    }
+
+    > .disableAddRemoveTxt {
+        opacity: 0.3;
+    }
+
+    > button.disableAddRemove {
+        height: 44px;
+        text-align: center;
+        background-color: rgba(0,0,0,0.2);
+        color: $BLACK;
+        Opacity: 0.2;
+        width: 44px;
+        border: none;
+        cursor: default;
+        margin-bottom: 8px;
+    }
+
+    > button.enableAddRemove {
+        height: 44px;
+        width: 44px;
+        text-align: center;
+        background-color: rgba(0,0,0,0.2);
+        color: $BLACK;
+        border: none;
+        margin-bottom: 8px;
+
+        &:hover {
+            border: 1px solid rgba(0,0,0,0.2);
+        }
+
+        &:focus {
+            border: 1px dotted $BLACK;
+        }
+
+        &:active {
+            background-color: rgba(0,0,0,0.4) !important;
+        }
+    }
+
+    .icon-layout {
+        top: 0 !important;
+        color: $BLACK;
+        Opacity: 0.6;
+        line-height: 30px !important;
+        font-size: 16px;
+    }
+
+    .noclass {
+        background: transparent !important;
+        margin-bottom: 10px;
+    }
+
+    .addReorder {
+        font-size: 13px;
+        color: $BLACK;
+        Opacity: 0.3;
+        text-align: center;
+    }
+
+    .addbtntext {
+        margin-bottom: 40px;
+    }
+}
+
+.settingsButtons {
+    float: right;
+    margin-top: 2px;
+
+    button[type=button], button[type=submit]  {
+        width: 120px !important;
+        font-weight: normal;
+        font-size: 15px;
+        line-height: 20px;
+    }
+
+    .fxp_secondary_button {
+        background-color: #cccccc !important;
+        color: $BLACK !important;
+        margin-right: 16px !important;
+
+        &:hover {
+            border: 1px solid rgba(0,0,0,0.2);
+        }
+
+        &:active {
+            border: none !important;
+            background-color: #999999 !important;
+        }
+
+        &:focus {
+            border: 1px dotted #000000;
+        }
+    }
+
+    button[type=button].fxp_primary_button {
+        &:active {
+            background-color: #005496;
+            border: none !important;
+        }
+
+        &:focus {
+            background-color: #006cc1;
+            border: 1px dotted #000000;
+        }
+
+        &:hover {
+            background-color: #006cc1;
+        }
+    }
+}
+
+div#popup {
+    border: 1px solid $BLACK;
+    width: 352px;
+    height: 130px;
+    Background-color: #e5e5e5;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+
+    .bodyboxpopup {
+        text-align: left;
+        color: black;
+        opacity: 0.6;
+        font-weight: normal;
+        font-size: 15px;
+        line-height: 20px;
+    }
+
+    &:focus {
+        outline: dotted 1px;
+    }
+}
+
+.popupbg {
+    top: 48px;
+    width: calc(100% - 44px);
+    height: calc(100% - 84px);
+    z-index: 999;
+    background-color: rgba(0,0,0,0.3);
+    text-align: center;
+    position: absolute;
+
+    .settingsButtons {
+        margin-top: 10px;
+    }
+}
+/* Custome check boxes*/
+.control-group {
+    display: inline-block;
+    text-align: left;
+    vertical-align: top;
+    background: $WHITE;
+    width: 100%;
+
+    label {
+        float: left;
+        padding-top: 2px;
+    }
+
+    a {
+        text-decoration: none;
+        border: none;
+        display: block;
+
+        &:focus {
+            outline: dotted 1px $BLACK;
+        }
+    }
+}
+
+.control {
+    position: relative;
+    display: block;
+    padding-left: 23px;
+    cursor: pointer;
+}
+
+.control input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+
+.control__indicator {
+    position: absolute;
+    top: 2px;
+    left: 0;
+    width: 15px;
+    height: 15px;
+    background: $WHITE;
+    border: 1px solid rgba(0,0,0,0.6);
+}
+
+/* Hover and focus states */
+.control:hover input ~ .control__indicator {
+}
+
+.control input:focus ~ .control__indicator {
+    outline: dotted 1px $BLACK;
+}
+
+/* Checked state */
+.control input:checked ~ .control__indicator {
+    Background-color: #0078d7 !important;
+    Font-size: 16px;
+    Color: #ffffff;
+    Border: 1px solid #0078d7 !important;
+}
+
+/* Hover state whilst checked */
+.control:hover input:not([disabled]):checked ~ .control__indicator {
+    Background-color: #0078d7;
+    Border: 1px solid rgba(0, 0, 0, 0.4) !important;
+}
+
+.control input:checked:focus ~ .control__indicator {
+    outline: dotted 1px $BLACK;
+    Border: 1px solid rgba(0, 0, 0,0.4);
+}
+
+/* Disabled state */
+.control input:disabled ~ .control__indicator {
+    Background-color: $WHITE;
+    Border: 1px solid $BLACK;
+    Opacity: 0.3;
+}
+
+/* Check mark */
+.control__indicator:after {
+    position: absolute;
+    display: none;
+}
+
+/* Show check mark */
+.control input:checked ~ .control__indicator:after {
+    display: block;
+    content: "\E73E";
+    font-family: "SegoeUI MDL2 Assets";
+    font-weight: normal;
+    font-style: normal;
+    position: relative;
+    top: -2px;
+    display: inline-block;
+    line-height: 1;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Checkbox tick */
+.control--checkbox .control__indicator:after {
+    width: 3px;
+    height: 8px;
+    left: -1px;
+}
+
+.checkbox_disabled {
+    color: rgba(0,0,0,0.3) !important;
+    font-family: 'Segoe UI';
+    cursor: default !important;
+}
+/* Disabled tick colour */
+.control--checkbox input:disabled:checked ~ .control__indicator:after {
+    Font-size: 16px;
+    Color: #ffffff;
+    left: -1px;
+    top: -2px;
+}
+
+.control input:indeterminate ~ .control__indicator:after {
+    display: block;
+    content: "";
+    font-family: "SegoeUI MDL2 Assets";
+    font-weight: normal;
+    font-style: normal;
+    position: relative;
+    top: 1px;
+    left: 2px;
+    height: 9px;
+    width: 9px;
+    background-color: $BLACK;
+    display: inline-block;
+    line-height: 1;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.control input:indeterminate ~ .control__indicator {
+    Border: 1px solid #0078d7;
+
+    &:focus {
+        outline: dashed 1px $BLACK;
+    }
+}
+
+.l0_list {
+
+    &.control input:indeterminate ~ .control__indicator:after {
+        top: -2px !important;
+    }
+}
+
+.l1_list {
+
+    &.control input:checked ~ .control__indicator:after {
+        top: -4px !important;
+    }
+}
+
+input[type=checkbox][disabled], input[type=checkbox][disabled]:focus {
+    cursor: default !important;
+}
+
+@media screen and (min-width: 640px) and (max-width:1024px) {
+    #header .profile .user-profile ul.dropdown-menu {
+        position: -ms-page;
+    }
+
+    .partner-app, .leftNavPersonalizationAdminsearch {
+        overflow-x: auto !important;
+    }
+
+    .personalizationAdminUI {
+        min-width: 800px !important;
+    }
+
+    .personalizationAdminUI {
+        padding-left: 20px !important;
+        padding-right: 16px;
+
+        .colom-md-1 {
+            margin-right: 10px !important;
+        }
+
+        .PersonalAdminForm {
+            width: 280px;
+        }
+
+        .colom-md-1 {
+            margin-bottom: 20px;
+        }
+
+        .colom-md-3 {
+            margin-left: 0px !important;
+            margin-right: 16px !important;
+        }
+
+        .colom-md-2 {
+            margin-right: 10px !important;
+        }
+    }
+}
+
+@media screen and (-ms-high-contrast: active) {
+
+    .personalizationAdmin, .personalizationAdminUI {
+        .formGroup {
+
+            button[type="button"] {
+                opacity: 1 !important;
+            }
+
+            .resetClose {
+                border: none !important;
+            }
+        }
+
+        .PersonalAdminForm {
+            border: 1px solid;
+        }
+
+        .arrowBox {
+            button {
+                border: 1px solid;
+            }
+        }
+    }
+
+    .popupbg, .system-message-popupbg {
+        background-color: rgba(0,0,0,0.3);
+    }
+
+    .bladeHeader {
+        border: 1px solid !important;
+    }
+}

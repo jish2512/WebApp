@@ -1,0 +1,50 @@
+﻿<section class="container-body contextual-help">
+	<div class="row">
+		<h1 id="modal-title"
+			class="modal-title popup-heading margin0 font-subtitle" 
+			ng-bind="::fxpUIConstants.UIStrings.CreateAskOpsModalStrings.Title">
+		</h1>
+		<button class="pull-right close-button"
+				ng-click="aoCtrl.closeModal()"
+				type="button"
+				title="Close modal"
+				aria-label="Close">
+			<i class="icon icon-close"></i>
+		</button>
+	</div>
+	<div class="row">
+		<label for="requestType" class="font-body" ng-bind="::fxpUIConstants.UIStrings.CreateAskOpsModalStrings.RequestTypeLabel"></label>
+		<div class="fxp-dropdown-menu row-control">
+			<select id="requestType"
+					ng-model="aoCtrl.currentRequestType"
+					ng-options="item.DisplayText for item in aoCtrl.requestTypeData">
+				<option value="">Select Request Type</option>
+			</select>
+		</div>
+	</div>
+	<div class="row">
+		<p class="font-caption-alt help-text help-text-request-type">
+			{{aoCtrl.currentRequestType.Description }}
+		</p>
+		<p class="font-caption-alt help-text help-text-request-type" id="modal-description">
+			{{::fxpUIConstants.UIStrings.CreateAskOpsModalStrings.ModalDescription}}
+		</p>
+	</div>
+	<div class="row settingsButtons formGroup pull-right">
+		<span>
+			<button id="btn-popup-cancel"
+					class="button fxp_secondary_button font-caption-alt"
+					type="button"
+					ng-click="aoCtrl.closeModal()"
+					aria-label="{{::fxpUIConstants.UIStrings.CreateAskOpsModalStrings.CancelButtonText}}"
+					ng-bind="::fxpUIConstants.UIStrings.CreateAskOpsModalStrings.CancelButtonText"></button>
+			<button id="btn-popup-submit"
+					class="button fxp_primary_button font-caption-alt"
+					type="button"
+					ng-disabled="!aoCtrl.currentRequestType"
+					ng-click="aoCtrl.openPage(aoCtrl.currentRequestType)"
+					aria-label="{{::fxpUIConstants.UIStrings.CreateAskOpsModalStrings.OpenPageBtnText}}"
+					ng-bind="::fxpUIConstants.UIStrings.CreateAskOpsModalStrings.OpenPageBtnText"></button>
+		</span>
+	</div>
+</section>

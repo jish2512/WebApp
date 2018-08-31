@@ -1,0 +1,393 @@
+﻿@import "../../vars";
+
+/* Include this file in your html if you are using the CSP mode. */
+
+@charset "UTF-8";
+
+
+$content-subtle-foreground: $GREY_66;
+$content-background: $WHITE;
+$content-foreground: #222222;
+
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak],
+.ng-cloak, .x-ng-cloak,
+.ng-hide:not(.ng-hide-animate) {
+    display: none !important;
+}
+
+ng\:form {
+    display: block;
+}
+
+.ng-animate-shim {
+    visibility: hidden;
+}
+
+.ng-anchor {
+    position: absolute;
+}
+
+*::selection {
+    background: $color-brand;
+    color: $WHITE;
+}
+
+*::-moz-selection {
+    background: $color-brand;
+    color: $WHITE;
+}
+
+html {
+    font-size: 100%;
+}
+
+body {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    font-family: "Segoe UI" !important;
+    font-size: $base-font-size;
+    background: $content-background;
+    color: $content-foreground;
+
+    .fxp-body {
+        height: calc(100% - 48px);
+        overflow-y: hidden;
+
+		&.help-open{
+			float: left;
+			width: calc(100% - 296px);
+		}
+
+        @include respond-to(mobile) {
+            overflow-y: auto;
+        }
+
+        .partner-app {
+            display: flex;
+            flex-direction: column;
+            overflow-y: hidden;
+            overflow-x: hidden;
+            max-height: calc(100vh - 84px);
+            height: calc(100vh - 84px);
+            width: calc(100% - 44px);
+            float: right;
+
+            [ui-view] {
+                flex-grow: 1; /*needed for container to fit to parent container (.partner-app) leaving height of breadcrumb*/
+                flex-basis: 0; /*needed for chrome as chrome searches for parent height for child (#content) to have height: 100%*/
+                overflow-y: auto; /*needed for making breadcrumb stay in place i.e. breadcrumb won't scroll with content. Remove it and add to .partner-app if breadcrumb need to scroll with the content.*/
+            } 
+
+            ui-view-ng-upgrade {
+                @import "~bootstrap-v4/scss/bootstrap.scss";
+                @import "../../base-styles/typography";
+                .modal.fade.show {
+                    opacity: 1;
+                }
+
+                .modal-backdrop {
+                    background-color: $BLACK !important;
+                }
+            }
+
+            @include respond-to(mobile) {
+                max-height: none;
+                height: auto;
+                float: none;
+                width: auto;
+
+                [ui-view] {
+                    height: auto;
+                    flex-grow: inherit;
+                    flex-basis: inherit;
+                }
+            }
+
+            &.leftNavOpen {
+
+                &.leftNavPinned {
+                    width: calc(100% - 250px);
+                    overflow-x: auto;
+                }
+            }
+        }
+
+        #content {
+            height: 100%;
+
+            @include respond-to(mobile) {
+                height: auto;
+            }
+        }
+    }
+
+    .h100 {
+        height: 100%;
+    }
+}
+
+.notificationArea {
+    width: 100%;
+    display: block;
+    position: relative;
+    z-index: 301;
+
+    .collapse {
+        top: 15px;
+    }
+
+    .overlay {
+        position: absolute;
+        height: 100vh;
+        width: 100%;
+        z-index: 30;
+        background-color: rgba(0,0,0,0.8);
+        display: block;
+    }
+
+    &.notifications {
+        .actionMenu {
+            .actionItem {
+                .product {
+                    .name {
+                        color: #25b768;
+                    }
+                }
+
+                .time {
+                    .name {
+                        text-transform: none;
+                        font-style: italic;
+                    }
+                }
+            }
+        }
+    }
+
+    .actionMenu {
+        background-color: #1e2d3b;
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 15px;
+        z-index: 31;
+        max-height: 100vh;
+        overflow: auto;
+        overflow-x: hidden;
+        overflow-y: auto;
+        width: 100%;
+
+        h4 {
+            color: #25b768;
+            text-transform: uppercase;
+            font-weight: 500;
+            font-size: 11pt;
+            margin-bottom: 40px;
+        }
+
+        .icon-container {
+            position: absolute;
+            right: 0;
+
+            .icon {
+                color: #25b768;
+            }
+        }
+
+        .actionContainer {
+            padding-bottom: 30px;
+            overflow: auto;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        .actionItem {
+            max-width: 300px;
+            color: $WHITE;
+            font-size: 10pt;
+            display: inline-block;
+            margin-right: 50px;
+            margin-bottom: 50px;
+            vertical-align: top;
+
+            a {
+                text-decoration: none;
+            }
+
+            p {
+                color: #fff;
+                text-decoration: none;
+            }
+
+            .product {
+                display: inline-block;
+
+                .image {
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 100%;
+                    background: transparent center center no-repeat;
+                    background-size: contain;
+                    display: inline-block;
+                    margin-right: 10px;
+                    position: relative;
+                    top: 5px;
+                }
+
+                .name {
+                    display: inline-block;
+                    font-size: 10pt;
+                    text-transform: uppercase;
+                    color: #fff;
+                    text-decoration: none;
+                }
+            }
+
+            .time {
+                position: relative;
+                display: inline-block;
+
+                .icon-container {
+                    position: relative;
+                    font-size: 12pt;
+
+                    .icon {
+                        color: #25b768;
+                    }
+                }
+
+                .name {
+                    display: inline-block;
+                    font-size: 10pt;
+                    text-transform: uppercase;
+                    color: #fff;
+                    text-decoration: none;
+                }
+            }
+
+            .actions {
+                a,
+                button {
+                    outline: none;
+                    text-decoration: none;
+                    color: $WHITE;
+                    border: none;
+                    margin-top: 15px;
+                    margin-right: 10px;
+                    text-transform: uppercase;
+                    font-weight: 500;
+                    font-size: 8pt;
+                    padding: 4px 7px;
+                    background-color: rgb(30, 45, 59);
+
+                    &.action-primary {
+                        background-color: #25b768;
+                        cursor: pointer;
+                    }
+
+                    &:hover {
+                        background-color: #189752;
+
+                        &.action-secondary {
+                            background-color: rgb(23, 36, 48);
+                        }
+                    }
+
+                    &:active {
+                        background-color: #111c26;
+                        -moz-transform: scale(0.98, 0.98);
+                        -ms-transform: scale(0.98, 0.98);
+                        -o-transform: scale(0.98, 0.98);
+                        -webkit-transform: scale(0.98, 0.98);
+                        transform: scale(0.98, 0.98);
+                    }
+                }
+            }
+        }
+
+        @media only screen and (min-width : 320px) and (max-width: 768px) {
+            .actionItem {
+                max-width: none;
+                width: auto;
+                margin-right: 0;
+            }
+        }
+    }
+}
+
+.win-splitview-content {
+    overflow: auto;
+    position: relative !important;
+
+    .ui-view-container {
+        height: calc(100vh - 48px);
+        overflow-y: hidden;
+
+        &.noHeader {
+            height: 100vh;
+        }
+
+        .ui-view-holder {
+            height: calc(100% - 24px);
+            overflow-y: auto;
+            -ms-overflow-style: -ms-autohiding-scrollbar;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        footer {
+            height: 24px;
+            width: 100%;
+            background: #e9eef1;
+
+            ul {
+                list-style: none;
+                padding: 0 15px;
+
+                li {
+                    &.footer-item {
+                        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                        font-size: small;
+                        line-height: 24px;
+                        color: #909090;
+                        display: inline-block;
+                        margin-right: 15px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.errorContainer {
+    width: 100%;
+    padding-top: 10vh;
+    height: calc(100vh - 48px);
+    background: #25b768;
+
+    img.errorPic {
+        display: block;
+        margin: 0 auto;
+        max-width: 200px;
+        width: 20vh;
+    }
+
+    p {
+        font-family: 'Segoe UI';
+        font-size: xx-large;
+        font-weight: 100;
+        color: #fff;
+        padding: 15px;
+        text-align: center;
+
+        &.msg {
+            margin-top: 15px;
+            font-size: medium;
+            font-weight: 400;
+        }
+    }
+}

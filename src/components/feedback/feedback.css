@@ -1,0 +1,374 @@
+﻿/*Start: Classes form fonts*/
+.font-header {
+    font-family: 'Segoe UI';
+    font-weight: 300;
+    font-size: 46px !important;
+    line-height: 56px !important;
+}
+
+.font-subheader {
+    font-family: 'Segoe UI';
+    font-weight: 300;
+    font-size: 34px !important;
+    line-height: 40px !important;
+}
+
+.font-title {
+    font-family: 'Segoe UI';
+    font-weight: 200;
+    font-size: 24px !important;
+    line-height: 28px !important;
+}
+
+.font-subtitle, .feedback-control .feedback-modal .feedback-content .feedback-header {
+    font-family: 'Segoe UI';
+    font-weight: normal;
+    font-size: 20px !important;
+    line-height: 24px !important;
+}
+
+.font-subtitle-alt {
+    font-family: 'Segoe UI';
+    font-weight: normal;
+    font-size: 18px !important;
+    line-height: 22px !important;
+}
+
+.font-base {
+    font-family: 'Segoe UI';
+    font-weight: 600;
+    font-size: 15px !important;
+    line-height: 20px !important;
+}
+
+.font-base-alt {
+    font-family: 'Segoe UI';
+    font-weight: bold;
+    font-size: 15px !important;
+    line-height: 20px !important;
+}
+
+.font-body, .feedback-control .feedback-modal .feedback-content .feedback-description, .feedback-button {
+    font-family: 'Segoe UI';
+    font-weight: normal;
+    font-size: 15px !important;
+    line-height: 20px !important;
+}
+
+.font-caption-alt, .feedback-control ul.dropdown-menu li a, .feedback-control ul.dropdown-menu li .feedback-icon-container {
+    font-family: 'Segoe UI';
+    font-weight: normal;
+    font-size: 13px !important;
+    line-height: 16px !important;
+}
+
+.font-caption, .feedback-control .feedback-modal .feedback-content .feedback-description .instruction {
+    font-family: 'Segoe UI';
+    font-weight: normal;
+    font-size: 12px !important;
+    line-height: 14px !important;
+}
+
+/*End: Classes form fonts*/
+/*Start: Feedback component Styling*/
+button[disabled='disabled'] {
+    cursor: default !important;
+}
+
+.feedback-control {
+    /*Start: Dropdown*/
+    /*End: Dropdown*/
+    /*Start: Flyout*/
+    /*End: Flyout*/
+}
+
+    .feedback-control #feedback-control:not([disabled]):hover {
+        background: #0760a7;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    .feedback-control #feedback-control:not([disabled]):focus {
+        outline: 1px dotted #fff;
+        background: #0078d6;
+        color: #fff;
+    }
+
+    .feedback-control .feedback-control-icon {
+        background: #0078d6;
+        color: #fff;
+        cursor: pointer;
+        width: 48px;
+        text-align: center;
+        outline: 0;
+        border: 0;
+        height: 48px;
+        font-size: 1.25em;
+        position: relative;
+        border-right: 1px solid rgba(255, 255, 255, 0.33);
+    }
+
+        .feedback-control .feedback-control-icon:focus {
+            outline: 1px dotted #fff;
+        }
+
+        .feedback-control .feedback-control-icon:hover {
+            cursor: pointer;
+        }
+
+        .feedback-control .feedback-control-icon.openFlyout {
+            background: #e9eef1;
+            color: #0063B1 !important;
+            cursor: pointer;
+            height: 48px !important;
+            margin-top: 0px;
+            z-index: 1003;
+        }
+
+    .feedback-control ul.dropdown-menu {
+        position: fixed;
+        position: -ms-page;
+        margin: 0;
+        border-radius: 0;
+        top: 48px;
+        left: auto;
+        width: auto;
+        list-style-type: none;
+        list-style: none;
+        border-top: none;
+        padding: 0px;
+        background-color: #e9eef1;
+        box-shadow: none;
+        border-left: none;
+        overflow-y: auto;
+        z-index: 2000;
+        height: auto;
+    }
+
+        .feedback-control ul.dropdown-menu li {
+            padding: 1px;
+        }
+
+            .feedback-control ul.dropdown-menu li a {
+                color: #000 !important;
+                padding: 13px 11px;
+            }
+
+                .feedback-control ul.dropdown-menu li a:hover, .feedback-control ul.dropdown-menu li a:focus {
+                    background: none;
+                }
+
+            .feedback-control ul.dropdown-menu li:hover {
+                background-color: rgba(0, 0, 0, 0.1);
+            }
+
+            .feedback-control ul.dropdown-menu li:focus {
+                background-color: rgba(0, 0, 0, 0.1);
+                border: 1px dotted #000;
+            }
+
+            .feedback-control ul.dropdown-menu li.active-control {
+                background-color: #0078d7;
+                Color: #fff;
+            }
+
+            .feedback-control ul.dropdown-menu li .feedback-icon-container {
+                font: inherit;
+                width: auto !important;
+                height: 20px !important;
+                cursor: pointer;
+                margin: 1px !important;
+                color: #000;
+                padding-right: 10px;
+            }
+
+                .feedback-control ul.dropdown-menu li .feedback-icon-container .icon-frown {
+                    background: url("assets/icons/IconFrown-face.png") no-repeat;
+                    background-size: 13px;
+                    height: 13px;
+                    width: 13px;
+                }
+
+    .feedback-control .feedback-modal {
+        display: none;
+        position: fixed;
+        /* Stay in place */
+        position: -ms-page;
+        z-index: 1002;
+        /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%;
+        /* Full width */
+        height: 100%;
+        /* Full height */
+        overflow: auto;
+        /* Enable scroll if needed */
+        background-color: rgba(0, 0, 0, 0.4);
+        /* Fallback color */
+        -webkit-animation-name: fadeIn;
+        /* Fade in the background */
+        -webkit-animation-duration: 0.4s;
+        animation-name: fadeIn;
+        animation-duration: 0.4s;
+    }
+
+        .feedback-control .feedback-modal .feedback-content {
+            display: block;
+            position: fixed;
+            position: -ms-page;
+            margin: 0;
+            border-radius: 0;
+            top: 48px;
+            left: auto;
+            right: 0;
+            width: 297px;
+            background-color: #e9eef1;
+            box-shadow: none;
+            overflow-y: auto;
+            z-index: 2000;
+            height: 100%;
+            padding: 30px 15px 30px 15px;
+            border-left: 1px solid #000000;
+            text-align: left;
+        }
+
+            .feedback-control .feedback-modal .feedback-content .feedback-header {
+                padding: 18px 0;
+                color: #000000;
+                margin: 0;
+            }
+
+            .feedback-control .feedback-modal .feedback-content .feedback-description {
+                color: #000000;
+            }
+
+                .feedback-control .feedback-modal .feedback-content .feedback-description .feedback-textarea {
+                    margin: 10px 15px 20px;
+                    padding: 10px;
+                    width: 240px;
+                    height: 240px;
+                    border: 1px solid #ffffff;
+                    color: #666666;
+                    resize: none;
+                }
+
+                    .feedback-control .feedback-modal .feedback-content .feedback-description .feedback-textarea:focus {
+                        outline: 1px #000000 dotted;
+                    }
+
+                .feedback-control .feedback-modal .feedback-content .feedback-description .instruction {
+                    padding: 18px 0px 0px 0px;
+                    font-weight: lighter;
+                    color: rgba(0, 0, 0, 0.6);
+                }
+
+            .feedback-control .feedback-modal .feedback-content .feedback-buttons {
+                text-align: right;
+            }
+
+.icon {
+    font-family: "SegoeUI MDL2 Assets";
+    font-weight: normal;
+    font-style: normal;
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+    .icon.icon-smile:before {
+        content: "\e170";
+    }
+
+    .icon.icon-idea:before {
+        content: "\e82f";
+    }
+
+/*End: Feedback component Styling*/
+.feedback-button {
+    border: 1px solid transparent;
+    min-width: 100px;
+    height: 36px;
+    padding: 0 12px;
+    margin: 4px 8px;
+    display: inline-block;
+    text-align: center;
+}
+
+    .feedback-button.primary {
+        background-color: #0078d7;
+        color: #ffffff;
+    }
+
+        .feedback-button.primary:hover {
+            border: 1px solid #000000;
+            background-color: #006cc1;
+        }
+
+        .feedback-button.primary:focus {
+            border: 1px dotted #000000;
+            background-color: #006cc1;
+        }
+
+        .feedback-button.primary:active {
+            background-color: #005496;
+        }
+
+        .feedback-button.primary:disabled {
+            background-color: #0078d7;
+            color: #000000;
+            border: 1px solid #005496;
+            opacity: 0.2;
+        }
+
+    .feedback-button.secondary {
+        background-color: rgba(0, 0, 0, 0.2);
+        color: #000000;
+    }
+
+        .feedback-button.secondary:hover {
+            border: 1px solid #000000;
+        }
+
+        .feedback-button.secondary:focus {
+            border: 1px dotted #000000;
+        }
+
+        .feedback-button.secondary:active {
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .feedback-button.secondary:disabled {
+            opacity: 0.2;
+        }
+
+@media screen and (-ms-high-contrast: white-on-black) {
+    .icon-frown {
+        background: url("assets/icons/IconFrownWhite.png") no-repeat !important;
+        background-size: 13px !important;
+    }
+}
+
+@media screen and (-ms-high-contrast: black-on-white) {
+    .icon-frown {
+        background: url("assets/icons/IconFrown-face.png") no-repeat !important;
+        background-size: 13px !important;
+    }
+}
+
+@media screen and (-ms-high-contrast: active) {
+    button.feedback-control-icon {
+        border: 1px solid !important;
+    }
+
+    .feedback-modal {
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+
+    .feedback-control ul.dropdown-menu {
+        border: 1px solid;
+    }
+}

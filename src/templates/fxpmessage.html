@@ -1,0 +1,21 @@
+<div class="fxpmessage">
+    <div class="modal {{messageClass}}">
+        <div ng-repeat="message in messages" class="message message-{{message.MessageType}}" aria-labelledby="message-content-{{$index}}" ng-keydown="onMessageKeyDown($event)">
+            <div class="icon-container">
+                <i class="icon icon-{{message.MessageType}}"></i>
+            </div>
+            <div class="message-container">
+                <div class="message-content" ng-attr-id="message-content-{{$index}}" tabindex="1">
+                    <span class="message-content-text" markdown-to-html="message.Message | stripHtml"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="msgTrackingId" ng-show="message.MessageType=='error'&& message.trackId!=''">
+                        ({{message.trackId}})&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </span><span class="msgTrackingId" ng-show="message.MessageType=='error'&& message.uniqueTransactionId!=''">
+                        ({{message.uniqueTransactionId}})
+                    </span>
+                </div>
+                <button class="icon-container" type="button" tabindex="1" ng-click="closeMessage(message)" aria-label="Close" title="Click to close message">
+                    <i class="icon icon-close pull-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

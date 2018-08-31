@@ -1,0 +1,23 @@
+﻿<div id="helpPage" ng-init="pullFocus()">
+	<div class="help-content">
+		<div class="user-apps-app photo-holder help"
+			 ng-repeat="item in fxpHelp.FxpHelpLinks | orderBy:'DisplayOrder'"
+			 ng-keydown="::renderHeaderMenuForKeydown($event)">
+			<div class="helpCategory"
+				 ng-bind="::item.DisplayText_Flyout"></div>
+			<div class="categoryContainer"
+				 ng-repeat="innerItem in item.HelpLinks | orderBy:'DisplayOrder'"
+				 fxp-show-if-device="innerItem.ApplicableDevice">
+				<a href
+				   ng-click="logFxpHelpEvent(innerItem,item.DisplayText)"
+				   title="{{::innerItem.Title}}"
+				   aria-label="{{::innerItem.Title}}"
+				   fxp-help-events="{{innerItem}}"
+				   ng-bind-html="innerItem.DisplayText"></a>
+				<div ng-if="innerItem.Description"
+					 class="helpDescription"
+					 ng-bind="::innerItem.Description"></div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,30 @@
+﻿<button class="fxp-btn fxp-btn--action"
+        aria-label="Previous Page"
+        ng-disabled="smCtrl.currentPage <= 1"
+        fxp-click="smCtrl.loadPrevPage()">
+    <span class="icon icon-chevron-left"></span>
+    <span class="font-caption-alt fxp-btn--action__text" ng-bind="::smCtrl.UiString.PAGINATION.PREV"></span>
+</button>
+
+<input class="font-caption-alt page-number"
+       type="number"
+       min="1"
+       required
+       name="currentPage"
+       ng-attr-max="{{smCtrl.pageCount}}"
+       placeholder="1"
+       ng-model="smCtrl.currentPage"
+       ng-change="smCtrl.changePageOnKeydown()"
+       ng-blur="smCtrl.resetPageNumberOnBlur()"
+       ng-model-options="{debounce : '200', allowInvalid: true}" />
+
+<span class="font-caption-alt page-text">of</span>
+<span class="font-caption-alt page-text" ng-bind="smCtrl.pageCount"></span>
+
+<button class="fxp-btn fxp-btn--action"
+        aria-label="Next Page"
+        ng-disabled="smCtrl.currentPage <= 0 || smCtrl.currentPage >= smCtrl.pageCount"
+        fxp-click="smCtrl.loadNextPage()">
+    <span class="font-caption-alt fxp-btn--action__text" ng-bind="::smCtrl.UiString.PAGINATION.NEXT"></span>
+    <span class="icon icon-chevron-right"></span>
+</button>

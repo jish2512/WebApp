@@ -1,0 +1,59 @@
+﻿<section id="author-notification">
+	<div>
+		<div class="row margin0">
+			<h3 class="author-notification-heading font-subtitle-alt" ng-bind="::fxpUIConstants.UIStrings.AuthorNotificationStrings.Title"></h3>
+			<p class="author-notification-help-text font-body" ng-bind="::fxpUIConstants.UIStrings.AuthorNotificationStrings.PageHelpText"></p>
+		</div>
+		<section class="author-notification-body">
+			<div class="row margin0">
+				<label class="font-body"
+					   for="audience-type"
+					   ng-bind="::fxpUIConstants.UIStrings.AuthorNotificationStrings.AudienceLabel + ':'"></label>
+				<div class="fxp-dropdown-menu audience-type-menu"
+					 aria-label="Audience">
+					<select id="audience-type"
+							ng-model="anCtrl.selectedAudienceType"
+							ng-change="anCtrl.confirmNavigation()"
+							ng-options="item.DisplayText for item in fxpUIConstants.UIStrings.AuthorNotificationStrings.Audience">
+						<option value="">Select</option>
+					</select>
+				</div>
+			</div>
+			<section ng-if="anCtrl.previousAudienceType"
+					 ng-class="anCtrl.previousAudienceType.Type.toLowerCase()"
+					 author-notification-content>
+                <div class="row margin0 inline-error-message"
+                     ng-if="anCtrl.previousAudienceType.Type.toLowerCase() == 'user'"
+                     fxp-include-static-template="/templates/author_notification/userLevelNotification.html"></div>
+                <div class="row margin0"
+                     ng-if="anCtrl.previousAudienceType.Type.toLowerCase() == 'role'"
+                     fxp-include-static-template="/templates/author_notification/rolesRoleGroupNotification.html"></div>
+                <div class="row margin0" ng-init="message=''">
+                    <label class="font-body"
+                           for="notification-message"
+                           ng-bind="::fxpUIConstants.UIStrings.AuthorNotificationStrings.NotificationMessageLabel + ':'"></label>
+                    <textarea id="notification-message"
+                              ng-model="anCtrl.notificationMessage"
+                              maxlength="{{::fxpUIConstants.UIStrings.AuthorNotificationStrings.NotificationMessageMaxLength}}"
+                              placeholder="{{::fxpUIConstants.UIStrings.AuthorNotificationStrings.NotificationMessagePlaceHolder}}"></textarea>
+                    <p class="font-caption message-help">{{fxpUIConstants.UIStrings.AuthorNotificationStrings.NotificationMessageMaxLength - anCtrl.notificationMessage.length}}/{{::fxpUIConstants.UIStrings.AuthorNotificationStrings.NotificationMessageMaxLength}} characters remaining.</p>
+                </div>
+                <div class="row margin0 pull-right">
+                    <button type="button"
+                            class="fxp-btn fxp-btn--secondary"
+                            id="cancelNotificationBtn"
+                            aria-label="Cancel"
+                            ng-click="anCtrl.confirmNavigation($event)"
+                            ng-bind="::fxpUIConstants.UIStrings.AuthorNotificationStrings.CancelButtonText"></button>
+                    <button type="button"
+                            class="fxp-btn fxp-btn--primary"
+                            id="submitNotificationBtn"
+                            aria-label="Submit Notification"
+                            ng-disabled="!anCtrl.notificationMessage || !anCtrl.ifNotificationDataAvailable()"
+							ng-click="anCtrl.publishNotification()"
+							ng-bind="::fxpUIConstants.UIStrings.AuthorNotificationStrings.SubmitButtonText"></button>
+				</div>
+			</section>
+		</section>
+	</div>
+</section>

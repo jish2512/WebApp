@@ -1,0 +1,87 @@
+﻿<header>
+    <h1 role="heading" aria-level="1" class="margin0">
+        <button id="Fxpdashboard_ProfessionService"
+                role="link"
+                class="title"
+                tabindex="0"
+                ng-if="!app.device.isMobile()"
+                title="Click to go to Dashboard"
+                aria-label="{{fxpUIConstants.UIStrings.AppHeader}}"
+                fxp-click="navigateToLandingPage()">
+            {{app.device.isTablet() ? fxpUIConstants.UIStrings.AppHeaderAlias : fxpUIConstants.UIStrings.AppHeader}}
+		</button>
+	</h1>
+    </div>
+	<span class="separator"
+		  ng-if="!app.device.isMobile()"></span>
+	<h2 id="Fxpdashboard_ApplicationSpecifictext"
+		  class="title current-app">
+		{{fxpheaderdata.DisplayText}}
+</h2>
+	<div class="pull-right">
+
+		<div class="notification-wrap">
+			<fxpnotification ng-if="initialFlags.notificationsEnabled" />
+		</div>
+		<div class="profile" ng-if="!app.device.isMobile()">
+			<fxphelpmenu></fxphelpmenu>
+			<page-tour-context-menu ng-if="initialFlags.pageTourEnabled"></page-tour-context-menu>
+			<feedback-widget ng-if="initialFlags.feedbackEnabled" feedback-context="feedbackContextItem" feedback-configuration="feedbackConfiguration"
+							 feedback-success-func="onSendUserFeedbackInfo(feedbackResponse)" feedback-failure-func="onSendUserFeedbackInfoError(feedbackResponse)"></feedback-widget>
+			<div class="btn-group pull-left user-profile" uib-dropdown uib-keyboard-nav ng-init="isMiniProfileOpen=false" is-open="isMiniProfileOpen">
+				<button id="user-profile-open"
+						type="button"
+						class="icon-container profile-photo"
+						ng-class="{withBorder: isFullScreenEnabled}"
+						ng-keydown="renderHeaderForKeydown($event)"
+						ng-click="renderHeaderForClick($event);logMiniProfileTelemetryInfo('ProfileIconClick',isMiniProfileOpen)"
+						title="{{userProfile.fullName}}"
+						ng-blur="renderHeaderForFocusout($event)"
+						uib-dropdown-toggle>
+					<!--<i ng-hide="userInfo.thumbnailPhoto" class="icon icon-user"></i>-->
+					<img class="icon iconDisplayImage" id="imgPro" alt="{{userProfile.fullName}}" ng-src="{{userThumbnailPhoto}}" />
+				</button>
+				<div class="arrow-up"></div>
+				<ul uib-dropdown-menu aria-labelledby="user-profile-open">
+					<li class="user-apps-app photo-holder" ng-keydown="renderHeaderMenuForKeydown($event)">
+						<div class="photo">
+							<img class="photo-pic" id="miniImgPro" alt="{{userProfile.fullName}}" ng-src="{{userThumbnailPhoto}}" />
+						</div>
+						<div class="user-info">
+							<label class="name">{{userProfile.displayName}}</label>
+							<label class="place">{{userprofileinfo.businessRoleDisplayName}}</label>
+						</div>
+						<div class="user-report-info">
+							<div class="info-item">
+								<label id="Fxpdashboard_DomainName" for="Fxpdashboard_DomainNameData" class="title space">{{fxpUIConstants.UIStrings.Domain}}</label>
+								<label id="Fxpdashboard_DomainNameData" class="title data">{{userprofileinfo.title}}</label>
+							</div>
+							<div class="info-item">
+								<label id="Fxpdashboard_ReportTo" for="Fxpdashboard_ReportToData" class="title space">{{fxpUIConstants.UIStrings.ReportTo}}</label>
+								<label id="Fxpdashboard_ReportToData" class="title data">{{userProfile.reportsToDisplayName}}</label>
+							</div>
+                            <div ng-if="userProfile.additionalInfo">
+                                <div class="info-item" ng-repeat="(key, value) in userProfile.additionalInfo">
+                                    <label id="Fxpdashboard_{{key}}" class="title space">{{key}}</label>
+                                    <label id="Fxpdashboard_{{$index}}" class="title data">{{value}}</label>
+                                </div>
+                            </div>
+						</div>
+                         
+						<a id="Fxpdashboard_ViewFullprofile" href="{{viewProfileUrl}}/{{userProfile.alias}}" ng-click="logMiniProfileTelemetryInfo('ViewFullProfileClick',isMiniProfileOpen)"
+						   class="view-full-link" aria-label="{{ViewFullProfile}}" title="Click to view full profile" ng-if="showViewFullProfileLink">{{ViewFullProfile}}<i class="icon icon-arrowHTMLMirroredLegacy"></i></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<button type="button"
+				class="icon-container"
+				title="Maximize"
+				ng-click="app.maximize()"
+				ng-if="isFullScreenEnabled">
+			<i class="icon icon-maximize"></i>
+		</button>
+	</div>
+	<div class="clearfix"></div>
+</header>
+<act-obo-header ng-if="actOnBehalfOfUserActive"></act-obo-header>

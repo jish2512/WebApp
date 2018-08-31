@@ -1,0 +1,49 @@
+﻿@import "../../_vars";
+
+.session-timeout-popup {
+    .modal-dialog {
+        width: 312px;
+        height: 182px;
+        padding: 0;
+        margin: 0;
+        background-color: white;
+        border: 1px solid $BLACK;
+        position: relative;
+        top: calc(50vh - 91px);
+        left: calc(50vw - 156px);
+
+        .modal-content {
+            border: none;
+            border-radius: 0;
+
+            .container-body {
+                height: 100%;
+
+                .session-timeout-message-popup {
+                    padding: 24px;
+                    margin: 0;
+
+                    .popup-heading {
+                        display: inline-block;
+                        margin: 0;
+                    }
+
+                    .description {
+                        padding: 20px 0;
+                        margin: 0;
+                    }
+
+                    .settingsButtons {
+                        margin: 0;
+                        float: none;
+
+                        button {
+                            margin: 0;
+                            width: 260px !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

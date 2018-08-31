@@ -1,0 +1,135 @@
+﻿@import "../../_vars.scss";
+
+/* Primary Button */
+$btn-primary-background: $color-brand;
+$btn-primary-hover-background: $BLUE_SECONDARY;
+$btn-primary-focus-background: $BLUE_SECONDARY;
+$btn-primary-active-background: $BLUE_AC6;
+$btn-primary-disbaled-background: transparentize($color-brand, 0.7);
+
+$btn-primary-foreground: $WHITE;
+$btn-primary-hover-foreground: $WHITE;
+$btn-primary-focus-foreground: $WHITE;
+$btn-primary-active-foreground: $WHITE;
+$btn-primary-disbaled-foreground: transparentize($BLACK, 0.7);
+
+$btn-primary-hover-outline: 1px solid $BLACK;
+$btn-primary-focus-outline: 1px dashed $BLACK;
+
+
+/* Secondary Button */
+$btn-secondary-background: transparentize($BLACK, 0.8);
+$btn-secondary-hover-background: transparentize($BLACK, 0.8);
+$btn-secondary-focus-background: transparentize($BLACK, 0.8);
+$btn-secondary-active-background: transparentize($BLACK, 0.6);
+$btn-secondary-disbaled-background: transparentize($BLACK, 0.8);
+
+$btn-secondary-foreground: $BLACK;
+$btn-secondary-hover-foreground: $BLACK;
+$btn-secondary-focus-foreground: $BLACK;
+$btn-secondary-active-foreground: $BLACK;
+$btn-secondary-disbaled-foreground: transparentize($BLACK, 0.7);
+
+$btn-secondary-hover-outline: 1px solid transparentize($BLACK, 0.8);
+$btn-secondary-focus-outline: 1px dashed $BLACK;
+
+/* Action Button */
+$btn-action-background: transparent;
+
+$btn-action-foreground: $BLUE_SECONDARY;
+$btn-action-hover-foreground: transparentize($BLACK, 0.4);
+$btn-action-focus-foreground: transparentize($BLACK, 0.4);
+$btn-action-active-foreground: $BLACK;
+$btn-action-disabled-foreground: transparentize($BLACK, 0.8);
+
+$btn-action-outline: none;
+$btn-action-focus-outline: 1px dashed $BLACK;
+
+
+
+@mixin button-style($bg-color, $fg-color, $outline: inherit) {
+    background: $bg-color;
+    color: $fg-color;
+    outline: $outline;
+}
+
+.fxp-btn {
+    min-width: 120px;
+    min-height: 36px;
+    padding: 0 12px;
+    margin-right: 16px;
+    border: none;
+    cursor: pointer;
+
+    &--primary {
+        @include button-style($btn-primary-background, $btn-primary-foreground);
+
+        &:hover {
+            @include button-style($btn-primary-hover-background, $btn-primary-hover-foreground, $btn-primary-hover-outline);
+        }
+
+        &:focus {
+            @include button-style($btn-primary-focus-background, $btn-primary-focus-foreground, $btn-primary-focus-outline);
+        }
+
+        &:active {
+            @include button-style($btn-primary-active-background, $btn-primary-active-foreground);
+        }
+
+        &:disabled {
+            @include button-style($btn-primary-disbaled-background, $btn-primary-disbaled-foreground);
+        }
+    }
+
+    &--secondary {
+        @include button-style($btn-secondary-background, $btn-secondary-foreground);
+
+        &:hover {
+            @include button-style($btn-secondary-hover-background, $btn-secondary-hover-foreground, $btn-secondary-hover-outline);
+        }
+
+        &:focus {
+            @include button-style($btn-secondary-focus-background, $btn-secondary-focus-foreground, $btn-secondary-focus-outline);
+        }
+
+        &:active {
+            @include button-style($btn-secondary-active-background, $btn-secondary-active-foreground);
+        }
+
+        &:disabled {
+            @include button-style($btn-secondary-disbaled-background, $btn-secondary-disbaled-foreground);
+        }
+    }
+
+    &--action {
+
+        @include button-style($btn-action-background, $btn-action-foreground, $btn-action-outline);
+        margin: 0;
+        min-width: inherit;
+
+        &:hover {
+            @include button-style($btn-action-background, $btn-action-foreground, $btn-action-outline);
+            text-decoration: underline;
+        }
+
+        &:focus {
+            @include button-style($btn-action-background, $btn-action-focus-foreground, $btn-action-focus-outline);
+        }
+
+        &:active {
+            @include button-style($btn-action-background, $btn-action-active-foreground, $btn-action-outline);
+        }
+
+        &:disabled {
+            @include button-style($btn-action-background, $btn-action-disabled-foreground, $btn-action-outline);
+        }
+
+        &__text {
+            padding-right: 12px;
+
+            &:hover, &:focus {
+                text-decoration: underline;
+            }
+        }
+    }
+}

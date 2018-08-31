@@ -1,0 +1,51 @@
+﻿@mixin focus-states($color: null) {
+    @if($color) {
+        &:active, &:hover {
+            background: $color;
+            cursor: pointer;
+        }
+
+        &:active {
+            background: $color;
+            transform: scale(0.98, 0.98);
+        }
+
+        &.disabled,
+        &[disabled] {
+            opacity: 0.6;
+
+            &:active, &:hover {
+                background: transparent;
+            }
+
+            &:active {
+                transform: none;
+            }
+        }
+    }
+    @else {
+        &:active, &:hover {
+            background: rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+
+        &:active {
+            background: rgba(0,0,0,0.2);
+            transform: scale(0.98, 0.98);
+        }
+
+        &.disabled,
+        &[disabled] {
+            opacity: 0.6;
+
+            &:active, &:hover {
+                background: transparent;
+                cursor: default;
+            }
+
+            &:active {
+                transform: none;
+            }
+        }
+    }
+}

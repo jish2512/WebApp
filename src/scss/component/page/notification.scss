@@ -1,0 +1,393 @@
+﻿// Import styles
+@import "../../vars";
+@import '../../base-styles/typography';
+
+// Local Variables
+$notification-error: $BLACK;
+$notification-count-color: $MARRON;
+$notification-count-bordercolor: $BLUE_AC2;
+$color_notification_links: $BLUE_SECONDARY;
+
+// Style
+.notification-wrap {
+    @extend %extend_profile;
+
+    .notificationflyout {
+        border-left: 1px solid rgba(211, 241, 225, .25);
+
+        .icon-container:focus {
+            outline: #fff dotted 1px;
+            background: #0078d7;
+            color: #fff;
+        }
+
+        .icon-container:hover {
+            background: #0760a7;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        &.open {
+            background: $header-foreground;
+            color: $header-background;
+
+            .dropdown-menu {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .notification-overlay {
+                display: block;
+
+
+                @include respond-to (mobile) {
+                    display: none;
+                }
+            }
+        }
+
+        button {
+            height: auto;
+            margin-top: auto;
+        }
+
+        .dropdown-menu {
+            display: block;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        #notification-open {
+            height: 46px;
+            margin-top: 1px;
+            font-size: 22px;
+            transform: none;
+        }
+
+        .notification-count {
+            background: $notification-count-color;
+            border: 1px solid $notification-count-bordercolor;
+            width: 17px;
+            font-family: 'Segoe UI Negreta';
+            height: 17px;
+            font-size: 9px;
+            color: #fff;
+            border-radius: 15px;
+            -ms-transform: translate(-7px,-55px); /* IE 9 */
+            -webkit-transform: translate(-7px,-55px); /* Safari */
+            transform: translate(-7px,-55px);
+            display: inline-block;
+            line-height: 1.8;
+        }
+
+        .notification-heading {
+            font-size: 24px;
+            font-family: 'Segoe UI Light';
+            color: #000000;
+            padding-bottom: 30px;
+
+
+            @include respond-to (mobile) {
+                padding-bottom: 30px;
+            }
+        }
+
+        .dnd-label {
+            @extend .font-body;
+            color: $BLACK;
+            padding-bottom: 12px;
+        }
+
+        .switch-lable {
+            @extend .font-body;
+            color: $BLACK;
+            padding-left: 52px;
+        }
+
+        .action-buttons {
+            @extend .font-caption-alt;
+            Color: #0063b1;
+            padding-bottom: 30px;
+            text-align: right;
+
+            .fxp-btn {
+                padding: 0;
+                min-height: inherit;
+            }
+
+            .action-separator {
+                padding: 0;
+                margin: 0 8px;
+                color: rgba($BLACK, 0.7);
+                font-family: 'Segoe UI';
+            }
+
+            .inactive {
+                color: #ccc !important;
+                pointer-events: none;
+                cursor: default;
+            }
+        }
+
+
+        .load-more {
+            Color: #0063b1;
+            margin-top: 20px;
+            text-align: center;
+            float: left;
+            height: 50px;
+            margin-bottom: 20px;
+            width: 100%;
+
+            a:focus {
+                border: 1px dotted black;
+                padding: 10px;
+            }
+        }
+
+        .notificationClose {
+            font-size: 20px;
+            line-height: 40px;
+            color: #000 !important;
+            opacity: 0.7;
+            cursor: pointer;
+            float: right;
+        }
+
+        .notification-description {
+            Font-size: 12px;
+            font-family: 'Segoe UI Light';
+            Color: rgba(0,0,0,0.6);
+        }
+
+        .notification-overlay {
+            display: none;
+            position: fixed;
+            z-index: 1002;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            -webkit-animation-name: fadeIn;
+            -webkit-animation-duration: 0.4s;
+            animation-name: fadeIn;
+            animation-duration: 0.4s;
+        }
+
+
+        ul.dropdown-menu {
+            position: fixed;
+            position: -ms-page;
+            margin: 0;
+            border-radius: 0;
+            top: 48px;
+            right: 0;
+            left: auto;
+            width: 320px;
+            list-style-type: none;
+            list-style: none;
+            border-top: none;
+            padding: 0px;
+            background-color: #e9eef1;
+            box-shadow: none;
+            border-left: none;
+            z-index: 1003 !important;
+            overflow-y: auto;
+            overflow-x: hidden;
+            height: calc(100vh - 82px);
+            border-left: solid 1px #000;
+            padding: 15px 0px 0px 0px;
+
+            @include respond-to (mobile) {
+                width: 100% !important;
+                height: calc(100% - 48px);
+            }
+
+            li {
+                padding: 0px 12px 0px 12px;
+            }
+
+            .message {
+                Color: #000;
+                Opacity: 0.6;
+                padding: 12px 15px 30px 10px;
+            }
+
+            .notification-error {
+                color: $notification-error !important;
+                font-size: 28px;
+                padding: 12px 10px;
+
+                .error-message {
+                    @extend .font-caption-alt;
+                    opacity: 0.6;
+                }
+
+                .errorIcon {
+                    float: left;
+                    padding-right: 8px;
+                }
+            }
+
+            li.notification-content {
+                border-bottom: 1px solid rgba(0,0,0,.4);
+            }
+
+            li.notification {
+                border-bottom: 1px solid rgba(0,0,0,.4);
+                padding-top: 10px;
+                padding-bottom: 10px;
+                display: flex;
+                width: 100%;
+                float: left;
+
+                &:hover {
+                    background-color: rgba(0,0,0,0.1);
+                }
+
+                @include respond-to (mobile) {
+                    padding: 10px 0px;
+                }
+
+                .notification-left {
+                    display: inline-block;
+                    float: left;
+                    padding: 5px 0px;
+
+                    .icon {
+                        margin-right: 10px;
+                        font-size: 23px;
+                        Color: #000;
+                    }
+                }
+
+                .notification-body {
+                    display: inline-block;
+                    vertical-align: top;
+                    float: left;
+                    padding: 5px 10px 5px 0px;
+
+
+                    .wrap {
+                        flex: 1;
+
+
+                        :focus {
+                            outline: 1px dotted;
+                        }
+                    }
+
+                    .notification-subject {
+                        font-family: 'Segoe UI Semibold';
+                        font-size: 12px;
+                        overflow: hidden;
+                        float: left;
+                        cursor: pointer;
+                        border: none;
+                        background: none;
+                        text-align: left;
+                        color: $BLACK;
+
+                        &.has-action {
+                            color: $color_notification_links;
+
+                            &:hover {
+                                text-decoration: underline;
+                            }
+                        }
+
+                        &.read {
+                            font-family: Segoe UI Light;
+                        }
+
+                        &.un-read {
+                            cursor: pointer;
+                        }
+
+                        &.with-view {
+                            max-width: 185px;
+                        }
+
+                        &.without-view {
+                            min-width: 185px;
+                        }
+                    }
+
+                    p {
+                        font-family: 'Segoe UI Semibold';
+                        font-size: 9px;
+                        Color: rgba(0,0,0,0.6);
+                        float: left;
+                        clear: both;
+                    }
+                }
+
+                .notification-right {
+                    display: inline-block;
+                    float: right;
+					margin-left: auto;
+
+                    button, button:hover, button:focus, button:active {
+                        background: transparent;
+                        border: none;
+                        padding: 0 !important;
+                        font: inherit;
+                        cursor: pointer;
+                    }
+
+                    .icon-close {
+                        Color: #000;
+                        font-size: 16px;
+                        padding: 5px 2px;
+
+                        &:hover, &:focus {
+                            font-size: 16px;
+                            padding: 5px 2px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .dropdown button#notification-open[aria-expanded=true] {
+        background: $header-help-background;
+        color: #0063B1 !important;
+        font-size: 22px;
+        z-index: 1003;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        position: relative;
+        height: 48px !important;
+        margin-top: 0px !important;
+        padding: 0 6px !important;
+
+        &:focus {
+            outline: 1px dotted #fff;
+            background: $header-help-background;
+            color: $color_help_links !important;
+        }
+
+        &:active {
+            outline: 1px dotted #fff;
+            background: $header-help-background;
+            color: $color_help_links !important;
+            position: relative;
+        }
+
+        &:hover {
+            background: $header-help-background;
+            color: $color_help_links !important;
+            cursor: pointer;
+        }
+    }
+}
+
+// Media Queries
+@media screen and (-ms-high-contrast: active) {
+    .notification-overlay {
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+}

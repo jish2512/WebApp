@@ -1,0 +1,44 @@
+﻿<label class="font-body"
+       for="search-user"
+       ng-bind="::fxpUIConstants.UIStrings.AuthorNotificationStrings.SelectUserLabel + ':'"></label>
+<div class="searchControl">
+    <input type="text"
+           id="search-user"
+           autocomplete="off"
+           placeholder="{{::fxpUIConstants.UIStrings.AuthorNotificationStrings.SelectUserPlaceholder}}"
+           class="input__search form-control" 
+		   ng-class="{'inline-error-border': anCtrl.typeAheadHasError}"
+		   ng-model="anCtrl.typeAheadValue"
+		   uib-typeahead="user.DisplayName for user in anCtrl.searchUser($viewValue) | limitTo:8"
+		   typeahead-min-length="3"
+		   typeahead-wait-ms="100"
+		   typeahead-auto-highlight="true"
+		   typeahead-template-url="resultTemplate.html"
+		   typeahead-no-results="anCtrl.typeAheadHasError"
+		   typeahead-on-select="anCtrl.addUser($item)"/>
+	<div ng-if="anCtrl.typeAheadHasError"
+		 role="alert">
+		<p class="error-message-spacing inline-error-text">{{::anCtrl.typeAheadErrorMessage}}</p>
+	</div>
+</div>
+<ul class="choice-summary">
+    <li class="choice"
+		ng-repeat="user in anCtrl.selectedUsers" fxp-choice-item>
+        <span class="font-caption-alt choice-content" ng-bind="user.DisplayName"></span>
+        <button class="pull-right choice-close"
+                title="Remove Choice"
+                aria-label="Remove {{user.DisplayName}}"
+				ng-click="anCtrl.removeUser($index)">
+            <i class="icon icon-close"></i>
+        </button>
+    </li>
+</ul>
+
+<script type="text/ng-template" id="resultTemplate.html">
+	<div id="{{match.model.DisplayName}}" class="result-item">
+		<div class="skill-head">
+			<a aria-label="Search Result{{$index}}is {{match.model.DisplayName}}">{{match.model.DisplayName}}</a>
+		</div>
+		<div class="skill-path" aria-label="Search Result{{$index}} path is {{match.model.Seniority}}   {{match.model.BusinessRole}}"><p>{{match.model.Seniority}} {{match.model.BusinessRole}}</p></div>
+	</div>
+</script>

@@ -1,0 +1,25 @@
+﻿@import "../../_vars.scss";
+
+
+.anchor__link {
+    color: $BLUE_SECONDARY;
+    text-decoration: none;
+    &:hover, &:visited {
+        text-decoration: underline;
+    }
+
+    &:focus {
+        outline: 1px dotted $BLACK;
+    }
+
+    &--disabled {
+        color: $BLACK;
+        opacity: 0.2;
+        pointer-events: none;
+       
+        &:hover {
+            color: inherit;
+            text-decoration: none;
+        }
+    }
+}

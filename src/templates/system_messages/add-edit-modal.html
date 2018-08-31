@@ -1,0 +1,162 @@
+﻿<div id="popup" fxp-system-message-popup-directive>
+    <div class="container-body">
+        <form class="add-message-popup" name="messageForm">
+            <p class="popup-heading margin0 font-subtitle" ng-show="smCtrl.modalType == 'ADD'" ng-bind="::smCtrl.UiString.ADD_SYSTEM_MESSAGE"></p>
+            <p class="popup-heading margin0 font-subtitle" ng-show="smCtrl.modalType == 'EDIT'" ng-bind="::smCtrl.UiString.EDIT_SYSTEM_MESSAGE"></p>
+            <button class="popup-close pull-right"
+               title="Close dialog"
+               aria-label="Close"
+               ng-click="smCtrl.hideModal()">
+                <i class="icon icon-close"></i>
+            </button>
+            <div>
+                <label for="type" class="font-caption-alt" ng-bind="::smCtrl.UiString.MESSAGE.TYPE"></label><br>
+                <div class="fxp-dropdown-menu">
+                    <select id="messageType"
+                            ng-model="smCtrl.systemMessage.messageType"
+                            required
+                            class="font-caption-alt popup-dropdown">
+                        <option value="Intermittent" ng-bind="::smCtrl.UiString.TYPE.INTERMITTENT"></option>
+                        <option value="SystemDown" ng-bind="::smCtrl.UiString.TYPE.SYSTEM_DOWN"></option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6 pad0 inline-error-message">
+                <label for="business-cap" class="font-caption-alt" ng-bind="::smCtrl.UiString.BUSINESS_CAPABILITY"></label>:<br>
+                <div class="fxp-dropdown-menu">
+                    <select id="business-cap"
+                            name="businessCap"
+                            class="font-caption-alt popup-dropdown"
+                            required
+                            ng-class="{'inline-error-border': messageForm.businessCap.$touched && messageForm.businessCap.$invalid}"
+                            ng-change="smCtrl.updateBusinessFunctionCollection()"
+                            ng-model="smCtrl.systemMessage.businessCapability[0]"                            
+                            ng-options="businessCapability as businessCapability.name for businessCapability in smCtrl.businessCapabilityCollection track by businessCapability.id">
+                        <option value="">Select</option>
+                    </select>
+                    <div ng-messages="messageForm.businessCap.$error"
+                         ng-if="messageForm.businessCap.$touched"
+                         role="alert">
+                        <div ng-message="required" class="error-message-spacing inline-error-text" >{{::smCtrl.UiString.ERRORS.BUSINESS_CAPABILITY_REQUIRED}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 pad0 inline-error-message">
+                <label for="business-func" class="font-caption-alt" ng-bind="::smCtrl.UiString.BUSINESS_FUNCTION"></label>:<br>
+                <div class="fxp-dropdown-menu">
+                    <select id="business-func"
+                            name="businessFunc"
+                            required
+                            ng-class="{'inline-error-border': messageForm.businessFunc.$touched && messageForm.businessFunc.$invalid}"
+                            class="font-caption-alt popup-dropdown"
+                             ng-model="smCtrl.systemMessage.businessFunction[0]"
+                            ng-options="businessFunction as businessFunction.name for businessFunction in smCtrl.businessFunctionCollection track by businessFunction.id">
+                        <option value="">Select</option>
+                    </select>
+                    <div ng-messages="messageForm.businessFunc.$error"
+                         ng-if="messageForm.businessFunc.$touched"
+                         role="alert">
+                        <div ng-message="required" class="error-message-spacing inline-error-text" >{{::smCtrl.UiString.ERRORS.BUSINESS_FUNCTION_REQUIRED}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="inline-error-message">
+                <label class="font-caption-alt" for="user-msg" ng-bind="::smCtrl.UiString.MESSAGE_TO_USER+':'"></label><br>
+                <textarea id="user-msg"
+                          ng-model="smCtrl.systemMessage.message"
+                          name="userMessage"
+                          required
+                          ng-class="{'inline-error-border': messageForm.userMessage.$touched && messageForm.userMessage.$invalid}"
+                          placeholder="Enter message"></textarea>
+                <div ng-messages="messageForm.userMessage.$error"
+                     ng-if="messageForm.userMessage.$touched"
+                     role="alert">
+                    <div ng-message="required" class="error-message-spacing inline-error-text" >{{::smCtrl.UiString.ERRORS.MESSAGE_REQUIRED}}</div>
+                </div>
+            </div>
+
+            <div class="col-md-6 pad0  inline-error-message">
+                <label class="font-caption-alt" for="start-date" ng-bind="::smCtrl.UiString.MESSAGE.START"></label>:<br>
+                <div class='input-group fxp-datepicker'
+                     moment-picker="smCtrl.systemMessage.startTimeString"
+                     name="startDate"
+                     required="true"
+                     ng-model="smCtrl.systemMessage.startTime"
+                     format="{{smCtrl.systemMessageDateStringFormat}}"
+                     keyboard="'true'">
+                    <input type='text' class="form-control"
+                           name="startDateInput"
+                           id="start-date"
+                           ng-class="{'inline-error-border': messageForm.startDateInput.$touched && messageForm.startDate.$invalid}"
+                           ng-model="smCtrl.systemMessage.startTimeString"
+                           ng-model-options="{ updateOn: 'blur' }" />
+                    <span class="input-group-addon icon icon-calender">
+                    </span>
+                </div>
+                <div ng-messages="messageForm.startDate.$error"
+                     ng-if="messageForm.startDateInput.$touched"
+                     role="alert">
+                    <div ng-message="required" class="error-message-spacing inline-error-text" >{{::smCtrl.UiString.ERRORS.START_DATE_REQUIRED}}</div>
+                </div>
+            </div>
+
+            <div class="col-md-6 pad0  inline-error-message">
+                <label class="font-caption-alt" for="end-date" ng-bind="::smCtrl.UiString.MESSAGE.END"></label>:<br>
+                <div class='input-group fxp-datepicker'
+                     moment-picker="smCtrl.systemMessage.endTimeString"
+                     name="endDate"
+                     required="true"
+                     min-date="smCtrl.systemMessage.startTime"
+                     ng-model="smCtrl.systemMessage.endTime"
+                     format="{{smCtrl.systemMessageDateStringFormat}}"
+                     keyboard="'true'">
+                    <input type='text' class="form-control"
+                           required
+                           id="end-date"
+                           name="endDateInput"
+                           ng-class="{'inline-error-border': messageForm.endDateInput.$touched && messageForm.endDate.$invalid}"
+                           ng-model="smCtrl.systemMessage.endTimeString"
+                           ng-model-options="{ updateOn: 'blur' }" />
+                    <span class="input-group-addon icon icon-calender">
+                    </span>
+                </div>
+                <div ng-messages="messageForm.endDate.$error"
+                     ng-if="messageForm.endDateInput.$touched"
+                     role="alert">
+                    <div ng-message="required" class="error-message-spacing inline-error-text" >{{::smCtrl.UiString.ERRORS.END_DATE_REQUIRED}}</div>
+                    <div ng-message="minDate" class="error-message-spacing inline-error-text" >{{::smCtrl.UiString.ERRORS.END_DATE_MIN}}</div>
+                </div>
+            </div>
+
+
+            <div id="button" class="settingsButtons pull-right">
+                <button type="button"
+                        class="fxp-btn fxp-btn--secondary"
+                        id="cancelBtn"
+                        aria-label="Cancel"
+                        ng-click="smCtrl.hideModal()"
+                        ng-bind="::smCtrl.UiString.CANCEL"></button>
+
+
+                <button type="button"
+                        class="fxp-btn fxp-btn--primary"
+                        id="popUpPrimaryBtn"
+                        aria-label="Add System Message"
+                        ng-if="smCtrl.modalType == 'ADD'"
+                        ng-click="smCtrl.addSystemMessage()"
+                        ng-disabled="messageForm.$invalid"
+                        ng-bind="::smCtrl.UiString.ADD"></button>
+
+                <button type="button"
+                        class="fxp-btn fxp-btn--primary"
+                        id="popUpPrimaryBtn"
+                        aria-label="Edit System Message"
+                        ng-if="smCtrl.modalType == 'EDIT'"
+                        ng-click="smCtrl.updateSystemMessage()"
+                        ng-disabled="messageForm.$invalid"
+                        ng-bind="::smCtrl.UiString.SAVE"></button>
+            </div>
+            <span class="clearfix"></span>
+        </form>
+    </div>
+</div>

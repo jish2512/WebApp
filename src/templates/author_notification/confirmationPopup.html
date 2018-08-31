@@ -1,0 +1,34 @@
+﻿<div class="container-body">
+	<div>
+		<h1 id="modal-title"
+			class="modal-title popup-heading margin0 font-subtitle"
+			ng-bind="::fxpUIConstants.UIStrings.AuthorNotificationStrings.ConfirmationTitle">
+		</h1>
+		<button class="pull-right close-button"
+				ng-click="ctrl.stay()"
+				type="button"
+				title="Close">
+			<i class="icon icon-close"></i>
+		</button>
+	</div>
+	<div>
+		<p class="description font-body"
+		   ng-bind-html="::fxpUIConstants.UIStrings.AuthorNotificationStrings.ConfirmationText"></p>
+	</div>
+	<div class="settingsButtons formGroup pull-right">
+		<button id="btn-popup-leave"
+				class="button fxp_secondary_button font-caption-alt"
+				type="button"
+				title="{{::fxpUIConstants.UIStrings.AuthorNotificationStrings.ConfirmationLeaveButtonText}}"
+				ng-bind="::fxpUIConstants.UIStrings.AuthorNotificationStrings.ConfirmationLeaveButtonText"
+				ng-click="ctrl.leave()">
+		</button>
+		<button id="btn-popup-stay"
+				class="button fxp_primary_button font-caption-alt"
+				type="button"
+				title="{{::fxpUIConstants.UIStrings.AuthorNotificationStrings.ConfirmationStayButtonText}}"
+				ng-bind="::fxpUIConstants.UIStrings.AuthorNotificationStrings.ConfirmationStayButtonText"
+				ng-click="ctrl.stay()">
+		</button>
+	</div>
+</div>

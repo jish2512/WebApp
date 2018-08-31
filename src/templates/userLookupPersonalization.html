@@ -1,0 +1,34 @@
+﻿<div class="leftNavPersonalizationAdminsearch">
+    <div id="partContainer" class="personalizationAdmin">
+        <h3>{{adminUIStrings.PersonalizeUserNavigation}}</h3>
+        <form class="form-horizonta form-leftnavAdmin" role="form" id="LeftNavAdminForm">
+            <div class="formGroup">
+                <label class="controlLabel leftnavAdminLabel" for="PersnlztnAdmin_FormControl" id="LeftNavAdmin_controlLabel">{{adminUIStrings.InstructionalText}}</label>
+                <div class="searchControl">
+                    <input type="text" id="PersnlztnAdmin_FormControl" autocomplete="off" ng-model="selectedUser" placeholder={{adminUIStrings.Placeholder}} ng-change="onUserChanged()" fxp-key-down="navigateToPersonalizationView()"
+                           uib-typeahead="user.DisplayName for user in searchUser($viewValue)" typeahead-no-results="userProfileDoesNotExist"
+                           typeahead-template-url="resultTemplate.html" typeahead-min-length="3" typeahead-wait-ms="100"
+                           typeahead-on-select="setSelectedUser($item)" typeahead-auto-highlight="true"
+                           class="leftnavAdminformControl fxpsearchfield " ng-init="pullFocusToElement('PersnlztnAdmin_FormControl')" ng-focus="searchfocused = true" ng-blur="searchfocused = false" ng-class="{'search_error_msg': userProfileDoesNotExist && selectedUser ,  'fxpsearchfield_txt': selectedUser.length>0, 'resetActiveState':activestate, 'resetInActiveState':!activestate }" />
+                    <button class="icon-close icon resetClose" type="reset" ng-click="resetSelectedUser()" ng-mousedown="activestate=true" ng-init="activestate=false" ng-mouseup="activestate=false" aria-label="clear" ng-blur="resetfocused = false" ng-focus="resetfocused = true" tabindex="-1" ng-show="selectedUser.length>0 && (searchfocused || resetfocused)"></button>
+                    <div id="LeftnavAdmin_ErrorMsg" class="element-error leftNavAdmin_CaptionALT" ng-show="userProfileDoesNotExist && selectedUser" title="{{errorMessage}}" tabindex="0">
+                        {{errorMessage}}
+                    </div>
+                </div>
+            </div>
+            <div class="formGroup">
+                <div>
+                    <button type="button" id="PLA_leftnavAdmin" title="Next" aria-label="Next" ng-disabled="userProfileDoesNotExist || !isSelectedUserProfile" ng-click="navigateToPersonalizationView()">{{buttonStrings.Next}}</button>
+                </div>
+            </div>
+            <script type="text/ng-template" id="resultTemplate.html">
+                <div id="{{match.model.DisplayName}}" class="result-item">
+                    <div class="skill-head">
+                        <a aria-label="Search Result{{$index}}is {{match.model.DisplayName}}">{{match.model.DisplayName}}</a>
+                    </div>
+                    <div class="skill-path" aria-label="Search Result{{$index}} path is {{match.model.Seniority}}   {{match.model.BusinessRole}}"><p>{{match.model.Seniority}} {{match.model.BusinessRole}}</p></div>
+                </div>
+            </script>
+        </form>
+    </div>
+</div>

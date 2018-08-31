@@ -1,0 +1,9 @@
+﻿/* Variables */
+@import "variables/_color.variables.scss";
+@import "variables/_typography.variables.scss";
+@import "base-styles/_colors.scss";
+
+/* Mixins */
+@import "mixins/focus-states.mixin";
+@import "mixins/responsiveness.mixin";
+@import "mixins/typography.mixin";

@@ -1,0 +1,43 @@
+﻿<div class="help-wrap" ng-controller="HelpController">
+	<!--Sticky Help-->
+	<div fxp-help ng-if="!app.device.isMobile() && initialFlags.contextualHelpEnabled"
+		 class="btn-group pull-left helpflyoutmenu contextual-help" fxp-help-outside-click="true">
+		<button id="help-open"
+				type="button"
+				class="icon-container withBorder"
+				title="Help"
+				aria-label="Help"
+				aria-expanded="{{isHelpOpen}}"
+				ng-click="toggleHelp(!isHelpOpen);logHelpIconEvent(isHelpOpen)">
+			<i class="icon icon-help"></i>
+		</button>
+		<div class="fxp-help help-pinned"
+			 aria-labelledby="help-open"
+			 ng-if="isHelpOpen">
+			<div fxp-include-static-template="/templates/help/help-content.html"></div>
+		</div>
+	</div>
+
+	<!--Normal Help-->
+	<div ng-if="!app.device.isMobile() && !initialFlags.contextualHelpEnabled"
+		 class="btn-group pull-left helpflyoutmenu"
+		 uib-dropdown
+		 uib-keyboard-nav
+		 is-open="isHelpOpen">
+		<button id="help-open"
+				type="button"
+				class="icon-container withBorder"
+				title="Help"
+				uib-dropdown-toggle
+				ng-click="logHelpIconEvent(isHelpOpen)">
+			<i class="icon icon-help"></i>
+		</button>
+		<div fxp-help
+			 uib-dropdown-menu
+			 class="fxp-help"
+			 aria-labelledby="help-open"
+			 ng-if="isHelpOpen">
+			<div fxp-include-static-template="/templates/help/help-content.html"></div>
+		</div>
+	</div>
+</div>

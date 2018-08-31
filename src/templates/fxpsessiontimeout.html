@@ -1,0 +1,17 @@
+﻿<div id="session-timeout-popup">
+    <div class="container-body">
+        <div class="session-timeout-message-popup">
+                <h1 id="modal-title" class="modal-title popup-heading margin0 font-subtitle" ng-bind="::fxpUIConstants.UIStrings.SessionTimeoutStrings.Title"></h1>            
+            <div>
+                <label for="type" class="description font-body" ng-bind-html="::fxpUIConstants.UIStrings.SessionTimeoutStrings.Content"></label>
+            </div>
+            <div class="settingsButtons formGroup">
+                <button type="button"
+                        class="button fxp_primary_button font-caption-alt"
+                        fxp-click="systemTimeout.reLaunch()"
+                        ng-bind="::fxpUIConstants.UIStrings.SessionTimeoutStrings.ButtonText">
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

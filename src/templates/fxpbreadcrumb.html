@@ -1,0 +1,22 @@
+﻿<div class="fxp_breadcrumb-container" id="fxp_Breadcrumb" render-fxp-breadcrumb>
+    <nav role="navigation" aria-label="Secondary">
+
+        <ol>
+            <li ng-repeat="item in fxpBreadcrumb track by item.displayName" fxp-breadcrumb-link
+                breadcrumb-item="item" 
+                title="{{ $last ? '' : item.displayName }}">
+                <a ng-if="!$last"
+                   class="active"
+                   ng-href="/{{item.href}}" breadcrumb-focus-content-aria="{{item.href}}" aria-label="{{ $first ? 'You are here '+ item.displayName : item.displayName }}">
+                    {{item.displayName}}
+                </a>
+                <i ng-if="!$last" class="icon-layout icon-chevron-right">
+                </i>
+                <span ng-if="$last">
+                    <span class="sr-only">Current </span>
+                    {{item.displayName}}
+                </span>
+            </li>
+        </ol>
+    </nav>
+</div>

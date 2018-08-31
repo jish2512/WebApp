@@ -1,0 +1,161 @@
+﻿<div class="leftNavPersonalizationAdmin">
+    <div class="personalizationAdminUI" role="application">
+        <div class="SubtitleAlt leftnavHeader"><h3 class="leftnavHeading">{{::adminUIStrings.PersonalizeUserNavigation}}</h3> : <span class="ConDashtiles">{{::personalizationUser.DisplayName}} - {{::personalizationUser.BusinessRole}} <span ng-if="personalizationUser.RoleGroupName"> ({{personalizationUser.RoleGroupName}})</span></span> </div>
+        <div class="screen-text" tabindex="-1">{{::adminUIStrings.InstructionalTextPersonalizeScreen}}</div>
+        <div class="setting">
+            <div class="colom-md-1">
+                <div class="PersonalAdminForm">
+                    <form id="MasterNavigationListForm" action="#">
+                        <div class="bladeHeader">{{::adminUIStrings.GlobalNavigationMasterList}}</div>
+                        <div id="globalNavContainer" class="userNavigationData checkboxListNavigation" ng-scrollbars ng-scrollbars-config="leftNavConfig" tabindex="-1">
+                            <div class="PersonalAdminDashboardDataManager">
+                                <div class="AdminUICategory" ng-repeat="globalNavItem in navigationList|filter:{isPersonalizationAllowed: true }:true|orderBy:'sortOrder'">
+                                    <div enable-add-or-remove="selectedGlobalLeftNavItems(globalNavItem, null)" 
+                                         class="l0_category control-group " 
+                                         tabindex="0" 
+                                         ng-init="isHideButtonVisible=false" 
+                                         global-nav-item="globalNavItem" 
+                                         ng-keydown="renderNavElementsFor()" 
+                                         render-nav-elements-for-keydown 
+                                         is-hide-button-visible="isHideButtonVisible" 
+                                         fxp-nav-element=".checkboxListNavigation" 
+                                         fxp-set-focus="{{isFocused=globalNavItem.isFocused}}" 
+                                         ng-class="{'fxpTabbableElem' : globalNavItem.isPersonalizationAllowed}" 
+                                         id="gChk{{globalNavItem.id}}-panel" 
+                                         left-nav-personalization-scroll-to-active="#globalNavContainer" 
+                                         aria-expanded="{{isHideButtonVisible}}" 
+                                         aria-label="{{$index == 0 ? ' '+adminUIStrings.GlobalNavigationMasterList +' '+'use arrow keys to move through or expand collapse. ' +' '+ globalNavItem.displayName : globalNavItem.displayName}}" 
+                                         role="checkbox" 
+                                         aria-checked="{{globalNavItem.isParentSelected}}" 
+                                         change-tab-index-by-class="{className:'.mCustomScrollBox',tabindex:'-1'}">
+                                        <label class="l0_list CaptionAlt control control--checkbox">
+                                            {{globalNavItem.displayName}}
+                                            <input type="checkbox" tabindex="-1" left-nav-prsonalization-adjust-scroll name="{{globalNavItem.displayName+globalNavItem.id}}" id="gChk{{globalNavItem.id}}" ng-model="globalNavItem.isParentSelected" ng-click="selectedGlobalLeftNavItems(globalNavItem, null)" />
+                                            <div tabindex="-1" class="control__indicator"></div>
+                                            {{pullFocusToElement("gChk"+globalNavItem.id+"-panel", globalNavItem,"globalnav")}}
+                                        </label>
+                                        <button type="button" 
+                                                tabindex="-1" 
+                                                left-nav-personalization-scroll-to-active="#globalNavContainer" 
+                                                class="right accordionIcon accordion-element" 
+                                                aria-expanded="{{isHideButtonVisible}}" 
+                                                ng-show="globalNavItem.hasChildren" 
+                                                ng-click="isHideButtonVisible=!isHideButtonVisible;">
+                                        <span class="icon accordion-element" 
+                                              ng-class="{'icon-accordion-expand': isHideButtonVisible , 'icon-accordion-collapse': !isHideButtonVisible}"> </span></button>
+                                    </div>
+                                    <ul ng-show="isHideButtonVisible">
+                                        <!--filter:{isPersonalizationAllowed: true }:true-->
+                                        <li ng-repeat="childrenNavItem in globalNavItem.children|orderBy:'sortOrder'" ng-show="globalNavItem.hasChildren" ng-cloak class='fxpTabbableElem' tabindex="0" is-hide-button-visible="isHideButtonVisible" fxp-nav-element=".checkboxListNavigation" render-nav-elements-for-keydown enable-add-or-remove="selectedGlobalLeftNavItems(globalNavItem, childrenNavItem)" children-nav-item="childrenNavItem" left-nav-personalization-scroll-to-active="#globalNavContainer" role="checkbox" aria-checked="{{childrenNavItem.isChildSelected}}" aria-label="{{childrenNavItem.displayName}}">
+                                            <label class="control control--checkbox l1_list">
+                                                {{childrenNavItem.displayName}}
+                                                <input tabindex="-1" ng-model="childrenNavItem.isChildSelected" id="gChkChild{{childrenNavItem.id}}" ng-click="selectedGlobalLeftNavItems(globalNavItem, childrenNavItem)"
+                                                       left-nav-prsonalization-adjust-scroll type="checkbox" name="{{childrenNavItem.displayName+childrenNavItem.id}}" value="{{childrenNavItem}}" />
+                                                <div class="control__indicator" tabindex="-1"></div>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="colom-md-2">
+                <div class="arrowBox">
+                    <button id="fxpAddBtnPrimary" aria-label="Add selected items from {{::adminUIStrings.GlobalNavigationMasterList}} to {{::adminUIStrings.UserNavigationList}}" ng-class="isAddPersonalizeAllow ? 'enableAddRemove':'disableAddRemove'" ng-disabled="!isAddPersonalizeAllow" ng-click="addToUserNavPersonalizationList()" change-tab-index-by-class="{className:'.mCustomScrollBox',tabindex:'-1'}"><i class="icon-layout icon-arrow-right addarrow icon-arrowbox"></i></button>
+                    <div class="noclass addReorder addbtntext" ng-class="isAddPersonalizeAllow ? 'enableAddRemoveTxt':'disableAddRemoveTxt'"> {{::buttonStrings.Add}} </div>
+                    <button id="fxpRemoveBtnScndry" aria-label="Remove selected items from {{::adminUIStrings.UserNavigationList}}" ng-class="isRemovePersonalizeAllow ?'enableAddRemove':'disableAddRemove'" ng-disabled="!isRemovePersonalizeAllow" ng-click="removeUserNavPresonalization()" change-tab-index-by-class="{className:'.mCustomScrollBox',tabindex:'-1'}">
+                        <i class="icon-layout icon-arrow-left addarrow icon-arrowbox"></i>
+                    </button>
+                    <div class="noclass addReorder" ng-class="isRemovePersonalizeAllow ? 'enableAddRemoveTxt':'disableAddRemoveTxt'"> {{::buttonStrings.Remove}} </div>
+                </div>
+            </div>
+            <div class="colom-md-3">
+                <div class="PersonalAdminForm">
+                    <form id="UserPersonalNavigationListForm" action="#">
+                        <div class="bladeHeader">{{::adminUIStrings.UserNavigationList}}</div>
+                        <div id="userNavContainer" 
+                             class="userNavigationData  manage-personalization checkboxListNavigation" 
+                             ng-scrollbars ng-scrollbars-config="leftNavConfig" 
+                             ng-init="isSpanRendered=false">
+                            <div class="PersonalAdminDashboardDataManager">
+                                <div class="AdminUICategory" ng-repeat="userNavItem in navigationList|filter:{isUserLeftNavItem: true }| orderBy:'sortOrder'">
+                                    <div class="l0_category control-group" 
+                                         ng-init="isHideButtonVisible=(userNavItem.isHideButtonVisible!=null)?userNavItem.isHideButtonVisible:false" 
+                                         fxp-nav-element=".checkboxListNavigation" 
+                                         render-nav-elements-for-keydown 
+                                         enable-add-or-remove="selectedUserNavItems(userNavItem, true)" 
+                                         user-nav-item="userNavItem" 
+                                         is-hide-button-visible="isHideButtonVisible" 
+                                         ng-class="{'fxpTabbableElem': !userNavItem.isPersonaDefault || userNavItem.isUserRoleDefault || userNavItem.hasChildren}" 
+                                         tabindex="{{ (!userNavItem.isPersonaDefault || userNavItem.isUserRoleDefault || userNavItem.hasChildren) ? 0 : -1}}" 
+                                         id="chk{{userNavItem.id}}-panel" 
+                                         left-nav-personalization-scroll-to-active="#UserPersonalNavigationListForm .userNavigationData" 
+                                         aria-label="{{$index == 1 ? adminUIStrings.UserNavigationList +' '+ userNavItem.displayName : userNavItem.displayName}}"
+                                         role="checkbox" 
+                                         aria-checked="{{userNavItem.isSelected}}" 
+                                         aria-expanded="{{isHideButtonVisible}}" 
+                                         aria-disabled="{{userNavItem.isPersonaDefault || userNavItem.isUserRoleDefault}}" 
+                                         change-tab-index-by-class="{className:'.mCustomScrollBox',tabindex:'-1'}">
+                                        <label class="l0_list CaptionAlt control control--checkbox" ng-class="{'checkbox_disabled':userNavItem.isPersonaDefault || userNavItem.isUserRoleDefault}" tabindex="-1">
+                                            <span ng-if="$last" left-nav-personalization-screen-reader></span>
+                                            {{userNavItem.displayName}}
+                                            <input type="checkbox" id="chk{{userNavItem.id}}" name="{{userNavItem.displayName}}" ng-model="userNavItem.isSelected" ng-disabled="userNavItem.isPersonaDefault || userNavItem.isUserRoleDefault" ng-click="selectedUserNavItems(userNavItem, true)" tabindex="-1" />
+                                            {{pullFocusToElement("chk"+userNavItem.id+"-panel",userNavItem,"usernav")}}
+                                            <div class="control__indicator"></div>
+                                        </label>
+                                        <button id="btn{{userNavItem.id}}" 
+                                                type="button" 
+                                                tabindex="-1"
+                                                left-nav-personalization-scroll-to-active="#UserPersonalNavigationListForm .userNavigationData"
+                                                aria-label="{{userNavItem.displayName}}" 
+                                                class="right accordionIcon accordion-element" 
+                                                aria-expanded="{{isHideButtonVisible}}" 
+                                                ng-click="isHideButtonVisible=!isHideButtonVisible;" 
+                                                ng-show="userNavItem.hasChildren">
+                                            <span class="icon accordion-element" 
+                                                  ng-class="{'icon-accordion-expand': isHideButtonVisible , 'icon-accordion-collapse': !isHideButtonVisible}"> </span>
+                                        </button>
+                                    </div>
+                                    <ul ng-show="isHideButtonVisible">
+                                        <li ng-repeat="childrenUserNavItem in userNavItem.children|filter:{isUserLeftNavItem: true }  | orderBy:'sortOrder'" ng-show="userNavItem.hasChildren" render-nav-elements-for-keydown is-hide-button-visible="isHideButtonVisible" fxp-nav-element=".checkboxListNavigation" enable-add-or-remove="selectedUserNavItems(userNavItem, false)" children-user-nav-item="childrenUserNavItem" ng-class="{'fxpTabbableElem':!childrenUserNavItem.isPersonaDefault || !childrenUserNavItem.isUserRoleDefault}" tabindex="{{ !childrenUserNavItem.isPersonaDefault || !childrenUserNavItem.isUserRoleDefault ? 0 : -1}}" left-nav-personalization-scroll-to-active="#UserPersonalNavigationListForm .userNavigationData" role="checkbox" aria-checked="{{childrenUserNavItem.isSelected}}" ng-disabled="childrenUserNavItem.isPersonaDefault || childrenUserNavItem.isUserRoleDefault">
+                                            <label class="control  control--checkbox l1_list" ng-class="{'checkbox_disabled':childrenUserNavItem.isPersonaDefault || childrenUserNavItem.isUserRoleDefault}">
+                                                {{childrenUserNavItem.displayName}}
+                                                <input type="checkbox" name="{{childrenUserNavItem.displayName+childrenUserNavItem.id}}" ng-disabled="childrenUserNavItem.isPersonaDefault || childrenUserNavItem.isUserRoleDefault" id="chkUChild{{childrenUserNavItem.id}}" ng-model="childrenUserNavItem.isSelected" ng-click="selectedUserNavItems(userNavItem, false)" aria-label="{{childrenUserNavItem.displayName}}" tabindex="-1" />
+                                                <div class="control__indicator" tabindex="-1"></div>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div id="popupButton" class="settingsButtons formGroup">
+                    <button type="button" class="button fxp_secondary_button" title="{{::buttonStrings.Cancel}}" id="secndryBtn" ng-click="showConfirmPopup()" aria-label="{{::buttonStrings.Cancel}}">{{::buttonStrings.Cancel}}</button>
+                    <button type="button" class="button fxp_primary_button" title="{{::buttonStrings.Submit}}" id="primarySubmitBtn" aria-label="{{::buttonStrings.Submit}}" ng-click="submitUserNavPresonalization()">{{::buttonStrings.Submit}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="popupbg" ng-show="displayPopup">
+        <div id="role-group-popup" tabindex="1">
+            <div class="container-header">
+                <p class="text-left">
+                    {{::fxpUIConstants.UIStrings.AdminUIStrings.UnsavedChangesPopupHeader}}
+                    <button tabindex="1" class="pull-right closeIconBtn" ng-click="hideConfirmPopup()" action-on-esc-keydown="hideConfirmPopup()" fxp-popup-navigation="#role-group-popup" render-pop-up-for-keydown type="button" title="Close"><i class="icon icon-close "></i></button>
+                </p>
+            </div>
+            <div class="container-body">
+                <div class="bodyboxpopup">
+                    {{::fxpUIConstants.UIStrings.AdminUIStrings.UnsavedChangesPopupDescription}}
+                </div>
+                <div id="" class="text-right">
+                    <button tabindex="1" type="button" class="fxp-btn fxp-btn--secondary" id="btn-popup-leave" fxp-popup-navigation="#role-group-popup" title="{{::fxpUIConstants.UIStrings.ButtonStrings.Leave}}" ng-click="navigateToUserLookup()" render-pop-up-for-keydown action-on-esc-keydown="hideConfirmPopup()">{{::fxpUIConstants.UIStrings.ButtonStrings.Leave}}</button>
+                    <button action-on-esc-keydown="hideUnsavedConfirmPopup()" ng-click="hideConfirmPopup()" tabindex="1" type="button" class="fxp-btn fxp-btn--primary" id="btn-popup-stay" fxp-popup-navigation="#role-group-popup" render-pop-up-for-keydown title="{{::fxpUIConstants.UIStrings.ButtonStrings.Stay}}">{{::fxpUIConstants.UIStrings.ButtonStrings.Stay}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

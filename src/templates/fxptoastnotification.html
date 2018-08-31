@@ -1,0 +1,29 @@
+﻿<div class="toast_container toast-show"
+     fxp-toast-notification-container
+     ng-if="toastNotificationController.toastNotifications.length">
+    <div ng-repeat="notification in toastNotificationController.toastNotifications | limitTo : toastNotificationController.toastNotificationLimit"
+         class="notificaion toast-notificaion"
+         title="{{notification.Subject}}"
+         fxp-toast-notification>
+        <div class="toast-container"
+             id="toast_{{$index}}">
+            <span class="pull-left icon-container">
+                <i class="{{notification.icon}}"></i>
+            </span>
+            <button class="toast-content"
+                    ng-class="{'has-action': notification.hasAction}"
+                    aria-label='{{$index==0 ? "Notificaion received " + notification.Subject : notification.Subject}}'
+                    title='{{notification.Subject}}'
+                    ng-click="toastNotificationController.readToastNotification(notification)">
+                <span multiline-ellipsis="3">{{notification.Subject}}</span>
+            </button>
+        </div>
+        <button class="icon-container close-button pull-right"
+                type="button"
+                aria-label="Close"
+                title="Click to close message"
+                ng-click="toastNotificationController.closeToastNotification(notification)">
+            <i class="icon icon-close"></i>
+        </button>
+    </div>
+</div>

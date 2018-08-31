@@ -1,0 +1,273 @@
+<!-- Navigation (Hidden in small screens i.e. mobile) -->
+<div id="fxp-sidebar"
+     class="col-xs-12 leftBar"
+     ng-if="!isLeftNavOpen && !app.device.isMobile()" left-nav-outside-click="!app.device.isMobile()">
+    <div class="sidebar-menu row" ng-if="leftNavDataExists">
+        <div>
+            <ul role="navigation"
+                aria-label="Left">
+                <li tabindex="-1"
+                    class="left-nav-menu btn-group"
+                    ng-keydown="leftNavKeydown($event)"
+                    fxp-click="expandLeftNav()">
+                    <a class="icon-container" id="hamburger"
+                       role="button" href
+                       aria-label="click to expand menu" render-fxp-breadcrumb>
+                        <i class="icon icon-hamburger">
+                        </i>
+                        <span role="tooltip" class="font-caption displayText">
+                            Menu
+                        </span>
+                    </a>
+                </li>
+
+                <li tabindex="-1"
+                    role="menu"
+                    class="left-nav-menu btn-group">
+                    <a href
+                       id="Fxpdashboard_LeftNavItem_{{item.id}}"
+                       role="menuitem"
+                       class="icon-container"
+                       ng-class="{'fxp-active':item.id === selectedLeftNavItemLinkId}"
+                       tabindex="0"
+                       aria-label="{{ item.id === selectedLeftNavItemLinkId ? ('selected '+ item.displayName +' link') :(item.displayName + ' link') }}"
+                       fxp-leftnav-link="{{item}}" is-leftnav-item="true"
+                       ng-keydown="leftNavKeydown($event)"
+                       ng-click="openFlyoutOnClick(item, $event)"
+                       ng-repeat="item in leftNavData.internalLinks| limitTo : visibleInternalLinksCount|orderBy:'sortOrder' track by item.id">
+                        <i class="{{item.iconCSS}}">
+                        </i>
+                        <span role="tooltip" class="font-caption displayText">
+                            {{item.displayName}}
+                        </span>
+                    </a>
+                </li>
+                <li ng-if="visibleExternalLinksCount>0 || visibleSettingLinksCount>0"><hr role="separator" ng-if="leftNavData.externalLinks" class="separator-line" aria-hidden="true"></li>
+                <!-- External links -->
+
+                <li tabindex="-1"
+                    role="menu"
+                    class="left-nav-menu btn-group"
+                    ng-keydown="leftNavKeydown($event)"
+                    ng-click="openFlyoutOnClick(item)"
+                    ng-repeat="item in leftNavData.externalLinks|limitTo : visibleExternalLinksCount| orderBy:'sortOrder' track by item.id">
+                    <a href
+                       id="Fxpdashboard_LeftNavItem_{{item.id}}"
+                       role="menuitem"
+                       class="icon-container"
+                       ng-class="{'fxp-active':item.id === selectedLeftNavItemLinkId}"
+                       tabindex="0"
+                       aria-label="{{item.id === selectedLeftNavItemLinkId ? ('selected '+ item.displayName +' link') :(item.displayName + ' link')}}"
+                       fxp-leftnav-link="{{item}}">
+                        <i class="{{item.iconCSS}}">
+                        </i>
+                        <span role="tooltip" class="font-caption displayText">
+                            {{item.displayName}}
+                        </span>
+                    </a>
+                </li>
+
+                <!-- Settings -->
+                <li tabindex="-1"
+                    role="menu"
+                    class="left-nav-menu btn-group"
+                    ng-keydown="leftNavKeydown($event)"
+                    ng-click="openFlyoutOnClick(item)"
+                    ng-repeat="item in leftNavData.settings| limitTo : visibleSettingLinksCount|orderBy:'sortOrder' track by item.id">
+                    <a href id="Fxpdashboard_LeftNavItem_{{item.id}}"
+                       role="menuitem"
+                       class="icon-container"
+                       ng-class="{'fxp-active':item.id === selectedLeftNavItemLinkId}"
+                       tabindex="0"
+                       aria-label="{{item.id === selectedLeftNavItemLinkId ? ('selected '+ item.displayName +' link') :(item.displayName + ' link') }}"
+                       fxp-leftnav-link="{{item}}">
+                        <i class="{{item.iconCSS}}">
+                        </i>
+                        <span role="tooltip" class="font-caption displayText">
+                            {{item.displayName}}
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div ng-if="isMoreButtonVisible">
+            <ul>
+                <li tabindex="-1" id="more"
+                    class="left-nav-menu btn-group" ng-keydown="leftNavKeydown($event)" fxp-click="expandLeftNav()">
+                    <a class="icon-container"
+                       ng-class="{'fxp-active':isMoreLinkActive}"
+                       tabindex="0"
+                       aria-label="{{isMoreLinkActive ? 'selected '+ 'More': 'More' }}">
+                        <i class="icon icon-moreLegacy">
+                        </i>
+                        <span role="tooltip" class="font-caption displayText">
+                            More
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+<div ng-if="isLeftNavOpen" class="leftBar" left-nav-outside-click="!app.device.isMobile()" ng-init="resetLeftNavFocus()">
+    <ul class="fxp-left-nav-l1-menu"
+        ng-class="{'leftNavPinned' : isLeftNavPinned }"
+        ng-scrollbars ng-scrollbars-config="leftNavConfig"
+        role="navigation"
+        aria-label="Left">
+        <div class="fxpLeftNavOpen">
+            <li tabindex="-1" class="font-body hamburger" ng-if="!app.device.isMobile()">
+                <a id="hamburger"
+                   role="button"
+                   tabindex="0"
+                   ng-click="collapseLeftNav()"
+                   class="menu"
+                   ng-keydown="collapseLeftNav($event)"
+                   title="Menu"
+                   aria-label="click to collapse menu"
+                   render-fxp-breadcrumb><i class="icon icon-hamburger"></i></a>
+
+                <button id="pin"
+                        aria-label="pin"
+                        class="pin"
+                        ng-disabled="app.pageTourEventService.isPageTourInProgress"
+                        ng-click="onPinFlyoutClick()"
+                        ng-keydown="onPinFlyoutKeyDown($event)"
+                        title="{{ !isLeftNavPinned ? 'Click to Pin' : 'Click to Unpin'}}"
+                        render-fxp-breadcrumb>
+                    <i class="icon" ng-class="{'icon-pinLegacy': !isLeftNavPinned, 'icon-unpinLegacy': isLeftNavPinned}">
+                    </i>
+                </button>
+            </li>
+            <div>
+                <uib-accordion close-others="true">
+                    <uib-accordion-group is-open="item.isOpen" ng-init="item.isOpen ? item.isOpen : false"
+                                         ng-repeat="item in leftNavData.internalLinks| orderBy:'sortOrder' track by item.id"
+                                         is-disabled="!item.hasChildren" role="menu">
+                        <uib-accordion-heading>
+                            <li tabindex="-1"
+                                fxp-left-nav-keydown
+                                parent-item="item"
+                                child-item="innerItem"
+                                ng-click="headerMenuChange($event, item)"
+                                title="{{item.displayName}}">
+                                <a href
+                                   role="menuitem"
+                                   tabindex="{{ !$index ? 0 : -1 }}"
+                                   class="font-body left-nav-l1-menu-title"
+                                   id="Fxpdashboard_LeftNavItem_{{item.id}}"
+                                   fxp-leftnav-link="{{item}}" is-leftnav-item="true"
+                                   ng-class="{'fxp-active':item.id === selectedLeftNavItemLinkId && !item.hasChildren}"
+                                   aria-label="{{ !item.hasChildren ? (item.id == selectedLeftNavItemLinkId ? ('selected ' + item.displayName + ' link') :  (item.displayName + ' link') ) :  (item.displayName + ' link' + (item.isOpen ? ' expanded' : ' collapsed')) }}"
+                                   aria-expanded="{{item.isOpen}}">
+                                    <i class="menus {{item.iconCSS}}"></i>
+
+                                    <div id="Fxpdashboard_LeftNavItem_ParentItem_{{item.id}}" class="menu-title leftnavElement"> {{item.displayName}}</div>
+                                    <span class="font-caption expandedtooltip  displayText">
+                                        {{item.displayName}}
+                                    </span>
+                                    <i ng-if="item.hasChildren" class="chevron icon"
+                                       ng-class="{'icon-chevronUpMed': item.isOpen, 'icon-chevronDownMed': !item.isOpen}">
+                                    </i>
+
+                                    <div style="clear:both"></div>
+                                </a>
+
+                            </li>
+                        </uib-accordion-heading>
+                        <li tabindex="-1"
+                            title="{{innerItem.displayName}}"
+                            fxp-left-nav-keydown
+                            parent-item="item"
+                            child-item="innerItem"
+                            ng-click="onMenuItemClick(item, innerItem)"
+                            ng-repeat="innerItem in item.children| orderBy:'sortOrder'">
+                            <a href
+                               role="menuitem"
+                               id="Fxpdashboard_LeftNavItem_{{innerItem.id}}"
+                               class="font-caption-alt left-nav-l1-menu-item"
+                               ng-class="{'fxp-active':innerItem.id === selectedLeftNavItemId}"
+                               ng-click="leftNavItemClick(innerItem, $event)"
+                               tabindex="-1"
+                               aria-label=" {{ innerItem.id == selectedLeftNavItemId ? ('selected ' + innerItem.displayName + ' link') : (innerItem.displayName + ' link')}}"
+                               fxp-leftnav-link="{{innerItem}}" is-leftnav-item="true">
+                                <span id="Fxpdashboard_LeftNavItem_ChildItem_{{innerItem.id}}" class="menu-child leftnavElement"> {{innerItem.displayName}}</span>
+                                <span class="font-caption expandedtooltip  displayText">
+                                    {{innerItem.displayName}}
+                                </span>
+                            </a>
+                        </li>
+                    </uib-accordion-group>
+                    <hr role="separator" ng-if="leftNavData.externalLinks && leftNavData.externalLinks.length > 0" class="separator" aria-hidden="true">
+                    <!-- external links -->
+                    <uib-accordion-group is-open="item.isOpen" role="menu"
+                                         ng-repeat="item in leftNavData.externalLinks| orderBy:'sortOrder' track by item.id"
+                                         is-disabled="!item.hasChildren">
+                        <uib-accordion-heading>
+                            <li tabindex="-1" title="{{item.displayName}}" fxp-left-nav-keydown parent-item="item" child-item="innerItem" ng-click="headerMenuChange($event, item)">
+                                <a href role="menuitem"
+                                   tabindex="-1"
+                                   class="font-body left-nav-l1-menu-title"
+                                   id="Fxpdashboard_LeftNavItem_{{item.id}}"
+                                   fxp-leftnav-link="{{item}}"
+                                   ng-class="{'fxp-active':item.id === selectedLeftNavItemLinkId && !item.hasChildren}"
+                                   aria-label="{{item.id == selectedLeftNavItemLinkId && !item.hasChildren ? ('selected ' + item.displayName + ' link') : (item.displayName + ' link' + (item.isOpen ? ' expanded' : ' collapsed')) }}"
+                                   aria-expanded="{{item.isOpen}}">
+                                    <i class="menus {{item.iconCSS}}">
+                                    </i>
+                                    <div class="menu-title"> {{item.displayName}}</div>
+                                    <i ng-if="item.hasChildren" class="chevron icon"
+                                       ng-class="{'icon-chevronUpMed': item.isOpen, 'icon-chevronDownMed': !item.isOpen}">
+                                    </i>
+                                    <div style="clear:both"></div>
+                                </a>
+                            </li>
+                        </uib-accordion-heading>
+                        <li tabindex="-1" title="{{innerItem.displayName}}" fxp-left-nav-keydown parent-item="item" child-item="innerItem" ng-click="onMenuItemClick(item, innerItem)" ng-repeat="innerItem in item.children| orderBy:'sortOrder'">
+                            <a href role="menuitem" id="Fxpdashboard_LeftNavItem_{{innerItem.id}}"
+                               class="font-caption-alt left-nav-l1-menu-item " ng-class="{'fxp-active':innerItem.id === selectedLeftNavItemId}"
+                               ng-click="leftNavItemClick(innerItem)"
+                               tabindex="-1"
+                               aria-label="{{ innerItem.id == selectedLeftNavItemId ? ('selected ' + innerItem.displayName + ' link') : (innerItem.displayName + ' link')}}"
+                               fxp-leftnav-link="{{innerItem}}">
+                                <span class="menu-child"> {{innerItem.displayName}}</span>
+                            </a>
+                        </li>
+                    </uib-accordion-group>
+
+                    <!-- settings -->
+                    <uib-accordion-group is-open="item.isOpen" role="menu"
+                                         ng-repeat="item in leftNavData.settings| orderBy:'sortOrder' track by item.id"
+                                         is-disabled="!item.hasChildren">
+                        <uib-accordion-heading>
+                            <li tabindex="-1" title="{{item.displayName}}" fxp-left-nav-keydown parent-item="item" child-item="innerItem" ng-click="headerMenuChange($event, item)">
+                                <a href role="menuitem" tabindex="-1" class="font-body left-nav-l1-menu-title" id="Fxpdashboard_LeftNavItem_{{item.id}}"
+                                   fxp-leftnav-link="{{item}}" ng-class="{'fxp-active':item.id === selectedLeftNavItemLinkId && !item.hasChildren}"
+                                   aria-label="{{item.id == selectedLeftNavItemLinkId && !item.hasChildren? ('selected ' + item.displayName + ' link') : ((item.displayName + ' link') + (item.isOpen ? ' expanded' : ' collapsed')) }}" aria-expanded="{{item.isOpen}}">
+                                    <i class="menus {{item.iconCSS}}">
+                                    </i>
+                                    <div class="menu-title"> {{item.displayName}}</div>
+                                    <i ng-if="item.hasChildren" class="chevron icon"
+                                       ng-class="{'icon-chevronUpMed': item.isOpen, 'icon-chevronDownMed': !item.isOpen}">
+                                    </i>
+                                    <div style="clear:both"></div>
+                                </a>
+                            </li>
+                        </uib-accordion-heading>
+                        <li tabindex="-1" title="{{innerItem.displayName}}" fxp-left-nav-keydown parent-item="item" child-item="innerItem" ng-click="onMenuItemClick(item, innerItem)" ng-repeat="innerItem in item.children| orderBy:'sortOrder'">
+                            <a href role="menuitem" id="Fxpdashboard_LeftNavItem_{{innerItem.id}}"
+                               class="font-caption-alt left-nav-l1-menu-item " ng-class="{'fxp-active':innerItem.id === selectedLeftNavItemId}"
+                               ng-click="leftNavItemClick(innerItem)"
+                               tabindex="-1"
+                                aria-label="{{ innerItem.id == selectedLeftNavItemId ? ('selected ' + innerItem.displayName + ' link') : (innerItem.displayName + ' link')}}"
+                               fxp-leftnav-link="{{innerItem}}">
+                                <span class="menu-child"> {{innerItem.displayName}}</span>
+                            </a>
+                        </li>
+                    </uib-accordion-group>
+                </uib-accordion>
+            </div>
+        </div>
+    </ul>
+</div>

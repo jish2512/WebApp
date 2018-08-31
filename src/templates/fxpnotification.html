@@ -1,0 +1,103 @@
+﻿<div ng-controller="NotificationsController as notifications">
+    <div class="btn-group pull-left notificationflyout"
+         uib-dropdown
+         uib-keyboard-nav fxp-notification-directive
+         is-open="notifications.isNotificationFlyoutOpen"
+         auto-close="outsideClick">
+        <button id="notification-open"
+                type="button"
+                class="icon-container withBorder"
+                title="{{notifications.hasNotificationError ? notifications.notificationErrorMsg : (notifications.unreadNotificationCount > 0 ? notifications.unreadNotificationCount + ' unread notification(s)' : 'Notification')}}"
+                aria-label="Notifications"
+                uib-dropdown-toggle
+                ng-keydown="renderHeaderForKeydown($event)"
+                ng-click="notifications.getNotifications(0, notifications.notificationLimit);renderHeaderForClick($event)"
+                ng-blur="renderHeaderForFocusout($event)"
+                ng-disabled="actOnBehalfOfUserActive"
+                ng-init="notifications.getUnreadNotificationCount()">
+            <i class="icon icon-notifications"></i>
+            <sup ng-if="notifications.unreadNotificationCount>0 || notifications.hasNotificationError" class="notification-count" ng-bind="notifications.hasNotificationError ? '!' : (notifications.unreadNotificationCount > 99 ? '99+' : notifications.unreadNotificationCount)"></sup>
+        </button>
+        <div class="notification-overlay"></div>
+        <ul uib-dropdown-menu aria-labelledby="notification-open">
+            <li class="notification-content">
+                <div class="notification-heading">
+                    Notifications
+                    <div class="pull-right"><a href class="notificationClose" id="closeNotification" title="Close Notification" ng-click="notifications.closeNotificationFlyout()"><i class="icon icon-close"></i></a></div>
+                </div>
+                <div>
+                    <div class="dnd-label" ng-if="!app.device.isMobile()">Do not disturb </div>
+                    <div>
+                        <label class="pull-left input-switch input-switch--focus"
+                               ng-if="!app.device.isMobile()">
+                            <input id="dndnotificaion"
+                                   type="checkbox" 
+                                   class="pull-left notification-dnd" 
+                                   ng-model="isNotificationDNDEnabled" 
+                                   ng-change="notifications.onDNDValueChange(isNotificationDNDEnabled)" 
+                                   aria-label="Do not disturb" 
+                                   tabindex="0">
+                            <div title='{{ isNotificationDNDEnabled ? "On" : "Off" }}' class="slider round " ></div>
+                            <div class="switch-lable">{{ isNotificationDNDEnabled ? "On" : "Off" }}</div>
+                        </label>
+                        <div class="action-buttons pull-right">
+                            <button class="fxp-btn fxp-btn--action"
+                                    fxp-click="notifications.markAllNotificationsAsRead()"
+                                    ng-disabled="notifications.hasNotificationError || !notifications.unreadNotificationCount"
+                                    aria-label="Mark all notifications as read"
+                                    title="Mark all as read">
+                                <span class="font-caption-alt">Mark all as read</span>
+                            </button>
+                            <span class="action-separator">|</span>
+                            <button class="fxp-btn fxp-btn--action"
+                                    fxp-click="notifications.dismissAllNotifications()"
+                                    ng-disabled="notifications.hasNotificationError || !notifications.notificationCollection.length"
+                                    aria-label="Dismiss All notifications"
+                                    title="Dismiss All">
+                                <span class="font-caption-alt">Dismiss All</span>
+                            </button>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </li>
+            <li ng-if="!notifications.hasNotificationError" class="notification" ng-repeat="item in notifications.notificationCollection"
+                fxp-notification-set-focus notification-action="readNotification(item)">
+                <div class="notification-left">
+                    <i class="{{item.icon}}"></i>
+                </div>
+                <div class="notification-body">
+                    <div class="wrap notifi-subject">
+                        <button class="notification-subject fxpTabbableElem without-view"
+                                multiline-ellipsis="4"
+                                ng-click="notifications.readNotification(item)"
+                                ng-class="{'read': item.Status == 'Read'  , 'un-read': item.Status == 'UnRead', 'has-action': item.hasAction}"
+                                ng-bind="item.Subject"
+                                aria-label="{{item.Subject}}"
+                                title="{{item.Subject}}"></button>
+                        <p ng-bind="item.PublishedLocalDate | date:'MM/dd/yyyy HH:mm a'"></p>
+                    </div>
+                </div>
+                <div class="notification-right">
+                    <button type="button" class="icon-close deleteNotification" title="Click to delete Notification" id="delete-notification" ng-click="notifications.deleteNotification(item,$event)">
+                        <i class="icon icon-close"></i>
+                    </button>
+                </div>
+            </li>
+            <li ng-if="notifications.hasNotificationError">
+                <div class="notification-error">
+                    <div class="errorIcon"> <i class="icon icon-error"></i></div>
+                    <div class="error-message">{{notifications.notificationErrorMsg}}</div>
+                </div>
+            </li>
+            <li>
+                <div ng-if="!notifications.hasNotificationError && !notifications.notificationCollection.length" class="message font-caption-alt">Nothing new right now.</div>
+                <div ng-if="!notifications.hasNotificationError && notifications.moreNotificationsAvailable" class="load-more font-body" title="Load more notifications">
+                    <a href ng-click="notifications.loadMore($event)" aria-label="Load more notifications" id="loadMore">
+                        Load More
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+﻿<div class="help contextual-help" >
+	<div class="font-base-alt help-row" ng-if="article.title">
+		<span id="articleTitle">{{article.title}}</span> 
+		<a class="help-icon-container article-edit"
+				title="Edit"
+				aria-label="Edit article {{article.title}}"
+				fxp-set-focus="true" ng-href="{{helpCentralUrl+'/article/'+article.id+'/edit'}}" target="_blank">
+			<i class="icon icon-edit-row"></i>
+		</a>
+	</div>
+	<div class="help-row article-content" ng-bind-html="article.articleContent" fxp-help-article="{{article.title}}">
+
+	</div>
+	<div class="help-row font-caption">
+		<div class="help-title opacity-6">Was this article helpful?</div>
+		<div class="help-description">
+			<button class="fxp-btn fxp-btn--secondary font-caption-alt"
+					title="Yes"
+					aria-label="Yes" ng-click="saveHelpFeedback(article.id, 'true')">
+				Yes
+			</button>
+			<button class="fxp-btn fxp-btn--secondary font-caption-alt"
+					title="No"
+					aria-label="No" ng-click="saveHelpFeedback(article.id, 'false')">
+				No
+			</button>
+		</div>
+	</div>
+	<div class="help-row font-caption">
+		<a ng-href="{{helpCentralUrl+'/article/'+article.id}}" target="_blank">View Help Central in new browser tab</a>
+	</div>
+	<div class="help-row font-caption" ng-if="hasScrollbar">
+		<a href fxp-go-to-top parent=".fxp-help" focuson="#help-back-button">Go to top</a>
+	</div>
+</div>

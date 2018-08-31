@@ -1,0 +1,39 @@
+﻿<div class="help contextual-help">
+	<div class="font-base-alt help-row">Articles</div>
+	<div class="help-row font-caption"
+		 ng-repeat="item in searchedHelp | limitTo: (isSearchFilterRequired ? defaultHelpArticleLimit : '') track by item.id">
+		<div class="help-title">
+			<a href
+			   ng-click="navigateToArticle(item.id);logFxpHelpEvent(item,'Help related to this page','FlyoutView')"
+			   title="{{::item.title}}"
+			   aria-label="{{::item.title}}"
+			   ng-bind-html="item.title"
+			   fxp-help-events="{{item}}"
+			   fxp-set-focus="{{item.pullFocus}}"></a>
+			<a class="help-icon-container article-edit"
+			   title="Edit"
+			   aria-label="Edit article {{::item.title}}" 
+			   ng-href="{{helpCentralUrl+'/article/'+item.id+'/edit'}}" 
+			   target="_blank">
+				<i class="icon icon-edit-row"></i>
+			</a>
+		</div>
+		<div ng-if="item.description"
+			 class="help-description"
+			 ng-bind="::item.description"></div>
+	</div>
+	<div class="help-row font-caption">
+		<div class="help-title">
+			<a href
+			   ng-click="showMoreContextualHelpLinks()"
+			   title="Show all contextual help"
+			   ng-if="isSearchFilterRequired"
+			   aria-label="Show all contextual help">... Show all articles</a>
+			<span ng-if="isSearchFilterRequired"> | </span>
+			<a ng-href="{{helpCentralUrl}}/search/{{searchValue}}"
+			   target="_blank"
+			   title="Show all contextual help"
+			   aria-label="Show all contextual help"><i class="icon icon-newtab"></i>View in Help Central</a>
+		</div>
+	</div>
+</div>

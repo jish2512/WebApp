@@ -1,0 +1,503 @@
+﻿.icon-container {
+	outline: none;
+	border: 0;
+	width: auto;
+	display: block;
+	float: left;
+	min-width: 0;
+	min-height: 0;
+	font-size: em(20px);
+	padding: 0 14px;
+	background-color: transparent;
+
+	span {
+		margin-left: 10px;
+		position: relative;
+		top: -3px; /* fix for improper positioning */
+	}
+	// @include focus-states();
+}
+
+.icon-chatbot {
+	background: url(~/../assets/help_bot.png);
+	background-size: 14px;
+	background-repeat: no-repeat;
+	height: 25px;
+	width: 14px;
+	margin: 0 2px;
+	display: inline-block;
+	position: relative;
+	top: 8px;
+}
+
+
+
+.icon {
+	font-family: "SegoeUI MDL2 Assets";
+	font-weight: normal;
+	font-style: normal;
+	position: relative;
+	top: 1px;
+	display: inline-block;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+
+	&.icon-notification:before {
+		content: "\E91C";
+	}
+
+	&.icon-back:before {
+		content: "\E112";
+	}
+
+	&.icon-close:before {
+		content: "\E10A";
+	}
+
+	&.icon-plus:before {
+		content: "\E109"
+	}
+
+	&.icon-edit-row:before {
+		content: "\E104"
+	}
+
+	&.icon-delete-row:before {
+		content: "\E107"
+	}
+
+	&.icon-down-arrow:before {
+		content: "\e1fd"
+	}
+
+	&.icon-up-arrow:before {
+		content: "\e110"
+	}
+
+	&.icon-row-up:before {
+		content: "\e70e"
+	}
+
+	&.icon-row-down:before {
+		content: "\e70d"
+	}
+
+	&.icon-hamburger:before {
+		content: "\E700";
+	}
+
+	&.icon-search:before {
+		content: "\E1A3";
+	}
+
+	&.icon-search-right:before {
+		content: "\E094";
+	}
+
+	&.icon-user:before {
+		content: "\E2AF";
+	}
+
+	&.icon-settings:before {
+		content: "\E713";
+	}
+
+	&.icon-dashboard:before {
+		content: "\E8A1";
+	}
+
+	&.icon-time:before {
+		content: "\E8BF";
+	}
+
+	&.icon-project:before {
+		content: "\E133";
+	}
+
+	&.icon-account:before {
+		content: "\E912";
+	}
+
+	&.icon-administrator:before {
+		content: "\E90F";
+	}
+
+	&.icon-external:before {
+		content: "\E7AC";
+	}
+
+	&.icon-page:before {
+		content: "\E7C3";
+	}
+
+	&.icon-chevron-up:before {
+		content: "\E09C";
+	}
+
+	&.icon-chevron-down:before {
+		content: "\E09D";
+	}
+
+	&.icon-chevron-left:before {
+		content: "\E00E";
+	}
+
+	&.icon-chevron-right:before {
+		content: "\E00F";
+	}
+
+	&.icon-star:before {
+		content: "\E1CE";
+	}
+
+	&.icon-star-filled:before {
+		content: "\E1CF";
+	}
+
+	&.icon-basket:before {
+		content: "\E821";
+	}
+
+	&.icon-pipe:before {
+		content: "\E17B";
+	}
+
+	&.icon-accept:before {
+		content: "\E001";
+	}
+
+	&.icon-pipe-health:before {
+		content: "\E17A";
+	}
+
+	&.icon-bulb:before {
+		content: "\E82F";
+	}
+
+	&.icon-alert:before {
+		content: "\E1DE";
+	}
+
+	&.icon-eye:before {
+		content: "\E052";
+	}
+
+	&.icon-square:before {
+		content: "\E25E";
+	}
+
+	&.icon-circle:before {
+		content: "\EC14";
+	}
+
+	&.icon-home:before {
+		content: "\E10F";
+	}
+
+	&.icon-maximize:before {
+		content: "\E740";
+	}
+
+	&.icon-restore:before {
+		content: "\E73f";
+	}
+
+	&.icon-apps:before {
+		content: "\E74C";
+	}
+
+	&.icon-pointer:before {
+		content: "\E1E3";
+	}
+
+	&.icon-next:before {
+		content: "\E0AB";
+	}
+
+	&.icon-prev:before {
+		content: "\E0A6";
+	}
+
+	&.icon-devices:before {
+		content: "\E70C";
+	}
+
+	&.icon-clock:before {
+		content: "\E823";
+	}
+
+	&.icon-collapse:before {
+		content: "\E92C";
+	}
+
+	&.icon-book:before {
+		content: "\E82D";
+	}
+	
+	&.icon-book-plus:before{
+		content:"\E82E";
+	}
+	&.icon-account-outline-box:before{
+		content:"\E8D4";
+	}
+
+	&.icon-calender:before {
+		content: "\E163";
+	}
+
+	&.icon-close:before {
+		content: "\e10a";
+	}
+
+	&.icon-grid:before {
+		content: "\E80A";
+	}
+
+	&.icon-filter:before {
+		content: "\E16E";
+	}
+
+	&.icon-chevron-down:before {
+		content: "\E011";
+	}
+
+	&.icon-glyph-499:before {
+		content: "\E878";
+	}
+
+	&.icon-refresh:before {
+		content: "\E72C";
+	}
+
+	&.icon-save:before {
+		content: "\E74E";
+	}
+
+	&.icon-edit:before {
+		content: "\E70F";
+	}
+
+	&.icon-delete:before {
+		content: "\E74D";
+	}
+
+	&.icon-resize:before {
+		content: "\E73F";
+	}
+
+	&.icon-favoriteStar:before {
+		content: "\E734";
+	}
+
+	&.icon-emoji2:before {
+		content: "\E76E";
+	}
+
+	&.icon-details:before {
+		content: "\E12A";
+	}
+
+	&.icon-help:before {
+		content: "\E897";
+	}
+
+	&.icon-notifications:before {
+		content: "\EA8F";
+	}
+
+	&.icon-error:before {
+		content: "\E7BA";
+	}
+
+	&.icon-warning:before {
+		content: "\E730";
+	}
+
+	&.icon-info:before {
+		content: "\E946";
+	}
+
+	&.icon-success:before {
+		content: "\E8FB";
+	}
+
+	&.icon-arrowHTMLMirroredLegacy:before {
+		content: "\E0AE";
+	}
+
+	&.icon-accordion-collapse:before {
+		content: "\E011";
+		vertical-align: middle;
+	}
+
+	&.icon-accordion-expand:before {
+		content: "\E010";
+		vertical-align: middle;
+	}
+
+	&.icon-arrowHTMLMirroredLegacy:before {
+		content: "\E0AE";
+	}
+
+	&.icon-contactInfoLegacy:before {
+		content: "\E136";
+	}
+
+	&.icon-clockLegacy:before {
+		content: "\E121";
+	}
+
+	&.icon-peopleLegacy:before {
+		content: "\E125";
+	}
+
+	&.icon-multiSelectMirrored:before {
+		content: "\EA98";
+	}
+
+	&.icon-workSolid:before {
+		content: "\EB4E";
+	}
+
+	&.icon-repairLegacy:before {
+		content: "\E15E";
+	}
+
+	&.icon-openWithLegacy:before {
+		content: "\E17D";
+	}
+
+	&.icon-settingsLegacy:before {
+		content: "\E115";
+	}
+
+	&.icon-chevronUpMed:before {
+		content: "\E971";
+	}
+
+	&.icon-chevronDownMed:before {
+		content: "\E972";
+	}
+
+	&.icon-pinLegacy:before {
+		content: "\E141";
+	}
+
+	&.icon-unpinLegacy:before {
+		content: "\E196";
+	}
+
+	&.icon-moreLegacy:before {
+		content: "\E10C";
+	}
+
+	&.icon-analytics:before {
+		font-family: "Segoe MVR MDL2 Assets";
+		content: "\e93d";
+	}
+
+	&.icon-dollar:before {
+		font-family: "Full MDL2 Assets";
+		content: "\eaf7";
+	}
+
+	&.icon-assisted-help:before {
+		content: "\E939";
+	}
+
+	&.icon-helpdetail:before {
+		content: "\e14c";
+	}
+
+	&.icon-cancel:before {
+		content: "\E711";
+	}
+
+	&.icon-drop:before {
+		content: "\e70d";
+	}
+
+	&.icon-close:before {
+		content: "\e10a";
+	}
+
+	&.icon-recyclebin:before {
+		content: "\e107";
+	}
+
+	&.icon-downarrw:before {
+		content: "\e1fd";
+	}
+
+	&.icon-uparrow:before {
+		content: "\e110";
+	}
+
+	.icon.icon-link:before {
+		content: "\E167";
+	}
+
+	&.icon-newtab:before {
+		font-family: "Full MDL2 Assets";
+		content: "\e8b9";
+		transform: rotateY(180deg);
+	}
+
+	&.icon-target:before {
+		font-family: "Full MDL2 Assets";
+		content: "\F272";
+	}
+
+	&.icon-helpbot {
+		background: url("~/../assets/logo/icon/Help_bot_black.png") no-repeat;
+		width: 23px;
+		height: 18px;
+		background-size: 12px !important;
+		vertical-align: bottom;
+		padding-right: 10px;
+	}
+
+	&.icon-magnify:before {
+		font-family: "Full MDL2 Assets";
+		content: "\EEF5";
+	}
+}
+
+
+
+@media screen and (-ms-high-contrast: active) {
+	.icon-container {
+		border: 1px solid !important;
+	}
+
+	.icon-container:focus {
+		outline: 1px dotted;
+		margin: 2px 1px !important;
+		height: 44px !important;
+		line-height: 44px !important;
+	}
+}
+
+@media screen and (-ms-high-contrast: white-on-black) {
+	.icon-chatbot {
+		background: url("~/../assets/logo/icon/Help_bot_white.png") no-repeat !important;
+		background-size: 14px !important;
+	}
+
+	.icon-helpbot {
+		background: url("~/../assets/logo/icon/Help_bot_white.png") no-repeat !important;
+	}
+}
+
+@media screen and (-ms-high-contrast: black-on-white) {
+	.icon-chatbot {
+		background: url("~/../assets/logo/icon/Help_bot_black.png") no-repeat !important;
+		background-size: 14px !important;
+	}
+
+	.icon-helpbot {
+		background: url("~/../assets/logo/icon/Help_bot_black.png") no-repeat !important;
+	}
+}

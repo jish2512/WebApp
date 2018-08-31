@@ -1,0 +1,39 @@
+﻿@charset "UTF-8";
+@import "../../vars";
+
+.footer-scroll {
+    right: 0;
+    bottom: 0;
+    left: 0;
+    text-align: right;
+}
+
+.scroll-to-top {
+    cursor: pointer;
+    display: inline-block;
+    font-size: 13px;
+    text-align: center;
+    text-decoration: none;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    margin-right: 12px;
+    border: none;
+    background-color:transparent;
+    color:$BLUE_PRIMARY;
+
+    &:focus {
+        outline: 1px dotted $BLACK;        
+    }
+
+    .icon {
+        -ms-transform: rotate(-90deg);
+        -webkit-transform: rotate(-90deg); 
+        transform: rotate(-90deg);
+    }
+}
+
+@media only screen and (min-width:992px) {
+    .footer-scroll {
+        display: none;
+    }
+}

@@ -1,0 +1,92 @@
+﻿// Import styles
+@import "../../vars";
+@import '../../base-styles/typography';
+
+.create-askops-request-modal {
+	.modal-dialog {
+		min-height: 304px;
+		width: 449px;
+		margin: calc(50vh - 152px) auto;
+
+		@include respond-to(mobile) {
+			min-height: 443px;
+			width: 298px;
+			margin: calc(50vh - 221px) auto;
+		}
+
+		.modal-content {
+			border: none;
+			border-radius: 0;
+			float: left;
+
+			.container-body {
+				padding: 18px 24px;
+				float: left;
+
+				.row {
+					margin: 6px 0;
+					padding: 0;
+					width: 100%;
+					float: left;
+
+					@include respond-to(mobile) {
+						margin: 6px 0;
+					}
+
+					.modal-title {
+						display: inline-block;
+						max-width: calc(100% - 18px);
+					}
+
+					.close-button {
+						background: none;
+						border: none;
+					}
+
+					label {
+						margin: 0;
+					}
+
+					.row-control {
+						margin: 12px 0 0 0;
+
+						.help-text {
+							opacity: 0.7;
+							margin: 0;
+						}
+
+						.help-text-request-description {
+							margin-top: 6px;
+						}
+
+						.help-text-request-type {
+							margin-top: 12px;
+						}
+
+						#requestType {
+							width: 100%;
+						}
+					}
+
+					&.settingsButtons {
+						text-align: right;
+
+						button {
+							min-width: 120px;
+							width: auto !important;
+							padding: 0 12px;
+							margin: 0 0 0 16px !important;
+							display: inline-block;
+							border: none;
+
+							@include respond-to(mobile) {
+								margin: 0 0 6px !important;
+								width: 100% !important;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

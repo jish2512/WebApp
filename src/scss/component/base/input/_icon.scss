@@ -1,0 +1,44 @@
+﻿@import "../../../vars";
+
+.input{
+     &__icon {
+        border: none;
+        padding: 0px;
+        position: absolute;
+        margin-top: 8px;
+        .icon__ele {
+            color: $BLACK;
+            Opacity: 0.6;           
+            
+            &.icon-cancel {
+                &:before {                  
+                    position: absolute;
+                    top: -12px;
+                    right: 13px;
+                }
+                &:hover {
+                    color: $BLUE_PRIMARY;
+                }
+                &:disabled {
+                    color: $BLACK;
+                    opacity: 0.2;
+                }
+            }
+
+            &.icon-search {
+                &:before {                  
+                    position: absolute;
+                    top: -12px;
+                    right: 10px;
+                }
+                &:hover {
+                    color: $BLUE_PRIMARY;
+                }
+                &:disabled {
+                    color: $BLACK;
+                    opacity: 0.2;
+                }
+            }
+        }
+    }
+}

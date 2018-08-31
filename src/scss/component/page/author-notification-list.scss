@@ -1,0 +1,188 @@
+﻿@import '../../base-styles/typography';
+@import '../../base-styles/icons';
+@import "../base/dropdown";
+@import "../../mixins/_responsiveness.mixin.scss";
+@import "../../variables/color.variables";
+
+#notification-list {
+    select::-ms-expand {
+        display: none;
+    }
+
+    padding: 20px;
+    background: #e9eef1;
+    height: 100%;
+
+    .notification-list-body {
+        background-color: $WHITE;
+        padding: 0 12px;
+        margin-bottom: 36px;
+
+        .notification-list-heading {
+            margin: 12px 0;
+        }
+
+        .notification-list-help-text {
+            opacity: 0.7;
+            margin-bottom: 6px;
+        }
+
+        .create-notification {
+            margin: 12px 12px 0 0;
+
+            .icon {
+                padding-right: 8px;
+            }
+
+            .add-msg-text {
+                top: -3px;
+                position: relative;
+            }
+        }
+
+        .fxp-dropdown-menu {
+            display: inline-block;
+        }
+
+        #item-count {
+            width: 80px;
+            padding: 3px;
+        }
+
+        .item-drop-down {
+            padding: 6px 0;
+        }
+
+        .toggle-sort {
+            border: none;
+            color: $BLACK;
+            background: none;
+        }
+
+        .notification-list-pagination {
+            padding: 6px 0;
+            margin: 0 12px;
+
+            .page-number {
+                opacity: 0.7;
+                width: 30px;
+                height: 36px;
+                text-align: center;
+                margin: 0 6px;
+            }
+
+            .fxp-btn--action__text {
+                padding: 0;
+            }
+
+            .page-text {
+                margin: 0 6px;
+            }
+
+            .fxp-btn {
+                margin: 0 6px;
+                padding: 0;
+            }
+
+            .icon-chevron-left, .icon-chevron-right {
+                font-size: 12px;
+                margin: 0 6px;
+            }
+        }
+
+        table {
+            min-width: 100%;
+
+            .dates {
+                font-family: 'Segoe UI';
+                font-size: 13px;
+                color: $BLACK;
+            }
+
+            .open {
+                background-color: rgba($BLACK, 0.05);
+            }
+
+            tr {
+                border-bottom: 1px solid $BLACK;
+                vertical-align: top;
+
+                .start-date {
+                    opacity: 1;
+                    width: 13%;
+                }
+
+                .icon-down-arrow {
+                    font-size: 10px;
+                }
+
+                th {
+                    font-family: 'Segoe UI';
+                    font-size: 11px;
+                    font-weight: normal;
+                    padding: 6px 10px 12px 0;
+                    color: $BLACK_RGBA_06;
+
+
+                    &.chevron-header {
+                        width: 44px;
+                    }
+
+                    &.notification-desc-header {
+                        width: 27%;
+                        padding-left: 56px;
+                    }
+
+                    &.notification-audience {
+                        width: 47%;
+                    }
+                }
+
+                td {
+                    padding: 12px 6px;
+
+                    &.chevron {
+                        padding: 0;
+                    }
+
+                    .icon-edit-row, .icon-delete-row {
+                        padding: 0 9px;
+                        font-size: 13px;
+                        color: $BLUE_SECONDARY;
+                        cursor: pointer;
+                    }
+
+                    .icon {
+                        border: none;
+                       background: none;
+                    }
+
+                    .icon-row-up, .icon-row-down {
+                        padding-right: 10px;
+                        height: 44px;
+                        width: 44px;
+                    }
+
+                    .text-container {
+                        margin-top: 13px;
+                        margin-bottom: 10px;
+                    }
+                }
+            }
+        }
+    }
+
+    a {
+        color: $BLUE_SECONDARY;
+    }
+
+    .notification-desc {
+        max-width: 1px;
+
+        &.ellipses {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+}

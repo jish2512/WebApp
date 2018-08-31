@@ -1,0 +1,26 @@
+﻿<div id="delete-popup" fxp-system-message-popup-directive>
+    <div class="container-body">
+        <div class="delete-message-popup">
+            <span class="popup-heading margin0 font-subtitle" ng-bind="::smCtrl.UiString.DELETE_SYSTEM_MESSAGE"></span>
+            <button class="popup-close pull-right"
+                    title="Close dialog"
+                    aria-label="Close"
+                    ng-click="smCtrl.hideModal()">
+                <i class="icon icon-close"></i>
+            </button>
+            <div>
+                <label for="type" class="font-caption-alt" ng-bind="::smCtrl.UiString.DELETE_CONFIRMATION"></label><br>
+            </div>
+            <div class="settingsButtons formGroup">
+                <button type="button"
+                        class="button fxp_secondary_button" 
+                        ng-click="smCtrl.hideModal()" ng-bind="::smCtrl.UiString.CANCEL"></button>
+                
+                <button type="button" 
+                        class="button fxp_primary_button" 
+                        fxp-popup-navigation="#popup"
+                        ng-click="smCtrl.deleteSystemMessage()"  ng-bind="::smCtrl.UiString.DELETE"></button>
+            </div>
+        </div>
+    </div>
+</div>

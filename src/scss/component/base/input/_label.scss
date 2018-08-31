@@ -1,0 +1,11 @@
+﻿@import "../../../vars";
+
+.input {
+    &__label {
+        color: $BLACK;
+        padding-bottom: 12px;
+        width: 100%;
+        margin-bottom: 0px;
+        font-weight: 400;       
+    }
+}

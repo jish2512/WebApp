@@ -1,0 +1,37 @@
+﻿<div>
+    <div id="partContainer" class="onBehalfOf">
+        <h3>{{oboUIStrings.ActingOnBehalfOf}}</h3>
+        <form class="form-horizontal" role="form" id="OBO_FormActOnBehalf">
+            <div class="formGroup">
+                <label class="controlLabel" id="OBO_controlLabel">{{oboUIStrings.OBOSearchLabel}}</label>
+                <div class="searchControl">
+                    <input type="text" id="OBO_FormControl" autocomplete="off" ng-model="selectedUser" ng-keydown="handleEnterKeyOnSearchUserInput($event)" ng-disabled="actOnBehalfOfUserActive" placeholder="Search"
+                           uib-typeahead="user.DisplayName for user in searchUser($viewValue) | limitTo:8" typeahead-no-results="userProfileDoesNotExist"
+                           typeahead-template-url="resultTemplate.html" typeahead-min-length="3" typeahead-wait-ms="100"
+                           typeahead-on-select="onSelect($item)" typeahead-auto-highlight="true"
+                           class="formControl" ng-init="pullFocusToElement('OBO_FormControl')" aria-labelledby="OBO_controlLabel" />
+                    <div id="OBO_ErrorMsg" class="element-error" ng-show="userProfileDoesNotExist || displayErrorMessage" title="{{errorMessage}}" tabindex="0">
+                        {{errorMessage}}
+                    </div>
+                    <div class="createProfile">
+                        <button type="button" id="OBO_CreateProfile" ng-click="createProfile()" ng-show="userProfileDoesNotExist" title="{{oboUIStrings.CreateProfile}}" aria-label="{{oboUIStrings.CreateProfile}}">{{oboUIStrings.CreateProfile}}</button>
+                    </div>
+                </div>
+            </div>
+            <div class="formGroup">
+                <div>
+					<button type="button" id="OBO_ActOnBehalf" title="{{oboUIStrings.ActOnBehalfOfButton}}" aria-label="{{oboUIStrings.ActOnBehalfOfButton}}" ng-disabled="((actOnBehalfOfUserActive) || (userProfileDoesNotExist) || (!isValidUserSelected))" ng-click="actOnBehalfOfUserClick()">{{oboUIStrings.ActOnBehalfOfButton}}</button>
+                    <button type="reset" id="OBO_Reset" title="{{oboUIStrings.OBOReset}}" aria-label="{{oboUIStrings.OBOReset}}" ng-disabled="(actOnBehalfOfUserActive || (!selectedUser))" ng-click="reset()">{{oboUIStrings.OBOReset}}</button>
+                </div>
+            </div>
+            <script type="text/ng-template" id="resultTemplate.html">
+                <div id="{{match.model.DisplayName}}" class="result-item">
+                    <div class="skill-head">
+                        <a aria-label="Search Result{{$index}}is {{match.model.DisplayName}}">{{match.model.DisplayName}}</a>
+                    </div>
+                    <div class="skill-path" aria-label="Search Result{{$index}} path is {{match.model.Seniority}}   {{match.model.BusinessRole}}"><p>{{match.model.Seniority}} {{match.model.BusinessRole}}</p></div>
+                </div>
+            </script>
+        </form>
+    </div>
+</div>

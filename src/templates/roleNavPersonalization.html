@@ -1,0 +1,200 @@
+﻿<div class="admin-role-group-navigation">
+    <div class="role-group-admin">
+        <h3>{{::fxpUIConstants.UIStrings.AdminUIStrings.ManageRolePageHeader}}</h3>
+        <form class="form-horizonta form-leftnavAdmin" role="form" id="role-group-admin-form">
+            <div class="formGroup">
+                <label class="controlLabel rolegroup-AdminLabel">
+                    {{::fxpUIConstants.UIStrings.AdminUIStrings.ManageRolePageDescription}}
+                </label>
+            </div>
+        </form>
+       
+        <div>
+            <div class="role-group-selection">
+                <label for="role-group-selection" class="fxp-dropdown-menu-label">{{::fxpUIConstants.UIStrings.AdminUIStrings.RoleGroupDropdownLabel}}</label>
+                <div class="fxp-dropdown-menu role-group-menu" aria-label="{{::fxpUIConstants.UIStrings.AdminUIStrings.ManageRolePageDescription}}">
+                    <select id="role-group-selection" 
+                            ng-model="selectedRoleGroup" 
+                            ng-change="getRoleDetails()" 
+                            ng-options="item as item.roleDescription for item in roleGroupDetails" 
+                            fxp-set-focus="true">
+                        <option value="">Select</option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+    </div>
+ 
+    <div class="role-group-personalization" ng-if="selectedRoleGroup">
+        <div class="personalizationAdminUI" role="application">
+            <div class="setting">
+                <div class="colom-md-1">
+                    <div class="role-group-personal-admin-form ">
+                        <form id="role-group-master-navigation-list" action="#">
+                            <div class="bladeHeader">{{::fxpUIConstants.UIStrings.AdminUIStrings.MasterNavigation}}</div>
+                            <div id="role-group-global-nav-container" class="userNavigationData checkboxListNavigation" tabindex="-1">
+                                <div class="role-group-Manager">
+                                    <div class="admin-ui-category" ng-repeat="globalNavItem in navigationList| filter: {applicableDevice:'!Mobile'}|orderBy:'sortOrder'">
+                                        <div enable-add-or-remove="selectedGlobalLeftNavItems(globalNavItem, null)" 
+                                             class="l0_category control-group " 
+                                             ng-init="isHideButtonVisible=false" 
+                                             global-nav-item="globalNavItem" 
+                                             render-nav-elements-for-keydown 
+                                             is-hide-button-visible="isHideButtonVisible" 
+                                             fxp-set-focus="{{isFocused=globalNavItem.isFocused}}" 
+                                             fxp-nav-element=".checkboxListNavigation" 
+                                             ng-class="{'fxpTabbableElem' : !isParentLinkEnabled(globalNavItem) || globalNavItem.hasChildren,'expanded' : isHideButtonVisible && globalNavItem.hasChildren}" 
+                                             id="role-group-gChk{{globalNavItem.id}}-panel" 
+                                             left-nav-personalization-scroll-to-active="#role-group-global-nav-container" 
+                                             aria-expanded="{{isHideButtonVisible}}" 
+                                             aria-label="{{$index == 1 ? ' '+fxpUIConstants.UIStrings.AdminUIStrings.MasterNavigation +' '+'use arrow keys to move through or expand collapse. '+' '+ globalNavItem.displayName  : globalNavItem.displayName }}" 
+                                             role="checkbox" 
+                                             aria-checked="{{globalNavItem.isParentSelected}}" 
+                                             change-tab-index-by-class="{className:'.mCustomScrollBox',tabindex:'-1'}" 
+                                             tabindex="{{ (!globalNavItem.isRoleGroupLeftNavItem || roleGroupNavItem.hasChildren || $index == 1) ? 0 : -1}}" 
+                                             aria-disabled="{{isParentLinkEnabled(globalNavItem)}}">
+                                            <button ng-show="globalNavItem.hasChildren" type="button" tabindex="-1" left-nav-personalization-scroll-to-active="#role-group-global-nav-container" class="left accordionIcon" aria-expanded="{{isHideButtonVisible}}" ng-click="isHideButtonVisible=!isHideButtonVisible">
+                                                <span class="icon" ng-class="{'icon-accordion-expand': isHideButtonVisible , 'icon-accordion-collapse': !isHideButtonVisible}"> </span>
+                                            </button>
+                                            <button ng-if="!globalNavItem.hasChildren" type="button" tabindex="-1" class="left accordionIcon">
+                                                <span>&nbsp;</span>
+                                            </button>
+                                            
+                                            <label class="l0_list CaptionAlt control control--checkbox" ng-class="{'checkbox_disabled':isParentLinkEnabled(globalNavItem)}">
+                                                <!--<span class="business-icon" aria-hidden="true"><i class={{globalNavItem.iconCSS}}> </i></span>-->
+                                                {{globalNavItem.displayName}}
+                                                <input type="checkbox" tabindex="-1" left-nav-prsonalization-adjust-scroll name="{{globalNavItem.displayName+globalNavItem.id}}" id="role-group-gChk{{globalNavItem.id}}" ng-model="globalNavItem.isParentSelected" ng-click="selectedGlobalLeftNavItems(globalNavItem, null)" ng-checked="isParentLinkEnabled(globalNavItem) || !globalNavItem.isPersonalizationAllowed" ng-disabled="isParentLinkEnabled(globalNavItem) || !globalNavItem.isPersonalizationAllowed" />
+                                                <span tabindex="-1" class="control__indicator"></span>
+                                                {{pullFocusToElement("role-group-gChk"+globalNavItem.id+"-panel", globalNavItem,"globalNav")}}
+                                            </label>
+                                        </div>
+                                        <ul ng-show="isHideButtonVisible && globalNavItem.hasChildren">
+                                            <li ng-repeat="childrenNavItem in globalNavItem.children|orderBy:'sortOrder'" ng-show="globalNavItem.hasChildren" ng-cloak ng-class="{'fxpTabbableElem':!childrenNavItem.isRoleGroupLeftNavItem}" is-hide-button-visible="isHideButtonVisible" fxp-nav-element=".checkboxListNavigation" render-nav-elements-for-keydown enable-add-or-remove="selectedGlobalLeftNavItems(globalNavItem, childrenNavItem)" children-nav-item="childrenNavItem" left-nav-personalization-scroll-to-active="#role-group-global-nav-container" role="checkbox" aria-checked="{{childrenNavItem.isChildSelected}}" aria-label="{{childrenNavItem.displayName}}" tabindex="{{ !childrenNavItem.isRoleGroupLeftNavItem? 0 : -1}}" ng-disabled="childrenNavItem.isRoleGroupLeftNavItem">
+                                                <label class="control control--checkbox l1_list" ng-class="{'checkbox_disabled':childrenNavItem.isRoleGroupLeftNavItem}">
+                                                    {{childrenNavItem.displayName}}
+                                                    <input tabindex="-1" ng-model="childrenNavItem.isChildSelected" id="role-group-gChkChild{{childrenNavItem.id}}" ng-click="selectedGlobalLeftNavItems(globalNavItem, childrenNavItem)"
+                                                           left-nav-prsonalization-adjust-scroll type="checkbox" name="{{childrenNavItem.displayName+childrenNavItem.id}}" value="{{childrenNavItem}}" ng-checked="childrenNavItem.isRoleGroupLeftNavItem" ng-disabled="childrenNavItem.isRoleGroupLeftNavItem" />
+                                                    <span class="control__indicator" tabindex="-1"></span>
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="colom-md-2">
+                    <div class="arrowBox">
+                        <button aria-label="Add selected items from {{::fxpUIConstants.UIStrings.AdminUIStrings.MasterNavigation}} to {{fxpUIConstants.UIStrings.AdminUIStrings.NavigationFor}} {{selectedRoleGroup.roleName}} {{::fxpUIConstants.UIStrings.AdminUIStrings.NavigationForRoleGroupLabel}}" ng-class="isAddPersonalizeAllow ? 'enableAddRemove':'disableAddRemove'" ng-disabled="!isAddPersonalizeAllow" ng-click="addToRoleNavPersonalizationList()" change-tab-index-by-class="{className:'.mCustomScrollBox',tabindex:'-1'}"><i class="icon-layout icon-arrow-right addarrow icon-arrowbox"></i></button>
+                        <div class="noclass addReorder addbtntext" ng-class="isAddPersonalizeAllow ? 'enableAddRemoveTxt':'disableAddRemoveTxt'"> {{::fxpUIConstants.UIStrings.ButtonStrings.Add}} </div>
+                        <button aria-label="Remove selected items from {{::fxpUIConstants.UIStrings.AdminUIStrings.NavigationFor}} {{selectedRoleGroup.RoleGroupName}} {{::fxpUIConstants.UIStrings.AdminUIStrings.NavigationForRoleGroupLabel}}" ng-class="(isRemovePersonalizeAllow) ?'enableAddRemove':'disableAddRemove'" ng-click="removeRoleGroupNavPresonalization()" change-tab-index-by-class="{className:'.mCustomScrollBox',tabindex:'-1'}" ng-disabled="!isRemovePersonalizeAllow">
+                            <i class="icon-layout icon icon-recyclebin addarrow icon-arrowbox"></i>
+                        </button>
+                        <div class="noclass addReorder" ng-class="isRemovePersonalizeAllow ? 'enableAddRemoveTxt':'disableAddRemoveTxt'"> {{::fxpUIConstants.UIStrings.ButtonStrings.Remove}} </div>
+                    </div>
+                </div>
+                <div class="colom-md-3">
+                    <div class="role-group-personal-admin-form role-group">
+                        <form id="default-navigation-list-form" action="#">
+                            <div ng-if="selectedRole.BusinessRoleName == defaultBusinessRoleGroup" class="bladeHeader">{{::fxpUIConstants.UIStrings.AdminUIStrings.NavigationFor}} {{selectedRoleGroup.RoleGroupName}} {{::fxpUIConstants.UIStrings.AdminUIStrings.NavigationForRoleGroupLabel}}</div>
+                            <div ng-if="selectedRole.BusinessRoleName!= defaultBusinessRoleGroup" class="bladeHeader">{{::fxpUIConstants.UIStrings.AdminUIStrings.NavigationFor}} {{selectedRole.BusinessRoleName}} {{::fxpUIConstants.UIStrings.AdminUIStrings.NavigationForRoleLabel}}</div>
+                            <div id="default-navigation-container" 
+                                 class="userNavigationData manage-personalization checkboxListNavigation">
+                                <div class="role-group-Manager">
+                                    <div class="admin-ui-category" ng-repeat="roleGroupNavItem in (filteredList = (navigationList|filter:{isRoleGroupLeftNavItem: true }| orderBy:'sortOrder'))">
+                                        <div class="l0_category control-group" 
+                                             ng-init="isHideButtonVisible=(roleGroupNavItem.isHideButtonVisible!=null)?roleGroupNavItem.isHideButtonVisible:false" 
+                                             fxp-nav-element=".checkboxListNavigation" 
+                                             render-nav-elements-for-keydown 
+                                             enable-add-or-remove="selectedRoleGroupNavItems(roleGroupNavItem, true)" 
+                                             user-nav-item="roleGroupNavItem" 
+                                             is-hide-button-visible="isHideButtonVisible" 
+                                             ng-class="{'fxpTabbableElem': !roleGroupNavItem.isPersonaDefault || roleGroupNavItem.hasChildren, 'expanded' : isHideButtonVisible && roleGroupNavItem.hasChildren}" 
+                                             tabindex="{{ (!roleGroupNavItem.isPersonaDefault || roleGroupNavItem.hasChildren || $index == 1) ? 0 : -1}}" 
+                                             id="role-group-chk{{roleGroupNavItem.id}}-panel" 
+                                             left-nav-personalization-scroll-to-active="#default-navigation-list-form .userNavigationData" 
+                                             aria-label="{{$index == 1 ? ' Manage Navigation for selected roles '+ roleGroupNavItem.displayName  : roleGroupNavItem.displayName }}" 
+                                             role="checkbox" 
+                                             aria-checked="{{roleGroupNavItem.isSelected}}" 
+                                             aria-expanded="{{isHideButtonVisible}}" 
+                                             aria-disabled="{{roleGroupNavItem.isPersonaDefault}}" 
+                                             change-tab-index-by-class="{className:'.mCustomScrollBox',tabindex:'-1'}">
+                                            <button ng-show="roleGroupNavItem.hasChildren" id="role-group-btn{{roleGroupNavItem.id}}" type="button" tabindex="-1"
+                                                    left-nav-personalization-scroll-to-active="#default-navigation-list-form .userNavigationData"
+                                                    aria-label="{{roleGroupNavItem.displayName}}" class="left accordionIcon" aria-expanded="{{isHideButtonVisible}}" ng-click="isHideButtonVisible=!isHideButtonVisible">
+                                                <span class="icon" ng-class="{'icon-accordion-expand': isHideButtonVisible , 'icon-accordion-collapse': !isHideButtonVisible}"> </span>
+                                            </button>
+                                            <button ng-if="!roleGroupNavItem.hasChildren" id="role-group-btn{{roleGroupNavItem.id}}" type="button" tabindex="-1"
+                                                    class="left accordionIcon">
+                                                <span ng-if="!roleGroupNavItem.hasChildren">&nbsp;</span>
+                                            </button>
+                                            <label class="l0_list CaptionAlt control control--checkbox" ng-class="{'checkbox_disabled':roleGroupNavItem.isPersonaDefault}" tabindex="-1">
+                                                <!--<span class="business-icon" aria-hidden="true"><i class={{roleGroupNavItem.iconCSS}}> </i></span>-->
+                                                <span ng-if="$last" left-nav-personalization-screen-reader></span>
+                                                {{roleGroupNavItem.displayName}}
+                                                <input type="checkbox" id="role-group-chk{{roleGroupNavItem.id}}" name="{{roleGroupNavItem.displayName}}" ng-model="roleGroupNavItem.isSelected" ng-disabled="roleGroupNavItem.isPersonaDefault" ng-click="selectedRoleGroupNavItems(roleGroupNavItem, true)" tabindex="-1" />
+                                                {{pullFocusToElement("role-group-chk"+roleGroupNavItem.id+"-panel",roleGroupNavItem,"roleGroupNav")}}
+                                                <span class="control__indicator" tabindex="-1"></span>
+                                            </label>
+                                        </div>
+                                        <ul ng-show="isHideButtonVisible && roleGroupNavItem.hasChildren">
+                                            <li ng-repeat="childrenRoleGroupNavItem in (childFilter =  (roleGroupNavItem.children|filter:{isRoleGroupLeftNavItem: true }  | orderBy:'sortOrder'))" ng-show="roleGroupNavItem.hasChildren" render-nav-elements-for-keydown is-hide-button-visible="isHideButtonVisible" fxp-nav-element=".checkboxListNavigation" enable-add-or-remove="selectedRoleGroupNavItems(roleGroupNavItem, false)" children-user-nav-item="childrenRoleGroupNavItem" ng-class="{'fxpTabbableElem':!childrenRoleGroupNavItem.isPersonaDefault}" tabindex="{{ !childrenRoleGroupNavItem.isPersonaDefault? 0 : -1}}" left-nav-personalization-scroll-to-active="#default-navigation-list-form .userNavigationData" role="checkbox" aria-checked="{{childrenRoleGroupNavItem.isSelected}}" ng-disabled="childrenRoleGroupNavItem.isPersonaDefault">
+                                                <label class="control  control--checkbox l1_list" ng-class="{'checkbox_disabled':childrenRoleGroupNavItem.isPersonaDefault}">
+                                                    {{childrenRoleGroupNavItem.displayName}}
+                                                    <input type="checkbox" name="{{childrenRoleGroupNavItem.displayName+childrenRoleGroupNavItem.id}}" ng-disabled="childrenRoleGroupNavItem.isPersonaDefault" id="role-group-chkUChild{{childrenRoleGroupNavItem.id}}" ng-model="childrenRoleGroupNavItem.isSelected" ng-click="selectedRoleGroupNavItems(roleGroupNavItem, false)" aria-label="{{childrenRoleGroupNavItem.displayName}}" tabindex="-1" />
+                                                    <span class="control__indicator" tabindex="-1"></span>
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<div id="buttonGroup" class="buttonGroup">
+    <button type="button" class="fxp-btn fxp-btn--secondary" fxp-popup-navigation="#role-group-popup" ng-click="showConfirmPopup()" id="role-group-cancel-btn" title="{{::fxpUIConstants.UIStrings.ButtonStrings.Cancel}}" ng-disabled="!selectedRoleGroup">{{::fxpUIConstants.UIStrings.ButtonStrings.Cancel}}</button>
+    <button type="button" class="fxp-btn fxp-btn--primary" id="role-group-save-btn" fxp-popup-navigation="#role-group-popup" ng-click="showConfirmSavePopup()" title="{{::fxpUIConstants.UIStrings.ButtonStrings.Submit}}" ng-disabled="submitButtonDisabled()">{{::fxpUIConstants.UIStrings.ButtonStrings.Submit}}</button>
+</div>
+<div class="popupbg" ng-show="displayUnsavedChangesPopup">
+    <div id="role-group-popup" tabindex="1">
+        <div class="container-header">
+            <p class="text-left">
+                {{::fxpUIConstants.UIStrings.AdminUIStrings.UnsavedChangesPopupHeader}}
+                <button tabindex="1" class="pull-right closeIconBtn" ng-click="hideUnsavedConfirmPopup()" action-on-esc-keydown="hideUnsavedConfirmPopup()" fxp-popup-navigation="#role-group-popup" render-pop-up-for-keydown type="button" title="Close"><i class="icon icon-close "></i></button>
+            </p>
+        </div>
+        <div class="container-body">
+            <div class="bodyboxpopup">
+                {{::fxpUIConstants.UIStrings.AdminUIStrings.UnsavedChangesPopupDescription}}
+            </div>
+            <div id="" class="text-right">
+                <button tabindex="1" type="button" class="fxp-btn fxp-btn--secondary" id="btn-popup-leave" fxp-popup-navigation="#role-group-popup" title="{{::fxpUIConstants.UIStrings.ButtonStrings.Leave}}" ng-click="leaveConfirmPopup()" render-pop-up-for-keydown action-on-esc-keydown="hideUnsavedConfirmPopup()">{{::fxpUIConstants.UIStrings.ButtonStrings.Leave}}</button>
+                <button action-on-esc-keydown="hideUnsavedConfirmPopup()" ng-click="hideUnsavedConfirmPopup()" tabindex="1" type="button" class="fxp-btn fxp-btn--primary" id="btn-popup-stay" fxp-popup-navigation="#role-group-popup" render-pop-up-for-keydown title="{{::fxpUIConstants.UIStrings.ButtonStrings.Stay}}">{{::fxpUIConstants.UIStrings.ButtonStrings.Stay}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="popupbg" ng-show="displaySavePopup">
+    <div id="savepopup" tabindex="1">
+        <div class="container-header">
+            <p class="text-left marginBottom20">{{::fxpUIConstants.UIStrings.AdminUIStrings.ConfirmPopupHeader}} <button title="Close" tabindex="1" class="pull-right closeIconBtn" ng-click="hideConfirmSavePopup()" action-on-esc-keydown="hideConfirmSavePopup()" fxp-popup-navigation="#savepopup" render-pop-up-for-keydown type="button"><i class="icon icon-close"></i></button></p>
+        </div>
+        <div class="container-body">
+            <div class="bodyboxpopup marginBottom20">
+                {{::fxpUIConstants.UIStrings.AdminUIStrings.ConfirmPopupDescription}}
+            </div>
+            <div id="" class="text-right">
+                <button tabindex="1" type="button" class="fxp-btn fxp-btn--secondary" render-pop-up-for-keydown id="btn-popup-back" action-on-esc-keydown="hideConfirmSavePopup()" fxp-popup-navigation="#savepopup" title="{{::fxpUIConstants.UIStrings.ButtonStrings.Back}}" ng-click="hideConfirmSavePopup()">{{::fxpUIConstants.UIStrings.ButtonStrings.Back}}</button>
+                <button tabindex="1" type="button" class="fxp-btn fxp-btn--primary" render-pop-up-for-keydown id="btn-popup-confirm" fxp-popup-navigation="#savepopup" ng-click="submitRoleGroupNavPresonalization()" title="{{::fxpUIConstants.UIStrings.ButtonStrings.Confirm}}" action-on-esc-keydown="hideConfirmSavePopup()">{{::fxpUIConstants.UIStrings.ButtonStrings.Confirm}}</button>
+            </div>
+        </div>
+    </div>
+</div>

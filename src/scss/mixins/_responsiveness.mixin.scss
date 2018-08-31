@@ -1,0 +1,15 @@
+﻿$break-mob: 736px;
+$break-tablet: 1024px;
+
+@mixin respond-to($media) {
+    @if $media == tablet {
+        @media only screen and (min-width:$break-mob + 1) and (max-width:$break-tablet) {
+            @content;
+        }
+    }
+    @else if $media == mobile {
+        @media only screen and (max-width:$break-mob) {
+            @content;
+        }
+    }
+}

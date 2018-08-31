@@ -1,0 +1,800 @@
+﻿@import "../../vars";
+@import '../../base-styles/typography';
+
+$color_leftnavAdmin_Error: $RED;
+$bgcolor_disabled_btn: $color-brand;
+$bordercolor_disabled_btn: $BLUE_AC6;
+
+.admin-role-group-navigation {
+	height: calc(100% - 58px);
+	overflow-y: auto;
+
+	& + .buttonGroup {
+		border-top: 1px solid rgba(0,0,0,0.4);
+		padding: 10px 0;
+		text-align: right;
+		background: rgba(217,217,217, 0.7);
+
+		button {
+			margin: 0 12px 0 0;
+		}
+	}
+}
+
+.role-group-admin {
+    padding: 20px;
+	float: left;
+	width: 100%;
+
+    h3 {
+        @extend .font-subtitle;
+        color: $BLACK;
+        margin: 0px !important;
+    }
+
+    .form-leftnavAdmin {
+        label.rolegroup-AdminLabel {
+            @extend .font-body;
+            color: rgba(0,0,0,0.6);
+            margin-top: 8px;
+            margin-bottom: 10px;
+        }
+
+        .leftnavAdminformControl {
+            margin-top: 23px;
+            margin-bottom: 10px;
+            background-color: #f9f9f9;
+            height: 36px;
+            width: 276px !important;
+            max-width: 100%;
+            padding-right: 44px;
+            padding-left: 8px;
+
+            &.fxpsearchfield {
+                Color: $BLACK;
+                Opacity: 0.6;
+                font-size: 15px;
+                line-height: 20px;
+                border: 1px solid $BLACK;
+            }
+
+            &.search_error_msg {
+                border: 1px solid $color_leftnavAdmin_Error !important;
+
+                &:focus {
+                    border: 1px solid $color_leftnavAdmin_Error !important;
+                }
+            }
+
+            &:focus {
+                border: 1px solid #0063B1 !important;
+                outline: dotted #000000;
+                outline-width: 1px;
+                opacity: 1;
+            }
+
+            &:active {
+                outline: none !important;
+            }
+
+            &.fxpsearchfield_txt {
+                Opacity: 0.6 !important;
+                outline: none !important;
+
+                &:hover {
+                    Opacity: 0.8 !important;
+                }
+
+                &.active {
+                    border: 1px solid #0078D7 !important;
+                    font-size: 16px !important;
+                    Opacity: 0.6 !important;
+                }
+
+                &::selection {
+                    color: $WHITE;
+                    background-color: #0078D7;
+                    Opacity: 0.6;
+                }
+            }
+        }
+
+        .resetActiveState {
+            border: 1px solid #0063B1 !important;
+        }
+
+        .dropdown-menu {
+            top: 174px;
+            left: 56px;
+            width: 277px;
+            min-width: 250px;
+        }
+
+        button.resetClose {
+            height: 33px !important;
+            width: 34px !important;
+            position: relative;
+            right: 41px;
+            background-color: transparent;
+            opacity: 0.6;
+            border: none;
+            outline: none;
+            margin: 0px !important;
+            color: $BLACK;
+            font-size: 16px !important;
+
+            &:hover {
+                color: #0078D7;
+            }
+
+            &:active {
+                background-color: #0078D7 !important;
+                color: $WHITE !important;
+                right: 39px !important;
+                padding-bottom: 1px;
+                height: 34px !important;
+            }
+        }
+
+
+        .leftNavAdmin_CaptionALT {
+            font-weight: normal;
+            font-size: 13px !important;
+            line-height: 16px !important;
+        }
+
+        #PLA_leftnavAdmin {
+            margin-left: 155px;
+            width: 120px;
+            font-size: 15px;
+            font-weight: normal;
+            line-height: 20px;
+        }
+
+        .formGroup button[disabled] {
+            background-color: $bgcolor_disabled_btn !important;
+            Color: $BLACK !important;
+            Opacity: 0.2;
+            border-color: $bordercolor_disabled_btn !important;
+        }
+
+        .element-error {
+            color: $color_leftnavAdmin_Error;
+        }
+
+        #LeftnavAdmin_ErrorMsg {
+            margin-right: 10px;
+        }
+
+        .leftnavAdminformControl::-ms-clear {
+            display: none;
+
+            .leftnavAdminformControl:not(:valid) ~ .resetClose {
+                display: none;
+            }
+        }
+    }
+
+    .role-group-selection, .role-selection {
+        float: left;
+        padding-right: 20px;
+    }
+
+    .fxp-dropdown-menu-label {
+        float: left;
+        padding-right: 8px;
+        padding-top: 4px;
+        @extend .font-body;
+    }
+
+    .role-group-menu {
+        float: right;
+    }
+}
+
+
+.role-group-personalization {
+    .personalizationAdminUI {
+        height: auto;
+        overflow: auto !important;
+        padding-right: 0px;
+        min-width: 1091px;
+        padding: 20px 0px 15px 20px;
+
+        .personasubtitle {
+            font-weight: normal;
+            font-size: 18px;
+            line-height: 22px;
+            color: $BLACK;
+            opacity: 0.8;
+        }
+
+        .SubtitleAlt {
+            font-weight: normal;
+            font-size: 18px;
+            line-height: 22px;
+
+            @include respond-to (tablet) {
+                font-weight: normal;
+                font-size: 15px;
+                line-height: 20px;
+            }
+        }
+
+        .leftnavHeader {
+            color: $BLACK;
+        }
+
+        h3.leftnavHeading {
+            padding-right: 5px;
+            width: auto;
+            float: left;
+            font-size: 18px;
+            line-height: 22px;
+            font-weight: normal;
+            opacity: 0.8;
+            margin-top: 0;
+
+            @include respond-to (tablet) {
+                font-size: 15px;
+                line-height: 20px;
+                margin-bottom: 8px;
+            }
+        }
+
+        .ConDashtiles {
+            opacity: 0.6;
+        }
+
+        .screen-text {
+            font-size: 15px;
+            font-weight: normal;
+            line-height: 20px;
+            color: $BLACK;
+            opacity: 0.8;
+            padding: 10px 0px 12px 0px;
+
+            @include respond-to (tablet) {
+                font-size: 12px;
+                line-height: 14px;
+            }
+        }
+
+        .colom-md-1 {
+            float: left;
+            margin-right: 40px;
+        }
+
+        .colom-md-2 {
+            position: relative;
+            float: left;
+            margin-top: 195px;
+        }
+
+        .colom-md-3 {
+            float: left;
+            margin-left: 40px;
+            margin-right: 28px;
+        }
+
+        .colom-md-5 {
+            position: relative;
+            float: left;
+            margin-top: 13%;
+        }
+    }
+}
+
+.role-group-personalization {
+    .role-group-personal-admin-form {
+        width: 340px;
+
+        &.role-group {
+            width: 528px;
+        }
+
+        .userNavigationData {
+            height: 433px;
+            overflow-x: auto;
+            background-color: $WHITE;
+            width: 100%;
+        }
+
+        .bladeHeader {
+            border: 0;
+            width: 100%;
+            height: 40px;
+            padding: 12px;
+            color: $BLACK;
+            @extend .font-caption;
+            background: $WHITE;
+            border-bottom: 1px solid rgba(0,0,0,0.2);
+            text-transform: uppercase;
+        }
+
+        .CaptionAlt {
+            @extend .font-caption-alt;
+            padding-top: 0;
+            margin-bottom: 0;
+        }
+
+        .mCSB_scrollTools, .mCSB_dragger_bar, .mCSB_dragger {
+            cursor: default !important;
+        }
+
+        .role-group-Manager {
+            padding-left: 8px;
+            padding-right: 8px;
+
+
+            .admin-ui-category {
+                border-bottom: 1px solid rgba(0,0,0,0.2);
+
+                &:last-child {
+                    border-bottom: none !important;
+                }
+
+                .right {
+                    float: right;
+                }
+
+                .left {
+                    float: left;
+                }
+
+                .business-icon {
+                    float: left;
+                    padding-right: 8px;
+                }
+
+                .accordionIcon {
+                    font-size: 13px;
+                    color: $BLACK;
+                    cursor: pointer;
+                    background: none;
+                    border: none;
+                    width: 44px;
+                    height: 39px;
+                    padding: 12px 0;
+                    margin-right: 8px;
+
+                    &.focus {
+                        outline: dotted 1px $BLACK;
+                    }
+
+                    .icon {
+                        height: 13px;
+                        top: -3px;
+                        vertical-align: middle;
+
+                        &:before {
+                            vertical-align: baseline;
+                        }
+                    }
+                }
+
+                .l0_category {
+                    margin-bottom: 12px;
+                    margin-top: 12px;
+                    padding-right: 12px;
+                    position: relative;
+
+                    &.expanded {
+                        background-color: rgba(0,0,0,0.1);
+                    }
+
+                    &:focus {
+                        outline: 1px dotted $BLACK;
+                    }
+
+                    &--enabled {
+                        background-color: rgba(0,0,0,0.1);
+                    }
+
+                    .arrow-group {
+                        float: right;
+                        position: absolute;
+                        right: 12px;
+                        top: 0;
+
+                        .-uparrow,
+                        .-downarrow {
+                            font-size: 13px;
+                            display: inline-block;
+                            padding: 11px 0 10px 0;
+                            cursor: pointer;
+                            text-align: center;
+                            width: 24px;
+
+                            &.enabled-arrow {
+                                color: #0063B1;
+                            }
+
+                            &.disabled-arrow {
+                                color: rgba(0,0,0,0.3);
+                                cursor: auto;
+                            }
+                        }
+
+                        .-uparrow {
+                            margin-right: 8px;
+                        }
+
+                        .-downarrow {
+                            margin-left: -4px;
+                        }
+                    }
+                }
+
+                ul {
+                    margin: -12px 0 0 !important;
+
+                    li {
+                        padding: 12px 12px 12px 72px;
+                        position: relative;
+
+                        &:focus {
+                            outline: 1px dotted $BLACK;
+                        }
+
+                        .arrow-group {
+                            position: absolute;
+                            right: 0;
+                            top: 0;
+                            padding: 0 68px 0 0;
+
+                            .-uparrow {
+                                margin-right: 8px;
+                            }
+
+                            .-downarrow {
+                                margin-left: -4px;
+                            }
+
+                            .enabled-arrow,
+                            .disabled-arrow {
+                                font-size: 13px;
+                                width: 24px;
+                                text-align: center;
+                                display: inline-block;
+                                padding: 11px 0 10px 0;
+                            }
+
+                            .enabled-arrow {
+                                color: #0063B1;
+                                cursor: pointer;
+                            }
+
+                            .disabled-arrow {
+                                color: rgba(0,0,0,.3);
+                            }
+
+                            .icon {
+                                font-size: 13px;
+                            }
+                        }
+                    }
+
+                    li:last-child {
+                        padding-bottom: 12px !important;
+                        margin-bottom: 13px !important;
+                    }
+                }
+
+                .l0_list {
+                    &.control--checkbox {
+                        color: $BLACK;
+                        width: 80%;
+                        padding: 12px 0 12px 27px;
+                        line-height: 15px !important;
+
+                        .control__indicator {
+                            top: 12px;
+                        }
+                    }
+                }
+
+                .l1_list {
+                    font-family: 'Segoe UI';
+                    Font-size: 12px;
+                    color: $BLACK;
+                    font-weight: normal;
+                    margin: 0;
+                    height: 15px;
+
+                    input[type="checkbox"] {
+                        margin-top: 0;
+                    }
+
+                    .control__indicator {
+                        top: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    .buttontext {
+        margin-bottom: 8px;
+    }
+
+    .removearrowbtn {
+        margin-top: 40px;
+    }
+
+
+    .arrowBox {
+        width: 44px;
+        top: 0;
+        left: 0;
+
+        > .enableAddRemoveTxt {
+            opacity: 1 !important;
+        }
+
+        > .disableAddRemoveTxt {
+            opacity: 0.3;
+        }
+
+        > button.disableAddRemove {
+            height: 44px;
+            text-align: center;
+            color: $BLACK;
+            Opacity: 0.2;
+            width: 44px;
+            border: none;
+            cursor: default;
+            margin-bottom: 8px;
+        }
+
+        > button.enableAddRemove {
+            height: 44px;
+            width: 44px;
+            text-align: center;
+            background-color: rgba(0,0,0,0.2);
+            color: rgba(0,0,0,0.3);
+            border: none;
+            margin-bottom: 8px;
+
+            &:hover {
+                border: 1px solid rgba(0,0,0,0.2);
+            }
+
+            &:focus {
+                border: 1px dotted $BLACK;
+            }
+
+            &:active {
+                background-color: rgba(0,0,0,0.4) !important;
+            }
+        }
+
+        .icon-layout {
+            top: 0 !important;
+            color: $BLACK;
+            Opacity: 0.6;
+            line-height: 30px !important;
+            font-size: 16px;
+        }
+
+        .noclass {
+            background: transparent !important;
+            margin-bottom: 10px;
+        }
+
+        .addReorder {
+            @extend .font-body;
+            color: $BLACK;
+            Opacity: 0.3;
+            text-align: center;
+        }
+
+        .addbtntext {
+            margin-bottom: 40px;
+        }
+    }
+
+    .settingsButtons {
+        float: right;
+        margin-top: 2px;
+
+        button[type=button] {
+            width: 120px !important;
+            font-weight: normal;
+            font-size: 15px;
+            line-height: 20px;
+        }
+
+        .fxp_secondary_button {
+            background-color: #cccccc !important;
+            color: $BLACK !important;
+            margin-right: 16px !important;
+
+            &:hover {
+                border: 1px solid rgba(0,0,0,0.2);
+            }
+
+            &:active {
+                border: none !important;
+                background-color: #999999 !important;
+            }
+
+            &:focus {
+                border: 1px dotted #000000;
+            }
+        }
+
+        button[type=button].fxp_primary_button {
+            &:active {
+                background-color: #005496;
+                border: none !important;
+            }
+
+            &:focus {
+                background-color: #006cc1;
+                border: 1px dotted #000000;
+            }
+
+            &:hover {
+                background-color: #006cc1;
+            }
+        }
+    }
+}
+
+div#role-group-popup, #savepopup {
+    border: 1px solid $BLACK;
+    width: 420px;
+    height: 210px;
+    Background-color: #e5e5e5;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 24px;
+
+    .bodyboxpopup {
+        text-align: left;
+        color: $BLACK;
+        opacity: 1;
+        font-weight: normal;
+        font-size: 15px;
+        line-height: 20px;
+        margin-bottom: 20px;
+    }
+
+    .container-header {
+        @extend .font-subtitle-alt;
+        color: $BLACK;
+
+        p {
+            margin-bottom: 20px;
+
+            .closeIconBtn {
+                border: none;
+                background: none;
+            }
+        }
+
+        .icon-close {
+            cursor: pointer;
+        }
+    }
+
+
+    &:focus {
+        outline: dotted 1px;
+    }
+}
+
+#savepopup {
+    height: 191px;
+}
+
+.popupbg {
+    top: 0px;
+    right: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 1002;
+    background-color: rgba(0,0,0,0.3);
+    text-align: center;
+    position: absolute;
+
+    .settingsButtons {
+        margin-top: 10px;
+    }
+}
+
+
+.l0_list {
+
+    &.control input:indeterminate ~ .control__indicator:after {
+        top: -2px !important;
+    }
+}
+
+.l1_list {
+
+    &.control input:checked ~ .control__indicator:after {
+        top: -4px !important;
+    }
+}
+
+
+
+@media screen and (min-width: 640px) and (max-width:1024px) {
+    #header .profile .user-profile ul.dropdown-menu {
+        position: -ms-page;
+    }
+
+    .partner-app, .leftNavPersonalizationAdminsearch {
+        overflow-x: auto !important;
+    }
+
+    .role-group-admin {
+        min-width: 800px;
+    }
+
+    .admin-role-group-navigation {
+        .personalizationAdminUI {
+            min-width: 980px !important;
+        }
+    }
+}
+
+@media screen and (-ms-high-contrast: active) {
+
+    .personalizationAdmin, .personalizationAdminUI {
+        .formGroup {
+
+            button[type="button"] {
+                opacity: 1 !important;
+            }
+
+            .resetClose {
+                border: none !important;
+            }
+        }
+
+        .role-group-personal-admin-form {
+            border: 1px solid;
+        }
+
+        .enableAddRemove {
+            border: 1px solid !important;
+        }
+    }
+
+    .popupbg {
+        background-color: rgba(0,0,0,0.3);
+    }
+
+    .bladeHeader {
+        border: 1px solid !important;
+    }
+
+    button.fxp-btn:enabled {
+        border: 1px solid;
+    }
+}
+
+@media screen and (-ms-high-contrast: white-on-black) {
+    .checkbox_disabled {
+        color: rgba(255,255,255, 0.3);
+
+        .control input:disabled ~ .control__indicator {
+            opacity: 1;
+        }
+    }
+}
+
+@media screen and (-ms-high-contrast: black-on-white) {
+    .checkbox_disabled {
+        color: rgba(0,0,0,0.3);
+
+        .control input:disabled ~ .control__indicator {
+            opacity: 1;
+        }
+    }
+}

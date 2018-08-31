@@ -1,0 +1,109 @@
+﻿@import "../../_vars.scss";
+@import '../../base-styles/typography';
+@import "../../base-styles/icons";
+
+$fxp-dropdown-menu-hover-border: transparentize($BLACK, 0.2) ;
+$fxp-dropdown-menu-focus-border: transparentize($BLUE_SECONDARY, 0.8);
+$fxp-dropdown-menu-active-border: transparentize($color-brand, 0.6);
+$fxp-dropdown-menu-disabled-border: transparentize($BLACK, 0.3);
+$fxp-dropdown-menu-disabled-bgcolor: transparentize($BLACK, 0.9);
+$fxp-dropdown-menu-focus-outline: 1px dashed $BLACK;
+
+@mixin dropdown-menu-style($fg-color, $outline: inherit) {
+    border-color: $fg-color !important;
+    outline: $outline;
+}
+
+.fxp-dropdown-menu {
+    select {
+        border: 1px solid $BLACK;
+        background: url("/assets/logo/icon/select_icon.png") no-repeat 95% 50%;
+        background-color: $WHITE;
+        color: $BLACK;
+        padding-left: 10px;
+        height:36px;
+        width: 276px;
+        
+        -webkit-appearance: none;
+        -moz-appearance:    none;
+        appearance:         none;
+
+        @extend .font-body;
+
+        &:hover {
+            @include dropdown-menu-style($fxp-dropdown-menu-hover-border);
+        }
+
+        &:focus {
+            @include dropdown-menu-style($fxp-dropdown-menu-focus-border,$fxp-dropdown-menu-focus-outline);
+        }
+
+        &:active {
+            @include dropdown-menu-style($fxp-dropdown-menu-active-border);
+        }
+
+        &:disabled {
+            @include dropdown-menu-style( $fxp-dropdown-menu-disabled-border);
+            background-color: $fxp-dropdown-menu-disabled-bgcolor;
+        }
+    }
+}
+
+
+
+$input-text-focus-outline: 1px dotted $BLACK;
+
+.icon__ele {
+    &.icon-drop {
+        top: 3px;
+    }
+}
+
+.input {
+    &__select {
+        height: 36px;
+        padding: 0 12px;
+        -webkit-appearance: none;
+        border: 1px solid $BLACK;
+
+        &:focus {
+            outline: $input-text-focus-outline;
+            border-color: $BLUE_SECONDARY;
+        }
+
+        &--option {
+            height: 36px;
+            padding: 8px;
+        }
+
+        &--small {
+            min-width: 88px;
+        }
+
+        &--big {
+            min-width: 276px;
+        }
+
+        &::-ms-expand {
+            display: none;
+        }
+
+        &::-ms-value {
+            background: none;
+            color: $BLACK;
+        }
+
+        &--icon {
+            font-weight:normal;
+            display: inline;
+            
+            &:after {
+                content: '\e70d';
+                font-family: 'SegoeUI MDL2 Assets';
+                position:absolute;
+                margin-top:8px;
+                margin-left:-30px;
+            }
+        }
+    }
+}

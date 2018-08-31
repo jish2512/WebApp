@@ -1,0 +1,50 @@
+﻿@import "../../../vars";
+
+%default-input {
+    color: $BLACK;
+    border: 1px solid $BLACK_RGBA_06;
+    min-width: 276px;
+    height: 36px;
+    padding: 8px 8px 8px 12px;
+    box-sizing: border-box;
+    line-height: 20px;
+}
+
+.input {
+    &__search {
+        @extend %default-input;
+
+        &:hover {
+            opacity: 0.6;
+        }
+
+        &:focus {
+            outline: 1px dotted $BLACK;
+            border-color: $BLUE_SECONDARY;
+        }
+
+        &:disabled {
+            Border: 1px solid $BLACK_RGBA_03;
+            Background-color: $BLACK_RGBA_01;
+            Color: $BLACK;
+            Opacity: 0.6;
+        }
+
+        &::selection {
+            color: $WHITE;
+            background: $BLUE_PRIMARY;
+        }
+
+        &--error {
+            border: 1px solid $RED;
+        }
+    }
+}
+
+.search {
+    &__icon {
+        &:last-child {
+            margin-left: -25px;
+        }
+    }
+}

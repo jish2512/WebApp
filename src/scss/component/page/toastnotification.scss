@@ -1,0 +1,165 @@
+﻿@import "../../vars";
+@import '../../base-styles/typography';
+
+$toast-background: $GREY_F2;
+$toast-link: $BLUE_SECONDARY;
+
+
+fxptoastnotification {
+	.toast_container {
+		position: fixed;
+		right: 10px;
+		top: 48px;
+		z-index: 1051;
+		width: 400px;
+		max-height: calc(100% - 84px);
+		overflow-y: auto;
+		overflow-x: hidden;
+	}
+
+	.toast-show {
+		display: block;
+	}
+
+	.toast-hide {
+		display: none;
+	}
+
+	.notificaion {
+		padding: 0 !important;
+		margin: 0 0 10px 0;
+		border: 0px !important;
+		background-image: none !important;
+		height: auto;
+		font-size: 13px;
+		line-height: 16px;
+		font-weight: 400;
+		box-shadow: 4px 4px 3px rgba(0, 0, 0, 0.25);
+		transition: 200ms linear;
+		opacity: 1;
+
+		&.ng-enter {
+			margin-top: -50px;
+			z-index: 1049;
+		}
+
+		&.ng-enter-active {
+			margin-top: 0px;
+		}
+
+		&.ng-leave-active {
+			opacity: 0;
+		}
+
+		.icon-container {
+			padding: 10px 12px;
+			cursor: default;
+			font-size: 24px;
+		}
+
+		.toast-container {
+			display: inline-flex;
+			width: 352px;
+			cursor: pointer;
+
+			.toast-content {
+				width: 100%;
+				padding: 12px 5px;
+				line-height: 16px;
+				margin: 3px 0px;
+				border: none;
+				background: none;
+				text-align: left;
+				@extend .font-caption-alt;
+
+				&.has-action {
+					color: $toast-link;
+
+					&:hover {
+						text-decoration: underline;
+					}
+				}
+
+				&:focus {
+					outline: dotted 1px;
+				}
+			}
+
+			.icon-container {
+				padding: 0;
+				margin: 0;
+				font: inherit;
+
+				.icon {
+					padding: 16px 12px !important;
+					font-size: 23px;
+				}
+			}
+
+			button.icon-container {
+				height: 48px;
+				padding-bottom: 0px !important;
+				padding-top: 0px !important;
+				margin-right: 3px;
+
+				&:focus, &:active {
+					outline: 1px dashed black;
+				}
+			}
+
+			.icon {
+				cursor: pointer;
+				font-size: 21px;
+				width: 48px;
+				height: 48px;
+				padding: 12px 0;
+			}
+
+			&:hover {
+				background-color: rgba(0,0,0,0.05) !important;
+			}
+		}
+
+		&.toast-notificaion {
+			background-color: $toast-background;
+			width: 400px;
+			position: relative;
+			top: auto;
+
+			.icon-container {
+				.icon {
+					position: static;
+				}
+
+				&.close-button {
+					cursor: pointer;
+					font-size: 16px;
+					color: rgba(0,0,0,0.7);
+					width: 48px;
+					height: 48px;
+
+					&:hover {
+						background-color: rgba(0,0,0,0.05) !important;
+					}
+				}
+			}
+		}
+	}
+}
+
+
+@media screen and (-ms-high-contrast: active) {
+	.notificaion {
+		&.toast-notificaion {
+			border: 1px solid !important;
+
+			button {
+				border: none !important;
+			}
+
+			.close-button {
+				width: 46px !important;
+			}
+		}
+	}
+}

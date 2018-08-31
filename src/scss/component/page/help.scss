@@ -1,0 +1,444 @@
+﻿/*New Css*/
+@import "../../vars";
+
+$header-help-background: $BLUE_AC1;
+
+/* Help Menu */
+#header {
+
+    .help-wrap {
+        float: left;
+
+        #help-open[aria-expanded=true] {
+            background: $header-help-background;
+            color: $BLUE_SECONDARY !important;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            height: 48px !important;
+            margin-top: 0px !important;
+
+            &:focus {
+                outline: 1px dotted #fff;
+                background: $header-help-background;
+                color: $BLUE_SECONDARY !important;
+            }
+
+            &:hover {
+                background: $header-help-background;
+                color: $BLUE_SECONDARY !important;
+                cursor: pointer;
+            }
+        }
+
+        .help-pinned {
+            z-index: 1001;
+        }
+
+        .fxp-help {
+            width: 296px;
+            float: right;
+            color: $BLACK;
+            position: fixed;
+            position: -ms-page;
+            margin: 0;
+            border-radius: 0;
+            top: 48px;
+            right: 0;
+            left: auto;
+            width: 296px;
+            list-style-type: none;
+            list-style: none;
+            border-top: none;
+            padding: 0px;
+            background-color: $header-help-background;
+            box-shadow: none;
+            height: calc(100vh - 84px);
+            border-left: solid 1px #000000;
+
+            & > div {
+                float: left;
+                height: 100%;
+            }
+
+            &.open {
+                background: $header-background;
+                color: $header-foreground;
+            }
+
+            .help-content {
+                padding: 1px 10px 10px;
+                min-height: 100%;
+                height: 100%;
+                float: left;
+                overflow-y: auto;
+                width: 100%;
+                text-align: left;
+
+                .inlineloader {
+                    height: 100%;
+                    width: 100%;
+                    background-size: 40px;
+                }
+
+                .helpHeading {
+                    font-weight: lighter;
+                    font-size: 34px;
+                    line-height: 40px;
+                    color: #000000;
+                    padding: 30px 10px;
+                }
+
+                .help-row {
+                    padding: 10px 9px;
+                    float: left;
+                    width: 100%;
+
+                    &.article-content {
+                        ul {
+                            position: static !important;
+                        }
+
+                        iframe {
+                            width: 100% !important;
+                            height: auto !important;
+                        }
+
+                        pre {
+                            white-space: inherit;
+                        }
+
+                        p {
+                            color: $BLACK;
+                            white-space: normal;
+                            text-overflow: inherit;
+                            word-wrap: break-word;
+
+                            .image-container {
+                                position: relative;
+
+                                img {
+                                    width: 100% !important;
+                                    height: auto !important;
+                                    display: block;
+                                }
+
+                                .icon {
+                                    position: absolute;
+                                    right: 0;
+                                    top: calc(100% - 36px);
+                                    height: 36px;
+                                    width: 36px;
+                                    background: rgba(0,0,0,.4);
+                                    color: white;
+                                    text-align: center;
+                                    line-height: 36px;
+                                    font-size: 24px;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                a {
+                    cursor: pointer;
+                    &:focus {
+                        outline: 1px dotted #000;
+                    }
+                }
+            }
+
+            div.help {
+                float: left;
+            }
+
+            .help-heading {
+                padding: 10px 0;
+                float: left;
+                width: 100%;
+
+                .search-control {
+                    background: $WHITE;
+                    border: 1px solid;
+                    float: left;
+                    width: 100%;
+                    height: auto;
+
+                    input {
+                        width: calc(100% - 36px);
+                        border: none;
+                        min-width: 0;
+                        float: left;
+                        outline: none;
+                    }
+
+                    .icon-container {
+                        margin: 0;
+                        color: $BLACK !important;
+                        outline: 0;
+
+                        &.clear-btn {
+                            display: none;
+                        }
+
+                        &:active {
+                            background: $BLUE_SECONDARY;
+                            color: $WHITE !important;
+                        }
+                    }
+
+                    &:focus-within {
+                        border-color: $BLUE_SECONDARY;
+
+                        input {
+                            width: calc(100% - 72px);
+                        }
+
+                        .icon-search {
+                            color: $BLUE_SECONDARY;
+                        }
+
+                        .clear-btn {
+                            display: block;
+                            cursor: pointer;
+                        }
+                    }
+
+                    .dropdown-menu {
+                        position: absolute;
+                        display: block;
+                        max-height: 200px;
+                        width: calc(100% - 42px);
+                        border-radius: 0;
+                        padding: 0;
+                        margin: 0;
+                        margin-left: -1px;
+                        overflow: auto;
+
+                        li {
+                            float: left;
+                            padding: 8px 12px;
+                            width: 100%;
+                            color: $BLUE_SECONDARY;
+
+                            &.active {
+                                background: #E8F0F7;
+                            }
+
+                            &:hover {
+                                background: #E8F0F7;
+                            }
+
+                            span {
+                                margin: 0 !important;
+                            }
+                        }
+                    }
+                }
+            }
+
+            button.icon-container, a.help-icon-container {
+                height: 36px !important;
+                width: 36px !important;
+                font-size: 18px !important;
+                padding: 0 !important;
+                line-height: normal !important;
+                color: $BLUE_SECONDARY !important;
+
+                &.article-edit {
+                    float: none !important;
+                    display: inline !important;
+                    height: auto !important;
+                    width: auto !important;
+                    font-size: 14px !important;
+
+                    .icon {
+                        padding: 0;
+                    }
+                }
+
+                .icon {
+                    padding: 9px;
+                }
+
+                &:disabled {
+                    color: $BLACK_RGBA_03 !important;
+                }
+
+                &:hover {
+                    background: none;
+                }
+
+                &:focus {
+                    background: none;
+                    outline: dotted 1px $BLACK;
+                }
+
+                &:active {
+                    background: none;
+                }
+
+                .icon-close {
+                    color: rgba($BLACK, 0.7);
+                }
+            }
+
+            .help-title {
+                padding-bottom: 12px;
+            }
+
+            .opacity-6 {
+                opacity: 0.6;
+            }
+
+            .help-description {
+                color: rgba($BLACK, 0.6);
+
+                .fxp-btn {
+                    float: left;
+                    min-width: 106px;
+
+                    &:last-child {
+                        margin-right: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+/* Help Page */
+#helpPage {
+    background-color: #e5e5e5;
+    height: auto;
+
+    .help-content {
+        min-height: 100%;
+        padding: 30px 20px;
+
+        .helpHeading {
+            font-weight: lighter;
+            font-size: 34px;
+            line-height: 40px;
+            color: #000;
+            padding-bottom: 30px;
+        }
+
+
+        div.help {
+            padding-bottom: 30px;
+
+            div {
+                color: #000;
+                font-size: 15px;
+                line-height: 20px;
+            }
+
+            div.categoryContainer {
+                padding-top: 30px;
+
+                a {
+                    color: #0063B1;
+                    font-weight: 400;
+                    font-size: 12px;
+                    line-height: 14px;
+                    text-decoration: none !important;
+                    cursor: pointer;
+                }
+
+                div {
+                    padding-top: 10px;
+                }
+            }
+
+            .helpDescription {
+                Font-size: 12px;
+                Font-Family: Segoe UI Light;
+                Opacity: .6;
+            }
+        }
+    }
+}
+
+.modal-backdrop.in {
+    z-index: 2001 !important;
+    opacity: .7 !important;
+}
+
+.modal.in {
+    z-index: 2002 !important;
+}
+
+.help-article-image-modal {
+
+    .modal-dialog {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+
+        .modal-content {
+            background: none;
+            text-align: center;
+            vertical-align: middle;
+
+            .icon-container {
+                height: 48px;
+                width: 48px;
+                font-size: 24px;
+                padding: 0;
+                color: $WHITE;
+                font-size: 24px;
+            }
+
+            img {
+                height: 80%;
+                width: 80%;
+                margin: 5%;
+            }
+        }
+    }
+}
+
+@include respond-to(tablet) {
+    .helpPage {
+        .help-content {
+            .help {
+                .help-category-content {
+                    width: 50%;
+                }
+            }
+        }
+    }
+}
+
+@include respond-to(mobile) {
+    .helpPage {
+        margin-top: 1px;
+
+        .help-header {
+            padding: 12px 8px;
+            height: 44px;
+            text-align: left;
+        }
+
+        .help-content {
+            .help {
+                padding: 0 8px;
+
+                .help-category-header {
+                    padding-top: 20px !important;
+                    margin-bottom: 20px !important;
+                }
+
+                .help-category-content {
+                    width: 100%;
+                    padding-bottom: 20px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (-ms-high-contrast: active) {
+    .help-header {
+        border: 1px solid;
+    }
+}

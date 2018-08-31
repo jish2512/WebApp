@@ -1,0 +1,28 @@
+﻿@import "../../../vars";
+
+%default-action {
+    color: $BLACK;
+    opacity: 0.6;
+}
+
+.action {
+    &__trigger {
+        color: $BLUE_PRIMARY;
+        display: inline-block;
+        line-height: 2;
+        padding: 0 12px;
+        &:hover {
+            @extend %default-action;
+        }
+        &:focus {
+            @extend %default-action;
+            outline: 1px dashed $BLACK;
+        }      
+        &__text {
+            padding-right: 12px;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}

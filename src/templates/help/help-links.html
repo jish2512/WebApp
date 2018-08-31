@@ -1,0 +1,53 @@
+﻿<div class="help contextual-help"
+	 ng-if="initialFlags.contextualHelpEnabled && contextualHelp.length">
+	<div class="font-base-alt help-row">Help related to this page</div>
+	<div class="help-row font-caption"
+		 ng-repeat="item in contextualHelp | limitTo: (isContextualFilterRequired ? defaultHelpArticleLimit : '') track by $index">
+		<div class="help-title">
+			<a href
+			   ng-click="navigateToArticle(item.id);logFxpHelpEvent(item,'Help related to this page','FlyoutView')"
+			   title="{{item.title}}"
+			   aria-label="{{item.title}}"
+			   ng-bind-html="item.title"
+			   fxp-help-events="{{item}}"
+			   fxp-set-focus="{{item.pullFocus}}"></a>
+			<a class="help-icon-container article-edit"
+			   title="Edit"
+			   aria-label="Edit article {{item.title}}" ng-href="{{helpCentralUrl+'/article/'+item.id+'/edit'}}" target="_blank">
+				<i class="icon icon-edit-row"></i>
+			</a>
+		</div>
+		<div ng-if="item.description"
+			 class="help-description"
+			 ng-bind="item.description"></div>
+	</div>
+	<div class="help-row font-caption" ng-if="isContextualFilterRequired">
+		<div class="help-title">
+			<a href
+			   ng-click="showMoreContextualHelpLinks()"
+			   title="Show all contextual help"
+			   aria-label="Show all contextual help">... Show all related articles</a>
+		</div>
+	</div>
+</div>
+<div class="help"
+	 ng-repeat="item in fxpHelp.FxpHelpLinks | orderBy:'DisplayOrder' track by $index"
+	 ng-if="navigationCollection[currentNavigationIndex] == 'home'">
+	<div class="font-base-alt help-row"
+		 ng-bind="item.DisplayText_Flyout"></div>
+	<div class="help-row font-caption"
+		 fxp-show-if-device="innerItem.ApplicableDevice"
+		 ng-repeat="innerItem in item.HelpLinks | orderBy:'DisplayOrder' track by $index">
+		<div class="help-title">
+			<a href
+			   ng-click="logFxpHelpEvent(innerItem,item.DisplayText,'FlyoutView')"
+			   title="{{innerItem.Title}}"
+			   aria-label="{{innerItem.Title}}"
+			   fxp-help-events="{{innerItem}}"
+			   ng-bind-html="innerItem.DisplayText"></a>
+		</div>
+		<div ng-if="innerItem.Description"
+			 class="help-description"
+			 ng-bind="innerItem.Description"></div>
+	</div>
+</div>

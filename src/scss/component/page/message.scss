@@ -1,0 +1,170 @@
+﻿@import "../../vars";
+
+$message-background: $GREY_2A;
+$success-background: $GREEN;
+$success-foreground: $WHITE;
+$warning-background: $YELLOW;
+$warning-foreground: $BLACK;
+$info-background: $GREY_F2;
+$info-foreground: $BLACK;
+$danger-background: $RED;
+$danger-foreground: $WHITE;
+
+.fxpmessage {
+    .modal {
+        position: absolute;
+        position: -ms-page;
+        background: rgba(0,0,0,0.35);
+    }
+
+    .modal-show {
+        display: block;
+    }
+
+    .modal-hide {
+        display: none;
+    }
+
+    .message {
+        color: $message-background;
+        padding: 0 !important;
+        margin: 0 0 10px 0;
+        border: 0px !important;
+        background-image: none !important;
+        height: auto;
+        width: 100%;
+        display: inline-flex;
+        font-size: 13px;
+        line-height: 16px;
+        font-weight: 400;
+
+
+
+        .icon-container {
+            padding: 10px 12px;
+            cursor: default;
+            font-size: 24px;
+        }
+
+        .message-container {
+            display: inline-flex;
+            width: 100%;
+
+            .message-content {
+                width: 100%;
+                padding: 15px 5px;
+
+                .message-content-text {
+                    a {
+                        text-decoration: underline;
+                    }
+
+                    div {
+                        display: inline;
+
+                        p {
+                            display: inline;
+                        }
+                    }
+                }
+            }
+
+            .msgTrackingId {
+                font-size: 11px;
+                font-family: Segoe UI Light;
+                color: #F2F2F2;
+                display: inline-block;
+            }
+
+            .icon-container {
+                padding: 0;
+                margin: 0;
+                background: transparent !important;
+                color: $message-background !important;
+                font: inherit;
+            }
+
+            button.icon-container {
+                height: 48px;
+                padding-bottom: 0px !important;
+                padding-top: 0px !important;
+                margin-right: 3px;
+
+                &:focus, &:active {
+                    outline: 2px dashed black;
+                }
+            }
+
+            .icon {
+                cursor: pointer;
+                font-size: 21px;
+                width: 48px;
+                height: 48px;
+                top: 0px;
+                padding: 12px 0;
+            }
+        }
+
+        &.message-error {
+            color: $danger-foreground;
+            background-color: $danger-background;
+
+            .icon-container {
+                color: $danger-foreground;
+                background-color: $danger-background;
+
+                .icon-close {
+                    color: $danger-foreground;
+                }
+            }
+
+            .message-content {
+                .message-content-text {
+                    a {
+                        color: $WHITE;
+                    }
+                }
+            }
+        }
+
+        &.message-warning {
+            color: $warning-foreground;
+            background-color: $warning-background;
+
+            .icon-container {
+                background-color: $warning-background;
+            }
+        }
+
+        &.message-info {
+            color: $info-foreground;
+            background-color: $info-background;
+
+            .icon-container {
+                background-color: $info-background;
+            }
+        }
+
+        &.message-success {
+            color: $success-foreground;
+            background-color: $success-background;
+
+            .icon-container {
+                color: $success-foreground;
+                background-color: $success-background;
+
+                .icon-close {
+                    color: $success-foreground;
+                }
+            }
+
+            .message-content {
+                .message-content-text {
+                    a {
+                        color: $WHITE;
+                    }
+                }
+            }
+        }
+    }
+}

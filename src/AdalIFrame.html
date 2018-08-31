@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html ng-app="frameApp">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script src="scripts/adalIFrame-min.js"></script>
+</head>
+<body>
+    <div ng-view="ng-view"/>
+
+    <script>
+
+        function adalConfigure(adalProvider, $httpProvider) {
+            var adalConfiguration = localStorage["adalConfig"];
+            if (adalConfiguration) {
+                var adalSettings = JSON.parse(adalConfiguration);
+                adalProvider.init(
+                    {
+                        instance: adalSettings.instance,
+                        tenant: adalSettings.tenant,
+                        clientId: adalSettings.clientId,
+                        extraQueryParameter: 'nux=1',
+                        endpoints: adalSettings.endPoints,
+                        cacheLocation: 'localStorage', // enable this for IE, as sessionStorage does not work for localhost.
+                    },
+                    $httpProvider
+                );
+            }          
+        }
+    </script>
+
+    <script type="text/javascript">
+    angular
+      .module('frameApp', ['ngRoute', 'AdalAngular'])
+      .config(['$routeProvider', function ($routeProvider) {
+        $routeProvider.otherwise({ redirectTo: 'x' });
+      }])
+      .config(['adalAuthenticationServiceProvider', '$httpProvider', function (adalProvider, $httpProvider) {
+        adalConfigure(adalProvider, $httpProvider);
+      }]);
+    </script>
+</body>
+</html>

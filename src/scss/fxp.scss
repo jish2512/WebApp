@@ -1,0 +1,34 @@
+﻿@import "vars";
+
+/* base-style */
+@import "base-styles/icons";
+@import "base-styles/typography";
+
+/* Components */
+@import './component/base/button.scss';
+@import './component/base/hyperlink.scss';
+@import './component/base/input.scss';
+@import './component/base/select.scss';
+@import './component/base/datepicker.scss';
+
+/* Page Components */
+@import "./component/page/components.scss";
+@import "./component/page/footer.scss";
+@import "./component/page/header.scss";
+@import "./component/page/help.scss";
+@import "./component/page/system-messages.scss";
+@import "./component/page/leftnavadmin.scss";
+@import "./component/page/message.scss";
+@import "./component/page/page.scss";
+@import "./component/page/sidebar.scss";
+@import "./component/page/footerScroll.scss";
+@import "./component/page/adminrolegroup.scss";
+@import "./component/page/notification.scss";
+@import "./component/page/toastnotification.scss";
+@import "./component/page/sessionTimeout.scss";
+@import "./component/page/author-notification.scss";
+@import "./component/page/author-notification-list.scss";
+@import "./component/page/fullScreen.scss";
+@import "./component/page/admin-landing.scss";
+@import "./component/page/iframeApplication.scss";
+@import "./component/page/create-ask-ops-request.scss";

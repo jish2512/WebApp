@@ -1,0 +1,96 @@
+﻿<section id="system-message">
+    <div class="system-message-body">
+        <div class="row margin0">
+            <button class="fxp-btn fxp-btn--action add-message pull-right"
+                    fxp-click="smCtrl.showModal('ADD')">
+                <span class="icon icon-plus"></span>
+                <span class="add-msg-text font-caption-alt" ng-bind="::smCtrl.UiString.ADD_MESSAGES"></span>
+            </button>
+            <h3 class="system-message-heading font-caption-alt" ng-bind="::smCtrl.UiString.SYSTEM_MESSAGES"></h3>
+            <p class="system-message-help-text font-caption-alt" ng-bind="::smCtrl.UiString.SYSTEM_MESSAGE_DESC"></p>
+        </div>
+        <section ng-if="smCtrl.pageCount>0">
+            <div class="row margin0">
+                <label for="item-count" class="item-count-label font-caption-alt" ng-bind="::smCtrl.UiString.ITEMS_TO_DISPLAY"></label>
+                <div class="fxp-dropdown-menu item-drop-down">
+                    <select id="item-count" class="font-caption-alt"
+                            ng-model="smCtrl.messagePerPageCount"
+                            ng-options="msgCount as msgCount for msgCount in smCtrl.messageCountCollection track by msgCount"
+                            ng-change="smCtrl.updateMessagePerPageCount()"></select>
+                </div>
+                <div class="system-message-pagination pull-right"
+                     fxp-include-static-template="templates/system_messages/pagination.html">
+                </div>
+            </div>
+            <table>
+                <thead>
+                    <tr class="row">
+                        <th class="chevron-header"></th>
+                        <th class="message-desc-header" ng-bind="::smCtrl.UiString.MESSAGE.MESSAGE"></th>
+                        <th ng-bind="::smCtrl.UiString.MESSAGE.TYPE"></th>
+                        <th ng-bind="::smCtrl.UiString.BUSINESS_CAPABILITY"></th>
+                        <th ng-bind="::smCtrl.UiString.BUSINESS_FUNCTION"></th>
+                        <th class="start-date">
+                            <button ng-click="smCtrl.toggleSortOrder()"
+                                    class="toggle-sort"
+                                    aria-label="Toggle sort order {{smCtrl.UiString.MESSAGE.START}}"
+                                    title="Toggle sort order">
+                                {{smCtrl.UiString.MESSAGE.START}}
+                                <i class="icon" ng-class="{'icon-down-arrow' : smCtrl.sortOrder == 'DESC', 'icon-up-arrow' : smCtrl.sortOrder == 'ASC'}"></i>
+                            </button>
+                        </th>
+                        <th ng-bind="::smCtrl.UiString.MESSAGE.END"></th>
+                        <th ng-bind="::smCtrl.UiString.MESSAGE.STATUS"></th>
+                        <th ng-bind="::smCtrl.UiString.EDIT"></th>
+                        <th ng-bind="::smCtrl.UiString.DELETE"></th>
+                    </tr>
+                </thead>
+                <tbody class="font-caption-alt">
+                    <tr class="row"
+                        ng-repeat="systemMessage in smCtrl.systemMessageCollection | limitTo : smCtrl.messagePerPageCount track by systemMessage.id"
+                        ng-init="systemMessage.showFullMessage=false" fxp-system-message-row>
+                        <td class="chevron">
+                            <button aria-label="{{(systemMessage.showFullMessage ? 'expanded ' : 'collapsed ') + systemMessage.message}}"
+                                    class="icon icon-row-up pull-left"
+                                    ng-class="systemMessage.showFullMessage? 'icon-row-up' : 'icon-row-down'"
+                                    ng-click="systemMessage.showFullMessage = !systemMessage.showFullMessage"></button>
+                        </td>
+                        <td class="message-desc"
+                            tabindex="0"
+                            title="{{systemMessage.message}}"
+                            aria-label="{{systemMessage.message}}"
+                            ng-class="{ellipses : !systemMessage.showFullMessage}"
+                            ng-bind="systemMessage.message"></td>
+                        <td ng-bind="systemMessage.messageType | unCamelCase"></td>
+                        <td ng-bind="systemMessage.businessCapability[0].name"></td>
+                        <td ng-bind="systemMessage.businessFunction[0].name"></td>
+                        <td class="dates" ng-bind="systemMessage.startTime | amTimezone:'America/Los_Angeles' |  amDateFormat:'M/D/YY h:mm a zz'"></td>
+                        <td class="dates" ng-bind="systemMessage.endTime  | amTimezone:'America/Los_Angeles' | amDateFormat:'M/D/YY h:mm a zz'"></td>
+                        <td ng-bind="smCtrl.getStatusText(systemMessage.isActive)"></td>
+                        <td><button class="icon icon-edit-row" fxp-click="smCtrl.showModal('EDIT',systemMessage)" title="Edit Message" aria-label="Edit Message"></button></td>
+                        <td><button class="icon icon-delete-row" fxp-click="smCtrl.showModal('DELETE',systemMessage)" title="Delete Message" aria-label="Delete Message"></button></td>
+                    </tr>
+                </tbody>
+
+            </table>
+            <div class="system-message-pagination pull-right"
+                 fxp-include-static-template="templates/system_messages/pagination.html">
+            </div>
+        </section>
+    </div>
+    <section class="system-message-popupbg"
+             role="dialog"
+             aria-label="{{smCtrl.modalType}} System Messages"
+             tabindex="0"
+             fxp-include-static-template="templates/system_messages/add-edit-modal.html"
+             ng-if="smCtrl.modalType == 'ADD' || smCtrl.modalType == 'EDIT'"></section>
+    <section class="system-message-popupbg"
+             role="dialog"
+             tabindex="0"
+             aria-label="Delete System Message"
+             fxp-include-static-template="templates/system_messages/delete-modal.html"
+             ng-if="smCtrl.modalType == 'DELETE'"></section>
+
+</section>
+
+

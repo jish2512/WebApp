@@ -1,0 +1,104 @@
+﻿// Import styles
+@import "../../vars";
+@import '../../base-styles/typography';
+
+// Styles
+#admin-landing {
+	.admin-landing-header {
+		height: 200px;
+		width: 100%;
+		background: linear-gradient(to right, rgba($BLACK,1) 0%, rgba($BLACK,0) 44%), url('~/../../../assets/pictures/admin-landing-cover.jpg') no-repeat right top;
+		background-size: cover;
+		background-position: 0% 33%;
+		color: $WHITE;
+		padding: 24px 20px;
+		position: relative;
+
+		.header-content {
+			position: absolute;
+			bottom: 24px;
+
+			h3 {
+				padding: 0 0 12px 0;
+			}
+		}
+	}
+
+	.admin-landing-content {
+
+		.nav-tabs {
+			border: none;
+			font-family: "Segoe UI";
+			font-size: 15px;
+
+			.uib-tab {
+				height: 44px;
+				padding: 0 12px;
+
+				a {
+					color: rgba($BLACK, 0.7);
+					border: none;
+					border-bottom: 2px solid transparent;
+					padding: 12px 0 8px 0;
+				}
+
+				&.active {
+					a {
+						color: $BLACK;
+						background: transparent;
+						border: none;
+						border-bottom: 2px solid $BLUE_PRIMARY;
+					}
+				}
+			}
+		}
+
+		.tab-content {
+			padding: 0 6px;
+
+			.admin-tile {
+				background: $WHITE;
+				min-width: 272px;
+				max-width: 440px;
+				width: calc(25% - 8px);
+				min-height: 208px;
+				margin: 4px;
+				padding: 8px;
+				display: inline-block;
+				float: left;
+
+				.icon {
+					height: 44px;
+					width: 44px;
+					border: none;
+					border-radius: 50%;
+					background: $BLUE_PRIMARY;
+					color: $WHITE;
+					font-size: 24px;
+					margin: 8px;
+					padding: 10px;
+				}
+
+				.tile-header {
+					color: $BLUE_PRIMARY;
+					font-family: "Segoe UI Semilight";
+					font-size: 21px;
+					margin: 8px;
+				}
+
+				.tile-description {
+					color: $BLACK;
+					margin: 8px;
+				}
+
+				&:hover {
+					cursor: pointer;
+
+					.tile-header {
+						text-decoration: underline;
+					}
+				}
+			}
+		}
+	}
+}
